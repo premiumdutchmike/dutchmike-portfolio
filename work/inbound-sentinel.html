@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inbound Sentinel — Mike Melchiot</title>
+  <meta name="description" content="A 24/7 inbound lead-qualification agent for a B2B SaaS team — reads the form, asks the right follow-ups, books the meeting, and tells sales what to know before they walk in." />
+  <link rel="canonical" href="https://dutchmike.com/work/inbound-sentinel" />
+  <meta property="og:title" content="Inbound Sentinel" />
+  <meta property="og:description" content="A 24/7 inbound lead-qualification agent for a B2B SaaS team — reads the form, asks the right follow-ups, books the meeting, and tells sales what to know before they walk in." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dutchmike.com/work/inbound-sentinel" />
+  <meta property="og:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Inbound Sentinel" />
+  <meta name="twitter:description" content="A 24/7 inbound lead-qualification agent for a B2B SaaS team — reads the form, asks the right follow-ups, books the meeting, and tells sales what to know before they walk in." />
+  <meta name="twitter:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Inbound Sentinel",
+    "description": "A 24/7 inbound lead-qualification agent for a B2B SaaS team. Form to booked meeting, autonomously.",
+    "url": "https://dutchmike.com/work/inbound-sentinel",
+    "datePublished": "2026-03-01",
+    "keywords": ["AI engineering", "Lead qualification agent", "B2B SaaS"],
+    "creator": {
+      "@type": "Person",
+      "@id": "https://dutchmike.com/#person",
+      "name": "Mike Melchiot",
+      "url": "https://dutchmike.com/",
+      "jobTitle": "AI engineer",
+      "sameAs": [
+        "https://www.linkedin.com/in/mikemelchiot/",
+        "https://github.com/dutchmike-lab"
+      ]
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <!-- Page loader (Hyper Effekt-style curtain) — injected -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__name">DUTCH MIKE</span>
+      <span class="loader__role">AI Engineer</span>
+    </div>
+  </div>
+
+  <!-- ========== NAV ========== -->
+  <header class="nav">
+    <div class="nav__pad">
+      <div class="nav__shell">
+        <nav class="nav__links" aria-label="Primary">
+          <a href="../services.html">Services</a>
+          <a href="../work.html">Work</a>
+          <a href="../about.html">About</a>
+        </nav>
+        <a href="../index.html" class="nav__brand" aria-label="Dutch Mike — home">
+          <img class="nav__logo" src="../assets/dm-logo-white.png" alt="">
+        </a>
+        <div class="nav__actions">
+          <a class="nav__icon" href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          </a>
+          <a class="nav__icon" href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a class="nav__icon" href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+          </a>
+          <a class="nav__cta" href="../contact.html">
+            Contact Us
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-float" id="navFloat" aria-hidden="true">
+      <a class="nav-float__cta" href="../contact.html">Contact</a>
+      <a href="../index.html" class="nav-float__logo" aria-label="Dutch Mike — home">
+        <img src="../assets/dm-logo-white.png" alt="">
+      </a>
+      <button class="nav-float__menu" id="navMenuBtn" type="button" aria-label="Open menu" aria-controls="navOverlay" aria-expanded="false">
+        <span>Menu</span>
+        <span class="nav-float__icon" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+    <div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
+      <div class="nav-overlay__panel">
+        <div class="nav-overlay__head">
+          <a class="nav-overlay__head-cta" href="../contact.html" data-nav-close>Contact</a>
+          <a href="../index.html" class="nav-overlay__head-logo" data-nav-close aria-label="Dutch Mike — home">
+            <img src="../assets/dm-logo-white.png" alt="">
+          </a>
+          <button class="nav-overlay__close" id="navMenuClose" type="button" aria-label="Close menu">
+            <span>Close</span><span aria-hidden="true">✕</span>
+          </button>
+        </div>
+        <nav class="nav-overlay__links" aria-label="Site">
+          <a href="../services.html" data-nav-close>Services</a>
+          <a href="../work.html" data-nav-close>Work</a>
+          <a href="../about.html" data-nav-close>About</a>
+          <a href="../contact.html" data-nav-close>Contact</a>
+        </nav>
+        <div class="nav-overlay__foot">
+          <span class="nav-overlay__label">Find me</span>
+          <div class="nav-overlay__socials">
+            <a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== CASE HERO ========== -->
+  <section class="case-hero">
+    <div class="container">
+      <a href="../work.html" class="case-hero__crumb reveal">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3 L4 8 L10 13"/></svg>
+        All work / 01 of 06
+      </a>
+
+      <h1 class="display case-hero__title reveal">Inbound Sentinel.</h1>
+
+      <p class="lede case-hero__lede reveal" data-delay="1">
+        A 24/7 inbound lead-qualification agent for a B2B SaaS team. It reads the form, asks the right follow-ups, books the meeting, and tells sales what to know before they walk in.
+      </p>
+
+      <dl class="case-meta stagger">
+        <div><dt>Client</dt><dd>B2B SaaS · 18-person team</dd></div>
+        <div><dt>Role</dt><dd>Solo AI engineer · design, build, ship</dd></div>
+        <div><dt>Timeline</dt><dd>6 weeks · Mar–Apr 2026</dd></div>
+        <div><dt>Status</dt><dd>Live in production</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ========== CONTEXT ========== -->
+  <section>
+    <div class="container">
+
+      <article class="case-block">
+        <div class="case-block__label">01 · Context</div>
+        <div class="case-block__body reveal">
+          <h3>The team was drowning in good inbound and losing it anyway.</h3>
+          <p>
+            A growing B2B SaaS company had a real problem most teams would happily trade for: too many inbound leads. Their site was working. The marketing was working. What wasn&rsquo;t working was the next 24 hours after a form submission.
+          </p>
+          <p>
+            Two AEs were splitting all inbound. By the time they triaged, qualified, and tried to book a call, the average response was 19 hours. Leads went cold. The best-fit prospects — the ones already evaluating competitors — were the ones most likely to drop off.
+          </p>
+          <p>
+            They didn&rsquo;t need another tool that pinged Slack. They needed something to <em>do the work</em>.
+          </p>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">02 · Problem</div>
+        <div class="case-block__body reveal">
+          <h3>Speed-to-qualify, not speed-to-respond.</h3>
+          <p>
+            &ldquo;Reply faster&rdquo; is a metric that gets gamed by autoresponders that say nothing. The real ask was harder: read each lead carefully, decide whether they&rsquo;re worth time, get the missing context, and book the meeting — at three in the morning, on a Sunday, on Christmas Eve.
+          </p>
+          <p>The constraints I set with the team:</p>
+          <ul>
+            <li>The agent never lies, never invents, and never pretends to be human.</li>
+            <li>It must hand off cleanly. Sales should walk into the call already knowing the answers.</li>
+            <li>It must be observable. Every action is logged, replayable, and overrideable.</li>
+            <li>It must fail gracefully. When unsure, escalate to a person within five minutes.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">03 · What I built</div>
+        <div class="case-block__body reveal">
+          <h3>A small, opinionated agent with a small, opinionated toolbox.</h3>
+          <p>
+            One LLM agent loop, four tools, one supervisor that can interrupt it. The whole system fits on one page if you print it. That&rsquo;s the goal: the smallest thing that solves the problem and stays solved.
+          </p>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Architecture</h4>
+          <div class="visual visual--diagram">
+                    ┌────────────────────────┐
+   form submit ───▶ │   ingest + enrich      │
+                    │  (Clearbit, ZeroBounce)│
+                    └──────────┬─────────────┘
+                               ▼
+                    ┌────────────────────────┐
+                    │   agent loop  (GPT-4o) │
+                    │   tools:               │
+                    │     - crm.search       │
+                    │     - email.send       │
+                    │     - calendar.book    │
+                    │     - slack.notify     │
+                    └──────────┬─────────────┘
+                               ▼
+                    ┌────────────────────────┐
+                    │   supervisor (rules)   │
+                    │   trip wires + escal.  │
+                    └──────────┬─────────────┘
+                               ▼
+                    booked meeting + brief
+          </div>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Stack</h4>
+          <div class="stack">
+            <span>Python 3.12</span>
+            <span>FastAPI</span>
+            <span>OpenAI gpt-4o</span>
+            <span>LangGraph</span>
+            <span>Postgres + pgvector</span>
+            <span>Modal (workers)</span>
+            <span>Resend</span>
+            <span>Cal.com API</span>
+            <span>HubSpot API</span>
+            <span>Linear (escalation)</span>
+            <span>Logfire</span>
+          </div>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Key decisions</h4>
+          <ul>
+            <li><strong>One agent, not five.</strong> The first instinct in 2026 is to wire up a multi-agent system. I built a single agent with a clear toolbox because I could observe it, debug it, and explain it to the team. We can split later if scaling demands it. It hasn&rsquo;t.</li>
+            <li><strong>Tools, not freeform email.</strong> The agent doesn&rsquo;t draft email bodies from scratch — it picks from a small set of templated reply strategies and fills slots. This collapses an entire class of brand-voice failures and makes outputs reviewable.</li>
+            <li><strong>The supervisor is rules, not another model.</strong> A small set of hard checks (don&rsquo;t book outside business hours, don&rsquo;t reply to free-email-domain ICP mismatches without flagging, etc.) sits between the agent&rsquo;s decisions and any external action. Deterministic guardrails for the things you don&rsquo;t want to think about twice.</li>
+            <li><strong>RAG for context, not for answers.</strong> A pgvector store of the team&rsquo;s past sales conversations gives the agent recall (&ldquo;we&rsquo;ve seen this objection before, here&rsquo;s how Sarah handled it&rdquo;) — surfaced in the brief to the AE, not pushed into outbound copy.</li>
+            <li><strong>Full replay.</strong> Every run produces a trace. The team can scrub through any conversation, see the model&rsquo;s reasoning, the tool calls, and the supervisor&rsquo;s interventions. This was the single biggest factor in earning the team&rsquo;s trust.</li>
+          </ul>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">What a single run looks like</h4>
+          <div class="visual">
+[14:02:11] ingest      → form lead: M.Lin · acme.co · 850-employee SaaS
+[14:02:13] enrich      → role:Head of RevOps · matched ICP segment B
+[14:02:14] crm.search  → 0 existing records · 2 historical website touches
+[14:02:18] agent       → strategy:qualify-with-context · template:T7
+[14:02:21] email.send  → "Hi Marcus, before I grab time with Priya…" (3 Qs)
+[14:11:46] (reply)     → answers received · seat count = 1,200
+[14:11:50] agent       → strategy:book · proposed 3 slots
+[14:12:05] supervisor  → ok (within business hours, ICP confirmed)
+[14:18:09] (reply)     → "Thursday 2pm works"
+[14:18:11] calendar    → booked w/ Priya · invite sent
+[14:18:12] slack       → #inbound: brief posted (147 words)
+          </div>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">04 · Outcome</div>
+        <div class="case-block__body reveal">
+          <h3>It quietly did the job, which was the point.</h3>
+          <p>
+            Numbers below are 90-day post-launch, measured against the matched 90-day pre-launch baseline. Source: HubSpot + the agent&rsquo;s own trace logs.
+          </p>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="stat__value">19h&nbsp;→&nbsp;7m</div>
+              <div class="stat__label">Median time to first response</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">2.8&times;</div>
+              <div class="stat__label">Booked meetings per 100 leads</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">312/wk</div>
+              <div class="stat__label">Conversations handled, autonomously</div>
+            </div>
+          </div>
+
+          <p style="margin-top:32px;">
+            The qualitative wins mattered as much. AEs stopped doing intake and started doing sales. The team&rsquo;s Monday meeting got shorter. One AE said the briefs were better than what she used to write for herself.
+          </p>
+          <p>
+            Escalation rate stabilized at 6%, which is the number we want — high enough to mean the agent isn&rsquo;t pretending to handle things it can&rsquo;t, low enough to mean it&rsquo;s actually working.
+          </p>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">05 · Lessons</div>
+        <div class="case-block__body reveal">
+          <h3>What I&rsquo;d do the same. What I&rsquo;d do differently.</h3>
+          <p><strong>Keep:</strong> the supervisor pattern. Letting deterministic code interrupt model decisions is the cleanest way I&rsquo;ve found to ship an agent without losing sleep. It also makes &ldquo;why did it do that&rdquo; an answerable question.</p>
+          <p><strong>Keep:</strong> traces as a first-class product. The replay UI was a few hundred lines of code and earned the most trust per line of anything in the system.</p>
+          <p><strong>Change:</strong> I built the prompt as a single long file and kept tuning it. Halfway through I should&rsquo;ve refactored to a small registry of named strategies with their own evals. By week five I had a strategy registry; I&rsquo;d start with that next time.</p>
+          <p><strong>Change:</strong> I underspecified the &ldquo;agent gives up&rdquo; criteria for the first two weeks. The agent kept trying. Adding explicit budget caps (max tool calls per lead, max latency per turn) fixed it in an afternoon and would&rsquo;ve saved a week of fiddling.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========== NEXT / PREV ========== -->
+  <nav class="case-nav" aria-label="Project navigation">
+    <a href="../work.html" class="prev">
+      <span class="label">← Back</span>
+      <span class="title">All work</span>
+    </a>
+    <a href="../work.html#proposalforge" class="next">
+      <span class="label">Next case →</span>
+      <span class="title">ProposalForge</span>
+    </a>
+  </nav>
+
+  <!-- ========== FOOTER — Hyper Effekt-style ========== -->
+  <footer class="he-footer">
+    <div class="he-footer__watermark" aria-hidden="true">dutchmike</div>
+    <div class="container">
+
+      <div class="he-footer__top">
+        <h2 class="he-footer__headline">
+          <a href="mailto:info@dutchmike.com">Let&rsquo;s build something</a>
+        </h2>
+        <div class="he-footer__contact">
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Hiring</span>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Project inquiry</span>
+            <a href="../contact.html">Start a brief</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="he-footer__mid">
+        <div class="he-footer__address">
+          <span class="he-footer__address-name">Mike Melchiot</span>
+          AI engineer · video producer · operator.<br>
+          Available worldwide, async-friendly.
+        </div>
+        <div class="he-footer__sitemap">
+          <div class="he-footer__sitemap-col">
+            <h4>Site</h4>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../services.html">Services</a></li>
+              <li><a href="../work.html">Work</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="he-footer__sitemap-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://github.com/dutchmike-lab" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="he-footer__sitemap-col">
+          <h4>For Clients</h4>
+          <ul>
+            <li><a href="../work-with-me.html">Work with me</a></li>
+            <li><a href="../contact.html">Project inquiry</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="he-footer__bottom">
+        <span>© <span data-year></span> Mike Melchiot · dutchmike.com</span>
+        <span>Built worldwide · running on coffee &amp; tropics</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

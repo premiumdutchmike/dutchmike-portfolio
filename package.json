@@ -1,0 +1,13 @@
+{
+  "name": "dutchmike-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static portfolio + single Vercel serverless function for the contact form (Resend relay).",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "resend": "^4.0.0"
+  }
+}

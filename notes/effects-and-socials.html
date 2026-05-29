@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Effects + Socials — Research</title>
+<style>
+  :root{
+    --bg:#f6f5f1;
+    --ink:#111;
+    --muted:#6b6b66;
+    --rule:#dcdad2;
+    --chip:#eceadf;
+    --chip-ink:#2b2b27;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+  body{
+    font-family:"Geist","Geist Sans",ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    font-size:15px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:72px 28px 96px}
+  header.top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:18px;margin-bottom:48px}
+  header.top h1{font-size:22px;font-weight:600;margin:0;letter-spacing:-0.01em}
+  header.top .meta{font-size:12px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase}
+  section{margin-bottom:72px}
+  h2{font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+  .lede{font-size:20px;line-height:1.4;letter-spacing:-0.01em;margin:0 0 28px;max-width:62ch}
+  .note{font-size:12.5px;color:var(--muted);margin:0 0 24px;max-width:62ch}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+  th{font-weight:500;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);background:transparent}
+  td a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;text-decoration-color:#bcbab2}
+  td a:hover{text-decoration-color:var(--ink)}
+  .status{font-size:12px;letter-spacing:0.04em;display:inline-block;padding:2px 8px;border:1px solid var(--rule);border-radius:999px;color:var(--muted);white-space:nowrap}
+  .s-active{color:#1b6b2b;border-color:#bcd9c1}
+  .s-unverified{color:#7a5d00;border-color:#d8cc9a}
+  .s-notfound{color:#8b2a2a;border-color:#e0bcbc}
+  .grid{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--rule)}
+  .card{padding:22px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:28px 1fr auto;gap:18px;align-items:start}
+  .card .num{font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted);letter-spacing:0.06em}
+  .card h3{margin:0 0 4px;font-size:17px;font-weight:600;letter-spacing:-0.005em}
+  .card p.desc{margin:0 0 10px;color:#2b2b27;max-width:60ch}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:12px;color:var(--muted)}
+  .meta-row .dot{width:3px;height:3px;background:#bcbab2;border-radius:50%;display:inline-block}
+  .chip{font-size:11px;letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--rule);border-radius:2px;color:#2b2b27;background:#efedea}
+  .diff{font-size:11px;letter-spacing:0.06em;text-transform:uppercase}
+  .diff-low{color:#1b6b2b}
+  .diff-med{color:#7a5d00}
+  .diff-high{color:#8b2a2a}
+  pre.snip{margin:10px 0 0;font-family:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;background:#efedea;color:#2b2b27;padding:8px 10px;border-radius:3px;overflow-x:auto;white-space:pre-wrap;word-break:break-word}
+  .card .col-meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;min-width:120px;text-align:right}
+  .card .col-meta a{font-size:12px}
+  footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);font-size:11.5px;color:var(--muted);letter-spacing:0.04em;display:flex;justify-content:space-between}
+  @media (max-width:640px){
+    .wrap{padding:48px 18px 72px}
+    .card{grid-template-columns:24px 1fr;gap:12px}
+    .card .col-meta{grid-column:2/3;align-items:flex-start;text-align:left}
+  }
+</style>
+</head>
+<body>
+  <!-- Page loader (Hyper Effekt-style curtain) — injected -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__name">DUTCH MIKE</span>
+      <span class="loader__role">AI Engineer</span>
+    </div>
+  </div>
+<div class="wrap">
+
+  <header class="top">
+    <h1>Effects + Socials</h1>
+    <div class="meta">Research notes / portfolio v6</div>
+  </header>
+
+  <!-- ========== TASK A: SOCIALS ========== -->
+  <section id="socials">
+    <h2>A — Social Profiles</h2>
+    <p class="lede">Handles for "Dutch Mike Agency" / "DutchMike" plus the verified personal LinkedIn.</p>
+    <p class="note">Note: LinkedIn, Instagram, Facebook, X, TikTok and YouTube all block automated fetching via <code>robots.txt</code> or anti-bot pages. URLs below are constructed from the patterns you supplied and the canonical handle, but live status could not be confirmed programmatically — verify manually in a browser. Only the personal LinkedIn was pre-confirmed.</p>
+
+    <table>
+      <thead>
+        <tr><th style="width:18%">Platform</th><th style="width:24%">Handle</th><th>URL</th><th style="width:22%">Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>LinkedIn (personal)</td>
+          <td>mikemelchiot</td>
+          <td><a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">linkedin.com/in/mikemelchiot</a></td>
+          <td><span class="status s-active">active — pre-verified</span></td>
+        </tr>
+        <tr>
+          <td>LinkedIn (company)</td>
+          <td>dutchmikeagency</td>
+          <td><a href="https://www.linkedin.com/company/dutchmikeagency" target="_blank" rel="noopener">linkedin.com/company/dutchmikeagency</a></td>
+          <td><span class="status s-unverified">could not verify (robots)</span></td>
+        </tr>
+        <tr>
+          <td>LinkedIn (company alt)</td>
+          <td>dutch-mike-agency</td>
+          <td><a href="https://www.linkedin.com/company/dutch-mike-agency" target="_blank" rel="noopener">linkedin.com/company/dutch-mike-agency</a></td>
+          <td><span class="status s-unverified">could not verify (robots)</span></td>
+        </tr>
+        <tr>
+          <td>LinkedIn (company alt)</td>
+          <td>dutchmike</td>
+          <td><a href="https://www.linkedin.com/company/dutchmike" target="_blank" rel="noopener">linkedin.com/company/dutchmike</a></td>
+          <td><span class="status s-unverified">could not verify (robots)</span></td>
+        </tr>
+        <tr>
+          <td>Instagram</td>
+          <td>@dutchmike</td>
+          <td><a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">instagram.com/dutchmike</a></td>
+          <td><span class="status s-unverified">could not verify (robots)</span></td>
+        </tr>
+        <tr>
+          <td>Instagram</td>
+          <td>@dutchmikeagency</td>
+          <td><a href="https://www.instagram.com/dutchmikeagency/" target="_blank" rel="noopener">instagram.com/dutchmikeagency</a></td>
+          <td><span class="status s-unverified">could not verify (robots)</span></td>
+        </tr>
+        <tr>
+          <td>YouTube</td>
+          <td>@dutchmike</td>
+          <td><a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">youtube.com/@dutchmike</a></td>
+          <td><span class="status s-unverified">could not verify (JS page)</span></td>
+        </tr>
+        <tr>
+          <td>YouTube</td>
+          <td>@dutchmikeagency</td>
+          <td><a href="https://www.youtube.com/@dutchmikeagency" target="_blank" rel="noopener">youtube.com/@dutchmikeagency</a></td>
+          <td><span class="status s-unverified">could not verify (JS page)</span></td>
+        </tr>
+        <tr>
+          <td>TikTok</td>
+          <td>@dutchmike</td>
+          <td><a href="https://www.tiktok.com/@dutchmike" target="_blank" rel="noopener">tiktok.com/@dutchmike</a></td>
+          <td><span class="status s-unverified">could not verify (JS page)</span></td>
+        </tr>
+        <tr>
+          <td>TikTok</td>
+          <td>@dutchmikeagency</td>
+          <td><a href="https://www.tiktok.com/@dutchmikeagency" target="_blank" rel="noopener">tiktok.com/@dutchmikeagency</a></td>
+          <td><span class="status s-unverified">could not verify (JS page)</span></td>
+        </tr>
+        <tr>
+          <td>X / Twitter</td>
+          <td>@dutchmike</td>
+          <td><a href="https://x.com/dutchmike" target="_blank" rel="noopener">x.com/dutchmike</a></td>
+          <td><span class="status s-unverified">could not verify (robots)</span></td>
+        </tr>
+        <tr>
+          <td>Facebook</td>
+          <td>dutchmike</td>
+          <td><a href="https://www.facebook.com/dutchmike" target="_blank" rel="noopener">facebook.com/dutchmike</a></td>
+          <td><span class="status s-unverified">could not verify (robots)</span></td>
+        </tr>
+        <tr>
+          <td>Facebook</td>
+          <td>dutchmikeagency</td>
+          <td><a href="https://www.facebook.com/dutchmikeagency" target="_blank" rel="noopener">facebook.com/dutchmikeagency</a></td>
+          <td><span class="status s-unverified">could not verify (robots)</span></td>
+        </tr>
+        <tr>
+          <td>Vimeo</td>
+          <td>dutchmike</td>
+          <td><a href="https://vimeo.com/dutchmike" target="_blank" rel="noopener">vimeo.com/dutchmike</a></td>
+          <td><span class="status s-notfound">not found — HTTP 404</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== TASK B: EFFECTS ========== -->
+  <section id="effects">
+    <h2>B — Portfolio Effects</h2>
+    <p class="lede">Hand-picked visual / interaction moves that land on a monochrome editorial layout — Geist type, off-white background, hand-rolled HTML/CSS. No React required for any of these; the JS-flagged ones can run in ~10–40 lines of vanilla.</p>
+
+    <div class="grid">
+
+      <!-- 1 -->
+      <article class="card">
+        <div class="num">01</div>
+        <div>
+          <h3>Scroll-pinned diagonal text</h3>
+          <p class="desc">A huge editorial word or sentence pinned across the viewport at an angle while the rest of the page scrolls past it. Reads as a typographic anchor between sections.</p>
+          <div class="meta-row">
+            <span class="chip">between-sections</span><span class="dot"></span>
+            <span class="diff diff-med">difficulty: med</span><span class="dot"></span>
+            <span>uses: <code>position:sticky</code> + <code>rotate(-12deg)</code></span>
+          </div>
+          <pre class="snip">.pin{position:sticky;top:30vh;transform:rotate(-9deg);font-size:clamp(72px,14vw,220px);letter-spacing:-0.04em}</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://www.awwwards.com/sites_of_the_day" target="_blank" rel="noopener">awwwards SOTD</a>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="card">
+        <div class="num">02</div>
+        <div>
+          <h3>Infinite single-line marquee</h3>
+          <p class="desc">One thin row of text or client names scrolling horizontally forever. Used as a page-divider or above the footer — never as the hero.</p>
+          <div class="meta-row">
+            <span class="chip">between-sections</span><span class="dot"></span>
+            <span class="diff diff-low">difficulty: low</span><span class="dot"></span>
+            <span>pure CSS, no JS</span>
+          </div>
+          <pre class="snip">@keyframes mq{to{transform:translateX(-50%)}} .marquee{display:flex;animation:mq 40s linear infinite}</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://magicui.design/docs/components/marquee" target="_blank" rel="noopener">magicui / marquee</a>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="card">
+        <div class="num">03</div>
+        <div>
+          <h3>Sticky shrinking nav</h3>
+          <p class="desc">Top bar starts tall and editorial, compresses to a thin rule + small wordmark after the first 80–120px of scroll. Adds spatial hierarchy without taking real estate.</p>
+          <div class="meta-row">
+            <span class="chip">global / header</span><span class="dot"></span>
+            <span class="diff diff-low">difficulty: low</span><span class="dot"></span>
+            <span>1 IntersectionObserver toggles a class</span>
+          </div>
+          <pre class="snip">new IntersectionObserver(([e])=>nav.classList.toggle('shrunk',!e.isIntersecting)).observe(sentinel)</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://www.w3schools.com/howto/howto_js_shrink_header_scroll.asp" target="_blank" rel="noopener">w3 / shrink header</a>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="card">
+        <div class="num">04</div>
+        <div>
+          <h3>Magnetic buttons</h3>
+          <p class="desc">Primary CTAs subtly lean toward the cursor inside a generous hover radius. Feels tactile without being cute — keep travel under ~10px.</p>
+          <div class="meta-row">
+            <span class="chip">cta / hero</span><span class="dot"></span>
+            <span class="diff diff-med">difficulty: med</span><span class="dot"></span>
+            <span>vanilla JS + transform</span>
+          </div>
+          <pre class="snip">btn.onpointermove=e=>{const r=btn.getBoundingClientRect();btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*0.2}px,${(e.clientY-r.top-r.height/2)*0.2}px)`}</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://godly.website/?types=%5B%22portfolio%22%5D" target="_blank" rel="noopener">godly.website</a>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="card">
+        <div class="num">05</div>
+        <div>
+          <h3>Noise grain overlay</h3>
+          <p class="desc">A fixed-position SVG turbulence filter at ~6% opacity sits over the whole page. Kills the "fresh-from-Figma" digital flatness, gives the off-white print-paper feel.</p>
+          <div class="meta-row">
+            <span class="chip">global</span><span class="dot"></span>
+            <span class="diff diff-low">difficulty: low</span><span class="dot"></span>
+            <span>SVG <code>feTurbulence</code>, no JS</span>
+          </div>
+          <pre class="snip">&lt;svg style="position:fixed;inset:0;opacity:.06;pointer-events:none"&gt;&lt;filter id="n"&gt;&lt;feTurbulence baseFrequency=".9"/&gt;&lt;/filter&gt;&lt;rect width="100%" height="100%" filter="url(#n)"/&gt;&lt;/svg&gt;</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://godly.website/?types=%5B%22portfolio%22%5D" target="_blank" rel="noopener">godly.website</a>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="card">
+        <div class="num">06</div>
+        <div>
+          <h3>Color-invert on hover</h3>
+          <p class="desc">Case-study cards flip from off-white-on-ink to ink-on-off-white when hovered. Strongest version is on the link row itself — no images move, only contrast.</p>
+          <div class="meta-row">
+            <span class="chip">cards / link rows</span><span class="dot"></span>
+            <span class="diff diff-low">difficulty: low</span><span class="dot"></span>
+            <span>CSS <code>:hover</code> + <code>filter:invert(1)</code></span>
+          </div>
+          <pre class="snip">.row:hover{background:#111;color:#f6f5f1} .row:hover img{filter:invert(1) grayscale(1)}</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://www.awwwards.com/websites/sites_of_the_day/" target="_blank" rel="noopener">awwwards</a>
+        </div>
+      </article>
+
+      <!-- 7 -->
+      <article class="card">
+        <div class="num">07</div>
+        <div>
+          <h3>Mask-line text reveal</h3>
+          <p class="desc">Headlines reveal by sliding up from inside a clipped box — one line at a time, staggered. Tied to <code>IntersectionObserver</code> so it only fires on first view.</p>
+          <div class="meta-row">
+            <span class="chip">hero / section intros</span><span class="dot"></span>
+            <span class="diff diff-med">difficulty: med</span><span class="dot"></span>
+            <span>overflow:hidden + translateY</span>
+          </div>
+          <pre class="snip">.line{display:block;overflow:hidden} .line span{display:block;transform:translateY(110%);transition:transform .9s cubic-bezier(.2,.8,.2,1)} .in .line span{transform:none}</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://www.framer.com/marketplace/components/mask-text-reveal/" target="_blank" rel="noopener">framer / mask-text-reveal</a>
+        </div>
+      </article>
+
+      <!-- 8 -->
+      <article class="card">
+        <div class="num">08</div>
+        <div>
+          <h3>Blur-in on scroll</h3>
+          <p class="desc">Section paragraphs enter slightly out of focus (~8px blur) and resolve as they cross 60% of the viewport. Dreamy without being aggressive.</p>
+          <div class="meta-row">
+            <span class="chip">long-form / case study body</span><span class="dot"></span>
+            <span class="diff diff-low">difficulty: low</span><span class="dot"></span>
+            <span>CSS <code>filter:blur()</code> + observer</span>
+          </div>
+          <pre class="snip">p{filter:blur(8px);opacity:0;transition:filter .8s,opacity .8s} p.in{filter:none;opacity:1}</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://www.reactbits.dev/text-animations/scroll-reveal" target="_blank" rel="noopener">reactbits / scroll-reveal</a>
+        </div>
+      </article>
+
+      <!-- 9 -->
+      <article class="card">
+        <div class="num">09</div>
+        <div>
+          <h3>Cursor spotlight + invert</h3>
+          <p class="desc">A circular mask follows the cursor; inside the circle, the page colors invert. Powerful on a single editorial spread — overused if every section does it.</p>
+          <div class="meta-row">
+            <span class="chip">one hero section</span><span class="dot"></span>
+            <span class="diff diff-high">difficulty: high</span><span class="dot"></span>
+            <span><code>mask-image:radial-gradient</code></span>
+          </div>
+          <pre class="snip">.layer{position:fixed;inset:0;background:#111;color:#f6f5f1;mask-image:radial-gradient(circle 160px at var(--x) var(--y),#000 99%,transparent 100%)}</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://prismic.io/blog/css-scroll-effects" target="_blank" rel="noopener">prismic / css scroll fx</a>
+        </div>
+      </article>
+
+      <!-- 10 -->
+      <article class="card">
+        <div class="num">10</div>
+        <div>
+          <h3>Scroll-snap horizontal case study</h3>
+          <p class="desc">Inside a single case study, content slides horizontally with <code>scroll-snap-type:x mandatory</code>. Reads like turning pages of a magazine spread.</p>
+          <div class="meta-row">
+            <span class="chip">case study pages</span><span class="dot"></span>
+            <span class="diff diff-low">difficulty: low</span><span class="dot"></span>
+            <span>pure CSS, no JS</span>
+          </div>
+          <pre class="snip">.deck{display:flex;overflow-x:auto;scroll-snap-type:x mandatory} .deck&gt;*{flex:0 0 100%;scroll-snap-align:start}</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://www.awwwards.com/websites/parallax/" target="_blank" rel="noopener">awwwards</a>
+        </div>
+      </article>
+
+      <!-- 11 -->
+      <article class="card">
+        <div class="num">11</div>
+        <div>
+          <h3>Sticky stacked cards</h3>
+          <p class="desc">Each project card pins as it reaches the top, and the next card slides up over it. Great for a tight "selected work" stack of 4–6 items.</p>
+          <div class="meta-row">
+            <span class="chip">work index</span><span class="dot"></span>
+            <span class="diff diff-med">difficulty: med</span><span class="dot"></span>
+            <span><code>position:sticky;top:0</code> per card</span>
+          </div>
+          <pre class="snip">.case{position:sticky;top:0;height:100vh} .case:nth-child(n){--y:calc((var(--i)) * 12px); transform:translateY(var(--y))}</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://ui.aceternity.com/components/sticky-scroll-reveal" target="_blank" rel="noopener">aceternity / sticky reveal</a>
+        </div>
+      </article>
+
+      <!-- 12 -->
+      <article class="card">
+        <div class="num">12</div>
+        <div>
+          <h3>Split-letter hover (per-char)</h3>
+          <p class="desc">Project titles broken into individual spans; on row hover, characters lift in a tiny rolling wave (10ms-stagger). Subtler than a full marquee, still alive.</p>
+          <div class="meta-row">
+            <span class="chip">work index / links</span><span class="dot"></span>
+            <span class="diff diff-med">difficulty: med</span><span class="dot"></span>
+            <span>JS splits text, CSS transitions</span>
+          </div>
+          <pre class="snip">title.innerHTML=[...title.textContent].map((c,i)=>`&lt;span style="--i:${i}"&gt;${c}&lt;/span&gt;`).join('')</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://30animations.netlify.app/" target="_blank" rel="noopener">30animations</a>
+        </div>
+      </article>
+
+      <!-- 13 -->
+      <article class="card">
+        <div class="num">13</div>
+        <div>
+          <h3>Animated underline (variable-width swipe)</h3>
+          <p class="desc">Editorial inline links: a 1px rule sweeps in from left, sits for a beat under hover, sweeps out right on leave. Replaces the default browser underline.</p>
+          <div class="meta-row">
+            <span class="chip">body copy / inline links</span><span class="dot"></span>
+            <span class="diff diff-low">difficulty: low</span><span class="dot"></span>
+            <span>CSS pseudo + <code>transform-origin</code></span>
+          </div>
+          <pre class="snip">a::after{content:"";display:block;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s} a:hover::after{transform:scaleX(1)}</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://freefrontend.com/javascript-reveal-effects/" target="_blank" rel="noopener">freefrontend</a>
+        </div>
+      </article>
+
+      <!-- 14 -->
+      <article class="card">
+        <div class="num">14</div>
+        <div>
+          <h3>Image-on-link hover (proxy thumb)</h3>
+          <p class="desc">Work list is text-only; hovering a row reveals a small project thumbnail that tracks the cursor. Lets the index stay quiet and typographic.</p>
+          <div class="meta-row">
+            <span class="chip">work index</span><span class="dot"></span>
+            <span class="diff diff-med">difficulty: med</span><span class="dot"></span>
+            <span>fixed-position img follows pointer</span>
+          </div>
+          <pre class="snip">row.onpointermove=e=&gt;{thumb.style.cssText=`left:${e.clientX}px;top:${e.clientY}px;opacity:1`}</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://godly.website/?types=%5B%22portfolio%22%5D" target="_blank" rel="noopener">godly.website</a>
+        </div>
+      </article>
+
+      <!-- 15 -->
+      <article class="card">
+        <div class="num">15</div>
+        <div>
+          <h3>Progress rule (page-scroll indicator)</h3>
+          <p class="desc">A 1px black line under the nav fills left-to-right as the page scrolls. Replaces a scrollbar; tells the reader where they are in a long case study.</p>
+          <div class="meta-row">
+            <span class="chip">case study pages</span><span class="dot"></span>
+            <span class="diff diff-low">difficulty: low</span><span class="dot"></span>
+            <span>CSS <code>animation-timeline:scroll()</code></span>
+          </div>
+          <pre class="snip">.bar{height:1px;background:#111;transform-origin:left;animation:fill linear;animation-timeline:scroll(root)} @keyframes fill{to{transform:scaleX(1)}}</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://prismic.io/blog/css-scroll-effects" target="_blank" rel="noopener">prismic</a>
+        </div>
+      </article>
+
+      <!-- 16 -->
+      <article class="card">
+        <div class="num">16</div>
+        <div>
+          <h3>Image clip-path reveal on scroll</h3>
+          <p class="desc">Case-study heroes enter with a thin horizontal band (clip-path inset 49% 0) that opens vertically to full size. Cinematic; uses no opacity fade.</p>
+          <div class="meta-row">
+            <span class="chip">case study hero</span><span class="dot"></span>
+            <span class="diff diff-med">difficulty: med</span><span class="dot"></span>
+            <span><code>clip-path:inset()</code> animated</span>
+          </div>
+          <pre class="snip">.hero img{clip-path:inset(48% 0);transition:clip-path 1.1s cubic-bezier(.2,.8,.2,1)} .hero.in img{clip-path:inset(0)}</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://www.framer.com/marketplace/components/text-scroll-effects/" target="_blank" rel="noopener">framer / scroll fx</a>
+        </div>
+      </article>
+
+      <!-- 17 -->
+      <article class="card">
+        <div class="num">17</div>
+        <div>
+          <h3>Mix-blend-mode wordmark</h3>
+          <p class="desc">The fixed logo uses <code>mix-blend-mode:difference</code> so it flips white on dark sections and black on light ones — no JS, no scroll listeners.</p>
+          <div class="meta-row">
+            <span class="chip">global / header</span><span class="dot"></span>
+            <span class="diff diff-low">difficulty: low</span><span class="dot"></span>
+            <span>1-line CSS</span>
+          </div>
+          <pre class="snip">.logo{mix-blend-mode:difference;color:#fff;position:fixed}</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://godly.website/?types=%5B%22portfolio%22%5D" target="_blank" rel="noopener">godly.website</a>
+        </div>
+      </article>
+
+      <!-- 18 -->
+      <article class="card">
+        <div class="num">18</div>
+        <div>
+          <h3>Tabular-numerics ticker</h3>
+          <p class="desc">Stats (years experience, projects shipped) animate from 0 → target on first view, using <code>font-variant-numeric:tabular-nums</code> so digits don't dance.</p>
+          <div class="meta-row">
+            <span class="chip">about / stats strip</span><span class="dot"></span>
+            <span class="diff diff-low">difficulty: low</span><span class="dot"></span>
+            <span>requestAnimationFrame loop</span>
+          </div>
+          <pre class="snip">let n=0;(function tick(){n+=2;el.textContent=Math.min(n,target);if(n&lt;target)requestAnimationFrame(tick)})()</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://21st.dev/community/components/s/features" target="_blank" rel="noopener">21st.dev</a>
+        </div>
+      </article>
+
+      <!-- 19 -->
+      <article class="card">
+        <div class="num">19</div>
+        <div>
+          <h3>Cursor text-swap on link hover</h3>
+          <p class="desc">The cursor itself becomes a small word ("view", "open") inside a circle when hovering a project link. Editorial way to remove generic cursor icons.</p>
+          <div class="meta-row">
+            <span class="chip">work index / case links</span><span class="dot"></span>
+            <span class="diff diff-med">difficulty: med</span><span class="dot"></span>
+            <span>fixed div + <code>pointer:none</code></span>
+          </div>
+          <pre class="snip">document.onpointermove=e=&gt;cur.style.cssText=`transform:translate(${e.clientX}px,${e.clientY}px)`</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://www.awwwards.com/inspiration/editorial-layout" target="_blank" rel="noopener">awwwards / editorial</a>
+        </div>
+      </article>
+
+      <!-- 20 -->
+      <article class="card">
+        <div class="num">20</div>
+        <div>
+          <h3>Section-end caesura (oversized number)</h3>
+          <p class="desc">Between sections, a single big tabular numeral ("§ 02") flush-right, all rule and air. No animation — pure typographic punctuation; reads like a print magazine.</p>
+          <div class="meta-row">
+            <span class="chip">between-sections</span><span class="dot"></span>
+            <span class="diff diff-low">difficulty: low</span><span class="dot"></span>
+            <span>type + spacing, no JS</span>
+          </div>
+          <pre class="snip">.caesura{font-size:clamp(80px,18vw,260px);text-align:right;letter-spacing:-0.04em;line-height:.9;font-variant-numeric:tabular-nums;border-top:1px solid #dcdad2;padding-top:.6em}</pre>
+        </div>
+        <div class="col-meta">
+          <a href="https://www.awwwards.com/market/category/editorial" target="_blank" rel="noopener">awwwards / editorial</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer>
+    <span>portfolio-v6 / notes</span>
+    <span><script>document.write(new Date().toISOString().replace('T',' ').slice(0,16)+' UTC')</script></span>
+  </footer>
+</div>
+</body>
+</html>

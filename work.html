@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — Mike Melchiot</title>
+  <meta name="description" content="Seventeen projects across two disciplines — production AI agents, internal tools, and RAG systems alongside fifteen years of video &amp; brand work that still ships." />
+  <link rel="canonical" href="https://dutchmike.com/work" />
+  <meta property="og:title" content="Work" />
+  <meta property="og:description" content="Seventeen projects across two disciplines — production AI agents, internal tools, and RAG systems alongside fifteen years of video &amp; brand work that still ships." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dutchmike.com/work" />
+  <meta property="og:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Work" />
+  <meta name="twitter:description" content="Seventeen projects across two disciplines — production AI agents, internal tools, and RAG systems alongside fifteen years of video &amp; brand work that still ships." />
+  <meta name="twitter:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Work — Mike Melchiot",
+    "description": "Seventeen projects across AI engineering and video & brand.",
+    "url": "https://dutchmike.com/work",
+    "isPartOf": { "@id": "https://dutchmike.com/#website" },
+    "about": {
+      "@type": "Person",
+      "@id": "https://dutchmike.com/#person",
+      "name": "Mike Melchiot",
+      "url": "https://dutchmike.com/",
+      "jobTitle": "AI engineer"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Page loader (Hyper Effekt-style curtain) — injected -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__name">DUTCH MIKE</span>
+      <span class="loader__role">AI Engineer</span>
+    </div>
+  </div>
+
+  <header class="nav">
+    <div class="nav__pad">
+      <div class="nav__shell">
+        <nav class="nav__links" aria-label="Primary">
+          <a href="services.html">Services</a>
+          <a href="work.html" aria-current="page">Work</a>
+          <a href="about.html">About</a>
+        </nav>
+        <a href="index.html" class="nav__brand" aria-label="Dutch Mike — home">
+          <img class="nav__logo" src="assets/dm-logo-white.png" alt="">
+        </a>
+        <div class="nav__actions">
+          <a class="nav__icon" href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          </a>
+          <a class="nav__icon" href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a class="nav__icon" href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+          </a>
+          <a class="nav__cta" href="contact.html">
+            Contact Us
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-float" id="navFloat" aria-hidden="true">
+      <a class="nav-float__cta" href="contact.html">Contact</a>
+      <a href="index.html" class="nav-float__logo" aria-label="Dutch Mike — home">
+        <img src="assets/dm-logo-white.png" alt="">
+      </a>
+      <button class="nav-float__menu" id="navMenuBtn" type="button" aria-label="Open menu" aria-controls="navOverlay" aria-expanded="false">
+        <span>Menu</span>
+        <span class="nav-float__icon" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+    <div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
+      <div class="nav-overlay__panel">
+        <div class="nav-overlay__head">
+          <a class="nav-overlay__head-cta" href="contact.html" data-nav-close>Contact</a>
+          <a href="index.html" class="nav-overlay__head-logo" data-nav-close aria-label="Dutch Mike — home">
+            <img src="assets/dm-logo-white.png" alt="">
+          </a>
+          <button class="nav-overlay__close" id="navMenuClose" type="button" aria-label="Close menu">
+            <span>Close</span><span aria-hidden="true">✕</span>
+          </button>
+        </div>
+        <nav class="nav-overlay__links" aria-label="Site">
+          <a href="services.html" data-nav-close>Services</a>
+          <a href="work.html" data-nav-close>Work</a>
+          <a href="about.html" data-nav-close>About</a>
+          <a href="contact.html" data-nav-close>Contact</a>
+        </nav>
+        <div class="nav-overlay__foot">
+          <span class="nav-overlay__label">Find me</span>
+          <div class="nav-overlay__socials">
+            <a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== PAGE HEADER ========== -->
+    <section class="work-index-header">
+      <div class="container">
+        <div class="work-index-header__eyebrow">
+          <span class="dot-sm"></span>
+          <span>PORTFOLIO — INDEX</span>
+        </div>
+        <h1 class="work-index-header__title">
+          Seventeen projects.<br>Two disciplines.
+        </h1>
+        <p class="work-index-header__sub">
+          AI engineering is what I lead with now &mdash; production agents, internal tools,
+          RAG systems, automations. Video and brand work is fifteen years of
+          background that still ships. Filter below.
+        </p>
+
+        <div class="filter-bar filter-bar--v2">
+          <span class="filter-bar__label">FILTER</span>
+          <div class="filter-bar__group"
+            ><button class="chip-v2 is-active" data-filter="all" aria-pressed="true">All</button
+            ><button class="chip-v2" data-filter="ai" aria-pressed="false">AI engineering</button
+            ><button class="chip-v2" data-filter="video" aria-pressed="false">Video &amp; web</button
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 3-UP GRID ========== -->
+    <section class="container">
+      <div class="portfolio-grid-3up">
+
+        <!-- 00 — GrantBot (Grant Researcher) -->
+        <a class="card-3up" href="work/grant-researcher.html" data-cat="ai">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2026</span>
+            <img src="assets/work/thumbs/21-grantbot.jpg" alt="GrantBot landing &mdash; &lsquo;Stop searching. Start winning grants.&rsquo; with live-scan terminal" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">EMPOWERING CUTS · PHILADELPHIA</div>
+          <h3 class="card-3up__title">Multi-tenant grant research portal</h3>
+          <p class="card-3up__desc">
+            Scans 9 federal/state/foundation sources, scores 163 grants on a
+            5-factor weighted model, one-click drafts. $14.3M potential
+            surfaced in the pilot scan.
+          </p>
+          <span class="card-3up__cta">Case study <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 01 — Tee Off For A Cause -->
+        <a class="card-3up" href="work/tee-off-for-a-cause.html" data-cat="ai">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2025</span>
+            <img src="assets/work/thumbs/01-tofac.jpg" alt="Tee Off For A Cause public landing page shown on a laptop — &lsquo;Tee off for a cause&rsquo; with golf course hero and Build Your Squad CTA" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">RNR · FULL-STACK</div>
+          <h3 class="card-3up__title">Multi-tenant golf event platform</h3>
+          <p class="card-3up__desc">
+            1,000+ golfers, captain transfer system, Stripe promo redemption tracking,
+            6-state My Account. Next.js + Supabase + Stripe.
+          </p>
+          <span class="card-3up__cta">Case study <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 02 — RC Inbound Lead Tracking -->
+        <a class="card-3up" href="work/rc-inbound-lead-tracking.html" data-cat="ai">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2026</span>
+            <img src="assets/work/thumbs/02-rc-leads.jpg" alt="Custom inbound tracking dashboard for Remodeling Concepts shown on a designer office monitor" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">REMODELING CONCEPTS</div>
+          <h3 class="card-3up__title">Custom inbound tracking dashboard</h3>
+          <p class="card-3up__desc">
+            Five intake channels, dual Voice AI agents, JobTread mirror, ten production
+            automations &mdash; one funnel view. First message under one minute, 24/7.
+          </p>
+          <span class="card-3up__cta">Case study <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 03 — GHL Automation Scorecard -->
+        <a class="card-3up" href="work/ghl-scorecard.html" data-cat="ai">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2026</span>
+            <img src="assets/work/thumbs/05-ghl-audit.jpg" alt="GHL Automation Scorecard hours-saved dashboard" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">4-BRAND PORTFOLIO</div>
+          <h3 class="card-3up__title">GHL Automation Scorecard</h3>
+          <p class="card-3up__desc">
+            Per-brand adapter pattern counting GHL events × time-saved multipliers &mdash;
+            hours saved + dollar value, embedded as a widget inside each GHL sub-account.
+          </p>
+          <span class="card-3up__cta">Case study <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 08 — Distillery brand documentary (Boardroom) -->
+        <a class="card-3up" href="work/boardroom-spirits.html" data-cat="video">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2022–24</span>
+            <img src="assets/work/thumbs/08-boardroom.jpg" alt="Boardroom Spirits distillery video content" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">BOARDROOM SPIRITS</div>
+          <h3 class="card-3up__title">Multi-year distillery content engine</h3>
+          <p class="card-3up__desc">
+            Event coverage, production deep-dives, and facility tours for the Lansdale, PA distillery &mdash; ongoing program.
+          </p>
+          <span class="card-3up__cta">Project <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 09 — Launch event film (The Hook / Spiegelworld) -->
+        <a class="card-3up" href="work/the-hook.html" data-cat="video">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2023–25</span>
+            <img src="assets/work/thumbs/09-the-hook.jpg" alt="Spiegelworld The Hook build documentary" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">SPIEGELWORLD · THE HOOK</div>
+          <h3 class="card-3up__title">Two-year theater build doc</h3>
+          <p class="card-3up__desc">
+            Documented the historic Warner Theater&rsquo;s transformation into &ldquo;The Hook&rdquo; cabaret &mdash; demolition through opening night.
+          </p>
+          <span class="card-3up__cta">Project <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 10 — Monthly YouTube series (Remodeling Concepts) -->
+        <a class="card-3up" href="work/remodeling-concepts.html" data-cat="video">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2023+</span>
+            <img src="assets/work/thumbs/10-rc-video.jpg" alt="Remodeling Concepts in-house video content engine" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">REMODELING CONCEPTS</div>
+          <h3 class="card-3up__title">Full content engine + podcast</h3>
+          <p class="card-3up__desc">
+            How-to videos, owner interviews, knowledge-sharing content, and a podcast &mdash; one engine for a Langhorne, PA remodeling brand.
+          </p>
+          <span class="card-3up__cta">Project <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 11 — Med-aesthetics brand campaign (SculpMD) -->
+        <a class="card-3up" href="work/sculpmd.html" data-cat="video">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2024</span>
+            <img src="assets/work/thumbs/11-sculpmd.jpg" alt="SculpMD med-aesthetics campaign film" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">SCULPMD</div>
+          <h3 class="card-3up__title">Med-aesthetics brand campaign</h3>
+          <p class="card-3up__desc">
+            Treatment walkthroughs and team interviews for an Ardmore, PA med-spa. Clinical yet inviting.
+          </p>
+          <span class="card-3up__cta">Project <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 12 — Restaurant brand spot (Iron Hill) -->
+        <a class="card-3up" href="work/iron-hill-brewery.html" data-cat="video">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2023</span>
+            <img src="assets/work/thumbs/12-ironhill.jpg" alt="Iron Hill Brewery Dad's Got Jokes promo" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">IRON HILL BREWERY</div>
+          <h3 class="card-3up__title">Father&rsquo;s Day brew team promo</h3>
+          <p class="card-3up__desc">
+            Promotional video for Iron Hill&rsquo;s &ldquo;Dad&rsquo;s Got Jokes&rdquo; Father&rsquo;s Day beer &mdash; brewing process and team camaraderie.
+          </p>
+          <span class="card-3up__cta">Project <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 13 — Family-business holiday film (Kremp) -->
+        <a class="card-3up" href="work/kremp-florist.html" data-cat="video">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2022</span>
+            <img src="assets/work/thumbs/13-kremp.jpg" alt="Kremp Florist three-generation craft film" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">KREMP FLORIST</div>
+          <h3 class="card-3up__title">Three-generation floral craft film</h3>
+          <p class="card-3up__desc">
+            Cinematic brand story centered on the family florist&rsquo;s design and arrangement process. Three generations on camera.
+          </p>
+          <span class="card-3up__cta">Project <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 14 — RTD product launch (Top Dog Cocktails) -->
+        <a class="card-3up" href="work/top-dog-cocktails.html" data-cat="video">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2023</span>
+            <img src="assets/work/thumbs/14-topdog.jpg" alt="Top Dog Cocktails mixed-format brand content" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">TOP DOG COCKTAILS</div>
+          <h3 class="card-3up__title">Mixed-format brand content</h3>
+          <p class="card-3up__desc">
+            Live events, founder interviews, animated explainers, and commercials for a Philly ready-to-drink cocktail brand.
+          </p>
+          <span class="card-3up__cta">Project <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 15 — Cocktail program brand film (Twenty One Pips) -->
+        <a class="card-3up" href="work/twenty-one-pips.html" data-cat="video">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2024</span>
+            <img src="assets/work/thumbs/15-twentyonepips.jpg" alt="Twenty One Pips coffee and event venue" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">TWENTY ONE PIPS</div>
+          <h3 class="card-3up__title">Coffee &amp; event-venue marketing</h3>
+          <p class="card-3up__desc">
+            B-roll and live-event coverage for an Ardmore, PA coffee bar and private event venue &mdash; empty space to full service.
+          </p>
+          <span class="card-3up__cta">Project <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 16 — Dealer experience film (Toyota) -->
+        <a class="card-3up" href="work/toyota.html" data-cat="video">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2023</span>
+            <img src="assets/work/thumbs/16-toyota.jpg" alt="Toyota Small Biz Big Nudge x Empowering Cuts" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">TOYOTA</div>
+          <h3 class="card-3up__title">&ldquo;Small Biz Big Nudge&rdquo; campaign</h3>
+          <p class="card-3up__desc">
+            Campaign film for Toyota&rsquo;s national small-business initiative, spotlighting Empowering Cuts&rsquo; barber program in Philly&rsquo;s Kensington.
+          </p>
+          <span class="card-3up__cta">Project <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 17 — Board game café spot (Thirsty Dice) -->
+        <a class="card-3up" href="work/thirsty-dice.html" data-cat="video">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2023</span>
+            <img src="assets/work/thumbs/17-thirstydice.jpg" alt="Thirsty Dice PAX Unplugged coverage" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">THIRSTY DICE</div>
+          <h3 class="card-3up__title">PAX coverage + how-to-play series</h3>
+          <p class="card-3up__desc">
+            PAX East/Unplugged convention coverage plus how-to-play tutorial series for Philly&rsquo;s premier board-game café.
+          </p>
+          <span class="card-3up__cta">Project <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 18 — Bluecoat distillery photography -->
+        <a class="card-3up" href="work/bluecoat-gin.html" data-cat="video">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2022</span>
+            <img src="assets/work/thumbs/18-bluecoat.jpg" alt="Bluecoat American Dry Gin product photography" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">BLUECOAT · AMERICAN DRY GIN</div>
+          <h3 class="card-3up__title">Bottle &amp; distillery photography</h3>
+          <p class="card-3up__desc">
+            Product photography for a Philly craft-gin brand &mdash; bottles in urban settings and at the working distillery. In-store + social.
+          </p>
+          <span class="card-3up__cta">Project <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 19 — Non-profit brand documentary (Empowering Cuts) -->
+        <a class="card-3up" href="work/empoweringcuts.html" data-cat="video">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2023</span>
+            <img src="assets/work/thumbs/19-empoweringcuts.jpg" alt="Empowering Cuts GoFundMe campaign film" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">EMPOWERING CUTS</div>
+          <h3 class="card-3up__title">GoFundMe campaign + social cuts</h3>
+          <p class="card-3up__desc">
+            Non-profit barber-program campaign that hit its GoFundMe goal, plus social-format extensions for ongoing fundraising.
+          </p>
+          <span class="card-3up__cta">Project <span class="arrow">↗</span></span>
+        </a>
+
+        <!-- 20 — Magerks pub hospitality launch -->
+        <a class="card-3up" href="work/magerks.html" data-cat="video">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2023</span>
+            <img src="assets/work/thumbs/20-magerks.jpg" alt="Magerk's Pub hospitality recruitment film" loading="lazy" />
+          </div>
+          <div class="card-3up__meta">MAGERK&rsquo;S PUB</div>
+          <h3 class="card-3up__title">Hospitality recruitment film</h3>
+          <p class="card-3up__desc">
+            Culture-focused video showing real service at a Horsham, PA pub &mdash; built to attract back-of-house staff.
+          </p>
+          <span class="card-3up__cta">Project <span class="arrow">↗</span></span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ========== DARK CTA — "Want the depth" ========== -->
+    <section class="depth-cta">
+      <div class="container">
+        <div class="depth-cta__inner">
+          <div>
+            <h2 class="depth-cta__title">
+              Want the depth behind these one-liners?
+            </h2>
+            <p class="depth-cta__sub">
+              Each AI engineering project has a full case study &mdash; problem,
+              architecture, decisions, outcomes. Start with TOFAC.
+            </p>
+          </div>
+          <div class="depth-cta__cols">
+            <a class="depth-cta__col" href="work/tee-off-for-a-cause.html">
+              <span class="depth-cta__col-label">FEATURED</span>
+              <span class="depth-cta__col-val">Tee Off For A Cause <span class="arrow">↗</span></span>
+            </a>
+            <a class="depth-cta__col" href="mailto:info@dutchmike.com">
+              <span class="depth-cta__col-label">CONTACT</span>
+              <span class="depth-cta__col-val">info@dutchmike.com <span class="arrow">↗</span></span>
+            </a>
+            <a class="depth-cta__col" href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">
+              <span class="depth-cta__col-label">LINKEDIN</span>
+              <span class="depth-cta__col-val">/in/mikemelchiot <span class="arrow">↗</span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER — Hyper Effekt-style ========== -->
+  <footer class="he-footer">
+    <div class="he-footer__watermark" aria-hidden="true">dutchmike</div>
+    <div class="container">
+
+      <div class="he-footer__top">
+        <h2 class="he-footer__headline">
+          <a href="mailto:info@dutchmike.com">Let&rsquo;s build something</a>
+        </h2>
+        <div class="he-footer__contact">
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Hiring</span>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Project inquiry</span>
+            <a href="contact.html">Start a brief</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="he-footer__mid">
+        <div class="he-footer__address">
+          <span class="he-footer__address-name">Mike Melchiot</span>
+          AI engineer · video producer · operator.<br>
+          Available worldwide, async-friendly.
+        </div>
+        <div class="he-footer__sitemap">
+          <div class="he-footer__sitemap-col">
+            <h4>Site</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="work.html">Work</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="he-footer__sitemap-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://github.com/dutchmike-lab" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="he-footer__sitemap-col">
+          <h4>For Clients</h4>
+          <ul>
+            <li><a href="work-with-me.html">Work with me</a></li>
+            <li><a href="contact.html">Project inquiry</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="he-footer__bottom">
+        <span>© <span data-year></span> Mike Melchiot · dutchmike.com</span>
+        <span>Built worldwide · running on coffee &amp; tropics</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Three-chip filter (All / AI / Video)
+    (function () {
+      const chips = document.querySelectorAll('.filter-bar--v2 .chip-v2');
+      const cards = document.querySelectorAll('.card-3up[data-cat]');
+      const countAll = document.querySelector('.chip-v2[data-filter="all"] .chip-v2__count');
+      if (countAll) countAll.textContent = String(cards.length);
+      chips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          const filter = chip.dataset.filter || 'all';
+          chips.forEach((c) => {
+            c.classList.remove('is-active');
+            c.setAttribute('aria-pressed', 'false');
+          });
+          chip.classList.add('is-active');
+          chip.setAttribute('aria-pressed', 'true');
+          cards.forEach((card) => {
+            const cat = card.dataset.cat || '';
+            const match = filter === 'all' || cat.split(',').includes(filter);
+            if (match) card.removeAttribute('data-hidden');
+            else card.setAttribute('data-hidden', '');
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

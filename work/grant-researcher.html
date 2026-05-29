@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GrantBot — Mike Melchiot</title>
+  <meta name="description" content="A multi-tenant grant research portal that scans nine federal, state, and Philadelphia foundation sources, scores each opportunity against a nonprofit's mission/geography/budget on a 0–100 scale, and generates ready-to-send drafts. Pilot live with Empowering Cuts." />
+  <link rel="canonical" href="https://dutchmike.com/work/grant-researcher" />
+  <meta property="og:title" content="GrantBot" />
+  <meta property="og:description" content="A multi-tenant grant research portal that scans nine federal, state, and Philadelphia foundation sources, scores each opportunity against a nonprofit's mission/geography/budget on a 0–100 scale, and generates ready-to-send drafts. Pilot live with Empowering Cuts." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dutchmike.com/work/grant-researcher" />
+  <meta property="og:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GrantBot" />
+  <meta name="twitter:description" content="A multi-tenant grant research portal that scans nine federal, state, and Philadelphia foundation sources, scores each opportunity against a nonprofit's mission/geography/budget on a 0–100 scale, and generates ready-to-send drafts. Pilot live with Empowering Cuts." />
+  <meta name="twitter:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "GrantBot",
+    "description": "Multi-tenant grant research portal scoring nine federal, state, and Philadelphia foundation sources and generating ready-to-send drafts.",
+    "url": "https://dutchmike.com/work/grant-researcher",
+    "datePublished": "2026-01-01",
+    "keywords": ["AI engineering", "Scoring agent", "Multi-tenant SaaS", "Nonprofit"],
+    "creator": {
+      "@type": "Person",
+      "@id": "https://dutchmike.com/#person",
+      "name": "Mike Melchiot",
+      "url": "https://dutchmike.com/",
+      "jobTitle": "AI engineer",
+      "sameAs": [
+        "https://www.linkedin.com/in/mikemelchiot/",
+        "https://github.com/dutchmike-lab"
+      ]
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <!-- Page loader (Hyper Effekt-style curtain) — injected -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__name">DUTCH MIKE</span>
+      <span class="loader__role">AI Engineer</span>
+    </div>
+  </div>
+
+  <!-- ========== NAV ========== -->
+  <header class="nav">
+    <div class="nav__pad">
+      <div class="nav__shell">
+        <nav class="nav__links" aria-label="Primary">
+          <a href="../services.html">Services</a>
+          <a href="../work.html">Work</a>
+          <a href="../about.html">About</a>
+        </nav>
+        <a href="../index.html" class="nav__brand" aria-label="Dutch Mike — home">
+          <img class="nav__logo" src="../assets/dm-logo-white.png" alt="">
+        </a>
+        <div class="nav__actions">
+          <a class="nav__icon" href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          </a>
+          <a class="nav__icon" href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a class="nav__icon" href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+          </a>
+          <a class="nav__cta" href="../contact.html">
+            Contact Us
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-float" id="navFloat" aria-hidden="true">
+      <a class="nav-float__cta" href="../contact.html">Contact</a>
+      <a href="../index.html" class="nav-float__logo" aria-label="Dutch Mike — home">
+        <img src="../assets/dm-logo-white.png" alt="">
+      </a>
+      <button class="nav-float__menu" id="navMenuBtn" type="button" aria-label="Open menu" aria-controls="navOverlay" aria-expanded="false">
+        <span>Menu</span>
+        <span class="nav-float__icon" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+    <div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
+      <div class="nav-overlay__panel">
+        <div class="nav-overlay__head">
+          <a class="nav-overlay__head-cta" href="../contact.html" data-nav-close>Contact</a>
+          <a href="../index.html" class="nav-overlay__head-logo" data-nav-close aria-label="Dutch Mike — home">
+            <img src="../assets/dm-logo-white.png" alt="">
+          </a>
+          <button class="nav-overlay__close" id="navMenuClose" type="button" aria-label="Close menu">
+            <span>Close</span><span aria-hidden="true">✕</span>
+          </button>
+        </div>
+        <nav class="nav-overlay__links" aria-label="Site">
+          <a href="../services.html" data-nav-close>Services</a>
+          <a href="../work.html" data-nav-close>Work</a>
+          <a href="../about.html" data-nav-close>About</a>
+          <a href="../contact.html" data-nav-close>Contact</a>
+        </nav>
+        <div class="nav-overlay__foot">
+          <span class="nav-overlay__label">Find me</span>
+          <div class="nav-overlay__socials">
+            <a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== CASE HERO ========== -->
+  <section class="case-hero">
+    <div class="container">
+      <a href="../work.html" class="case-hero__crumb reveal">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3 L4 8 L10 13"/></svg>
+        All work / AI engineering
+      </a>
+
+      <h1 class="display case-hero__title reveal">GrantBot.</h1>
+
+      <p class="lede case-hero__lede reveal" data-delay="1">
+        A multi-tenant grant research portal for small and mid-size nonprofits. Scans nine federal, state, and Philadelphia-foundation sources, scores each opportunity against the org&rsquo;s mission, geography, populations served and budget band on a 0&ndash;100 scale, and one-click generates ready-to-send application and outreach drafts &mdash; piloted with Empowering Cuts, a Kensington-based mobile barbershop outreach.
+      </p>
+
+      <dl class="case-meta stagger">
+        <div><dt>Client</dt><dd>Pilot: Empowering Cuts Philadelphia (template for any 501(c)(3))</dd></div>
+        <div><dt>Role</dt><dd>Architect + solo engineer (product, scraping, scoring, portal UI)</dd></div>
+        <div><dt>Year</dt><dd>2026</dd></div>
+        <div><dt>Status</dt><dd>Portal live in pilot &mdash; 163 grants surfaced, $14.3M potential</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ========== HERO MOCKUP ========== -->
+  <section class="case-mockup">
+    <div class="container">
+      <figure class="mockup-hero reveal">
+        <img src="../assets/work/grantbot/hero.jpg" alt="GrantBot landing page — &ldquo;Stop searching. Start winning grants.&rdquo; with a live scanner terminal showing federal and Philadelphia sources being fetched and scored" loading="lazy" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========== CONTEXT ========== -->
+  <section>
+    <div class="container">
+
+      <article class="case-block">
+        <div class="case-block__label">01 · Context</div>
+        <div class="case-block__body reveal">
+          <h3>&ldquo;We know there&rsquo;s money out there. We just don&rsquo;t have a grant writer.&rdquo;</h3>
+          <p>
+            Small Philadelphia nonprofits sit between two bad options: pay a grant writer $3&ndash;5K/month they can&rsquo;t afford, or have the ED moonlight as the grant writer at 11pm after a full day of program work. Both lead to the same outcome &mdash; the same five obvious foundations get applied to over and over, and 90% of the available funding pool never gets touched.
+          </p>
+          <p>
+            The pilot client &mdash; Empowering Cuts &mdash; runs a mobile barbershop in Kensington serving unhoused individuals. Founder is a working barber. There is no grants person. The whole organization is one person and a van.
+          </p>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">02 · Problem</div>
+        <div class="case-block__body reveal">
+          <h3>Three jobs that look like one.</h3>
+          <ul>
+            <li><strong>Discovery</strong> &mdash; nine separate databases (Grants.gov, SAMHSA/HHS, PA State, Philadelphia city, William Penn Foundation, Lenfest, Pew, foundation aggregators, Reddit nonprofit threads). Each has its own format, auth, rate limits, deduplication quirks.</li>
+            <li><strong>Relevance</strong> &mdash; surfacing 3,000+ raw grants is worse than surfacing zero. The output has to be ranked against this specific org&rsquo;s mission, geography, populations served, budget band, and feasibility.</li>
+            <li><strong>Action</strong> &mdash; a ranked list is still homework. The thing that actually moves money is a draft application or outreach email the ED can edit and send tonight.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">03 · What I built</div>
+        <div class="case-block__body reveal">
+          <h3>Tools do the work, agent does the reasoning, portal makes it self-serve.</h3>
+          <p>
+            Built on a WAT (Workflows / Agents / Tools) architecture &mdash; deterministic Python tools scrape, normalize, and write data; the agent layer handles ranking and draft generation; everything fronts a multi-tenant FastAPI portal so a nonprofit can sign in, fill out a 3-minute intake, kick off a scan, and have ranked results before their coffee finishes.
+          </p>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Architecture</h4>
+          <div class="visual visual--diagram">
+   Grants.gov   SAMHSA/HHS   PA State   Philly   Foundations   William Penn   Reddit
+       │            │           │         │           │              │           │
+       └────────────┴───────────┴─────────┴───────────┴──────────────┴───────────┘
+                                          │
+                                          ▼
+                       fetch_*.py tools  (rate-limited, paginated)
+                                          │
+                                          ▼
+                          deduplicate_grants.py  (fuzzy match)
+                                          │
+                                          ▼
+                       score_grants.py  →  Anthropic Claude
+                                          │
+                                          ▼
+                  SQLite + Alembic  ←  FastAPI (magic-link auth, sessions)
+                                          │
+                                          ▼
+                /intake/     /grants/     /account/      /api/v1/*
+              (onboarding)  (results UI)  (org + plan)  (REST endpoints)
+                                          │
+                                          ▼
+                      generate_application_draft.py  +  generate_email_drafts.py
+          </div>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Stack</h4>
+          <div class="stack">
+            <span>FastAPI + Uvicorn</span>
+            <span>SQLAlchemy + Alembic + SQLite</span>
+            <span>Anthropic Claude (scoring + drafts)</span>
+            <span>BeautifulSoup + requests (scrapers)</span>
+            <span>Magic-link auth (HMAC sessions)</span>
+            <span>9 grant data sources</span>
+            <span>Multi-tenant orgs + tiered plans</span>
+            <span>fpdf2 (PDF exports)</span>
+            <span>PRAW (Reddit signal)</span>
+          </div>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Key decisions</h4>
+          <ul>
+            <li><strong>WAT split from day one.</strong> Tools are dumb and deterministic (Python scripts, testable, cheap to re-run). The agent only does the parts that need judgment &mdash; scoring and draft writing. Keeps API spend bounded and makes failures debuggable.</li>
+            <li><strong>Five-factor weighted scoring</strong>, not one black-box number: Mission Fit 35%, Geographic Fit 20%, Feasibility 20%, Deadline Urgency 15%, Amount Fit 10%. The breakdown is shown in the UI so the ED can argue with it.</li>
+            <li><strong>Multi-tenant from v1</strong>, not added later. Every record is keyed on <code>org_id</code>; tiered plan limits enforced server-side. EmpoweringCuts is the first tenant, not the only tenant the schema can hold.</li>
+            <li><strong>Magic-link auth instead of passwords.</strong> Nonprofit EDs don&rsquo;t need another password to lose. Same dev/prod path &mdash; dev exposes the link in the API response, prod sends it via email.</li>
+            <li><strong>Embedded demo fallback</strong> on the results page &mdash; if the API call fails (e.g. opened from <code>file://</code> for a demo), the page hydrates from a static DEMO array. Means I can show the product without a live backend.</li>
+            <li><strong>Drafts gated by tier.</strong> Free tier sees the top results and the scoring; paid tiers get one-click application drafts and outreach emails. The paywall is a real product line, not a placeholder.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">04 · Selects</div>
+        <div class="case-block__body reveal">
+          <h3>One portal, four surfaces.</h3>
+          <p>
+            Each surface handles one job in the funnel: convince, onboard, deliver, manage. Same design system across all four; everything is real data from the EmpoweringCuts pilot.
+          </p>
+          <div class="mockup-grid">
+            <figure class="mockup"><img src="../assets/work/grantbot/intake.jpg" alt="Intake form — Tell us about your organization, with $8M+ potential funding stat" loading="lazy" /><figcaption>Intake &middot; 3-minute org profile</figcaption></figure>
+            <figure class="mockup"><img src="../assets/work/grantbot/grants.jpg" alt="Grant Opportunities results viewer — 163 results, 49 high priority, $14.3M potential funding" loading="lazy" /><figcaption>Results &middot; 163 grants, ranked &amp; filterable</figcaption></figure>
+            <figure class="mockup"><img src="../assets/work/grantbot/grant-detail.jpg" alt="Expanded grant card showing description, eligibility, and Mission/Geographic/Feasibility/Deadline/Amount score breakdown" loading="lazy" /><figcaption>Scoring &middot; 5-factor weighted breakdown</figcaption></figure>
+            <figure class="mockup"><img src="../assets/work/grantbot/account.jpg" alt="Organization Profile settings — mission, populations served, focus areas, budget range" loading="lazy" /><figcaption>Account &middot; org profile + plan</figcaption></figure>
+          </div>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">05 · Outcome</div>
+        <div class="case-block__body reveal">
+          <h3>Pilot live. Real grants. Real money on the table.</h3>
+          <p>
+            Numbers below are from the live scan run for Empowering Cuts (March 2026).
+          </p>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="stat__value">163</div>
+              <div class="stat__label">Grants surfaced &amp; scored in one scan</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">49</div>
+              <div class="stat__label">High-priority (score &ge; 70) opportunities</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">$14.3M</div>
+              <div class="stat__label">Total potential funding in the matched pool</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">9</div>
+              <div class="stat__label">Federal, state, and Philadelphia foundation sources</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">3 min</div>
+              <div class="stat__label">From intake form to ranked results</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">1-click</div>
+              <div class="stat__label">Generates a tailored application draft</div>
+            </div>
+          </div>
+
+          <p style="margin-top:32px;">
+            Before GrantBot, EmpoweringCuts had applied to two foundations they already knew about. The first scan returned a ranked list of 49 high-priority matches across DBHIDS, Lenfest, Citizens Bank Foundation, Pew, Independence Foundation, and Wells Fargo &mdash; most of which the founder had never heard of. The thing that&rsquo;s actually scarce isn&rsquo;t the funding; it&rsquo;s the attention to find and apply for it.
+          </p>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">06 · Lessons</div>
+        <div class="case-block__body reveal">
+          <h3>What I&rsquo;d do the same. What I&rsquo;d do differently.</h3>
+          <p><strong>Keep:</strong> WAT split. Letting Python tools own scraping/dedup/IO and reserving the LLM for ranking + drafting kept the AI bill in dollars, not hundreds of dollars, per scan.</p>
+          <p><strong>Keep:</strong> Multi-tenant from v1. Building org-scoping into every query on day one cost half a day; retrofitting it later would have been a rewrite.</p>
+          <p><strong>Keep:</strong> Show the score breakdown, not just the number. Operators trust a 5-factor weighted score they can argue with more than a single 0&ndash;100 they can&rsquo;t.</p>
+          <p><strong>Change:</strong> First version of the scrapers each lived in its own script with copy-pasted rate-limit and pagination logic. Next pass extracts a shared base scraper class &mdash; adding the 10th data source should be 50 lines, not 250.</p>
+          <p><strong>Change:</strong> Started with a generic intake form; the real value-unlock was budget band + service-area. Future onboarding pushes those two questions to the top and treats the rest as progressive enrichment.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========== NEXT / PREV ========== -->
+  <nav class="case-nav" aria-label="Project navigation">
+    <a href="../work.html" class="prev">
+      <span class="label">← Back</span>
+      <span class="title">All work</span>
+    </a>
+    <a href="ghl-scorecard.html" class="next">
+      <span class="label">Next case →</span>
+      <span class="title">GHL Automation Scorecard</span>
+    </a>
+  </nav>
+
+  <!-- ========== FOOTER — Hyper Effekt-style ========== -->
+  <footer class="he-footer">
+    <div class="he-footer__watermark" aria-hidden="true">dutchmike</div>
+    <div class="container">
+
+      <div class="he-footer__top">
+        <h2 class="he-footer__headline">
+          <a href="mailto:info@dutchmike.com">Let&rsquo;s build something</a>
+        </h2>
+        <div class="he-footer__contact">
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Hiring</span>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Project inquiry</span>
+            <a href="../contact.html">Start a brief</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="he-footer__mid">
+        <div class="he-footer__address">
+          <span class="he-footer__address-name">Mike Melchiot</span>
+          AI engineer · video producer · operator.<br>
+          Available worldwide, async-friendly.
+        </div>
+        <div class="he-footer__sitemap">
+          <div class="he-footer__sitemap-col">
+            <h4>Site</h4>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../services.html">Services</a></li>
+              <li><a href="../work.html">Work</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="he-footer__sitemap-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://github.com/dutchmike-lab" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="he-footer__sitemap-col">
+          <h4>For Clients</h4>
+          <ul>
+            <li><a href="../work-with-me.html">Work with me</a></li>
+            <li><a href="../contact.html">Project inquiry</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="he-footer__bottom">
+        <span>© <span data-year></span> Mike Melchiot · dutchmike.com</span>
+        <span>Built worldwide · running on coffee &amp; tropics</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

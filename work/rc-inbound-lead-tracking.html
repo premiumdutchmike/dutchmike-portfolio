@@ -1,0 +1,2148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RC Inbound Lead Tracking — Mike Melchiot</title>
+  <meta name="description" content="Custom inbound-tracking dashboard for a Langhorne, PA remodeling brand — five intake channels, a dual-agent Voice AI front door, JobTread mirroring, ten production automations." />
+  <link rel="canonical" href="https://dutchmike.com/work/rc-inbound-lead-tracking" />
+  <meta property="og:title" content="RC Inbound Lead Tracking" />
+  <meta property="og:description" content="Custom inbound-tracking dashboard for a Langhorne, PA remodeling brand — five intake channels, a dual-agent Voice AI front door, JobTread mirroring, ten production automations." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dutchmike.com/work/rc-inbound-lead-tracking" />
+  <meta property="og:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="RC Inbound Lead Tracking" />
+  <meta name="twitter:description" content="Custom inbound-tracking dashboard for a Langhorne, PA remodeling brand — five intake channels, a dual-agent Voice AI front door, JobTread mirroring, ten production automations." />
+  <meta name="twitter:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "RC Inbound Lead Tracking",
+    "description": "Custom inbound-tracking dashboard for a Langhorne, PA remodeling brand — five intake channels, Voice AI front door, JobTread mirroring, ten production automations.",
+    "url": "https://dutchmike.com/work/rc-inbound-lead-tracking",
+    "datePublished": "2025-01-01",
+    "keywords": ["AI engineering", "Voice AI", "Internal tools", "Remodeling Concepts"],
+    "creator": {
+      "@type": "Person",
+      "@id": "https://dutchmike.com/#person",
+      "name": "Mike Melchiot",
+      "url": "https://dutchmike.com/",
+      "jobTitle": "AI engineer",
+      "sameAs": [
+        "https://www.linkedin.com/in/mikemelchiot/",
+        "https://github.com/dutchmike-lab"
+      ]
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       RC inbound — inline screen mockups (placeholder data only)
+       ───────────────────────────────────────────────────────────── */
+    .rcm-screen{
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:#ffffff;
+      box-shadow:0 1px 0 rgba(0,0,0,0.02), 0 22px 48px -32px rgba(0,0,0,0.18);
+      font-family:var(--sans);
+      color:#1a1a1a;
+    }
+    .rcm-chrome{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 14px;
+      background:#f3f1ec;
+      border-bottom:1px solid var(--line);
+    }
+    .rcm-chrome__dots{ display:flex; gap:6px; }
+    .rcm-chrome__dots span{
+      width:10px; height:10px; border-radius:50%;
+      background:#d9d6cf;
+    }
+    .rcm-chrome__url{
+      flex:1; text-align:center;
+      font-family:var(--mono); font-size:11px;
+      color:#7a7770; letter-spacing:0.02em;
+    }
+    .rcm-chrome__pill{
+      font-family:var(--mono); font-size:10px;
+      letter-spacing:0.06em; text-transform:uppercase;
+      color:#2f7a4a; background:#dff0e3;
+      padding:3px 9px; border-radius:999px;
+      display:inline-flex; align-items:center; gap:6px;
+    }
+    .rcm-chrome__pill::before{
+      content:''; width:6px; height:6px; border-radius:50%;
+      background:#2f7a4a;
+    }
+
+    .rcm-app{ display:grid; grid-template-columns:200px 1fr; min-height:480px; }
+    .rcm-app--narrow{ grid-template-columns:180px 1fr; }
+    @media (max-width:720px){ .rcm-app{ grid-template-columns:1fr; } .rcm-sidebar{ display:none; } }
+
+    .rcm-sidebar{
+      background:#f4d8bc;
+      padding:22px 20px;
+      display:flex; flex-direction:column; gap:18px;
+      border-right:1px solid #e6c8a8;
+    }
+    .rcm-sidebar__brand{
+      font-family:var(--mono); font-size:10px;
+      letter-spacing:0.12em; text-transform:uppercase;
+      color:#7a4a1c;
+    }
+    .rcm-sidebar__title{
+      font-size:18px; font-weight:600; letter-spacing:-0.012em;
+      color:#3d2310; line-height:1.15;
+    }
+    .rcm-sidebar__sub{
+      font-size:11px; color:#6b4524; line-height:1.45;
+      max-width:24ch;
+    }
+    .rcm-ring{
+      width:120px; height:120px; border-radius:50%;
+      background:
+        conic-gradient(#d97757 0 76%, rgba(255,255,255,0.55) 76% 100%);
+      display:grid; place-items:center;
+      margin-top:6px;
+    }
+    .rcm-ring__inner{
+      width:88px; height:88px; border-radius:50%;
+      background:#f4d8bc;
+      display:grid; place-items:center; text-align:center;
+      font-size:10px; color:#7a4a1c; line-height:1.3;
+      padding:6px;
+    }
+    .rcm-ring__big{ font-size:18px; font-weight:600; color:#3d2310; display:block; }
+
+    .rcm-main{ padding:18px 22px 22px; background:#ffffff; min-width:0; }
+    .rcm-head{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; margin-bottom:14px;
+    }
+    .rcm-tabs{
+      display:flex; gap:18px; font-size:12px; color:#7a7770;
+    }
+    .rcm-tabs span.is-active{ color:#1a1a1a; font-weight:500; border-bottom:1.5px solid #d97757; padding-bottom:2px; }
+    .rcm-meta{ font-family:var(--mono); font-size:10px; color:#9a978f; letter-spacing:0.04em; }
+
+    /* Cards & primitives */
+    .rcm-card{
+      border:1px solid #ecebe6; border-radius:10px;
+      padding:14px 16px; background:#fffdf9;
+    }
+    .rcm-card__label{
+      font-family:var(--mono); font-size:10px;
+      letter-spacing:0.06em; text-transform:uppercase;
+      color:#9a978f; margin-bottom:6px;
+    }
+    .rcm-card__value{ font-size:22px; font-weight:600; letter-spacing:-0.018em; color:#1a1a1a; }
+    .rcm-card__sub{ font-size:11px; color:#7a7770; margin-top:4px; }
+
+    .rcm-pill{
+      display:inline-flex; align-items:center; gap:5px;
+      font-family:var(--mono); font-size:10px;
+      letter-spacing:0.04em; padding:3px 8px;
+      border-radius:999px; background:#f1efe8; color:#5a5852;
+    }
+    .rcm-pill--book{ background:#dff0e3; color:#2f7a4a; }
+    .rcm-pill--vm  { background:#eee9df; color:#6b4524; }
+    .rcm-pill--opt { background:#f6dada; color:#8a3a3a; }
+    .rcm-pill--new { background:#fdebd8; color:#a05420; }
+    .rcm-pill--sms { background:#e8eef9; color:#3a5a8a; }
+    .rcm-pill--mail{ background:#f0e8f6; color:#6a3a8a; }
+    .rcm-pill--qual{ background:#e6efe9; color:#3a6a4a; }
+
+    /* Stat grid */
+    .rcm-statgrid{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    @media (max-width:880px){ .rcm-statgrid{ grid-template-columns:repeat(2,1fr);} }
+
+    /* Inbox table */
+    .rcm-row{
+      display:grid; grid-template-columns:60px 1fr 110px 90px 80px;
+      gap:12px; align-items:center;
+      padding:10px 12px; border-bottom:1px solid #ecebe6;
+      font-size:12px; color:#3a3a3a;
+    }
+    .rcm-row:last-child{ border-bottom:none; }
+    .rcm-row__id{ font-family:var(--mono); font-size:11px; color:#9a978f; }
+    .rcm-row__name{ font-weight:500; color:#1a1a1a; }
+    .rcm-row__name small{ display:block; color:#9a978f; font-weight:400; font-size:11px; }
+    .rcm-row__time{ font-family:var(--mono); font-size:11px; color:#7a7770; text-align:right; }
+
+    /* Timeline */
+    .rcm-tl{ position:relative; padding-left:18px; }
+    .rcm-tl::before{
+      content:''; position:absolute; left:5px; top:6px; bottom:6px;
+      width:1px; background:#e0ddd6;
+    }
+    .rcm-tl__step{ position:relative; padding:8px 0; font-size:12px; color:#3a3a3a; }
+    .rcm-tl__step::before{
+      content:''; position:absolute; left:-18px; top:13px;
+      width:11px; height:11px; border-radius:50%;
+      background:#d97757; border:2px solid #fffdf9;
+    }
+    .rcm-tl__step--done::before{ background:#2f7a4a; }
+    .rcm-tl__step--pending::before{ background:#d9d6cf; }
+    .rcm-tl__t{ font-family:var(--mono); font-size:10px; color:#9a978f; letter-spacing:0.04em; }
+    .rcm-tl__lbl{ font-weight:500; color:#1a1a1a; }
+
+    /* Calendar grid */
+    .rcm-cal{ display:grid; grid-template-columns:60px repeat(5,1fr); gap:0; }
+    .rcm-cal__hd{
+      font-family:var(--mono); font-size:10px;
+      color:#9a978f; letter-spacing:0.06em;
+      text-transform:uppercase; padding:8px 6px; text-align:center;
+      border-bottom:1px solid #ecebe6;
+    }
+    .rcm-cal__hour{
+      font-family:var(--mono); font-size:10px; color:#9a978f;
+      padding:8px 6px; text-align:right; border-right:1px solid #ecebe6;
+    }
+    .rcm-cal__cell{
+      border-right:1px solid #f3f1ec;
+      border-bottom:1px solid #f3f1ec;
+      min-height:46px; padding:4px;
+    }
+    .rcm-cal__evt{
+      padding:5px 6px; border-radius:5px;
+      font-size:10px; line-height:1.25;
+      height:100%;
+    }
+    .rcm-cal__evt--a{ background:#fde0cc; color:#7a3a18; border-left:3px solid #d97757; }
+    .rcm-cal__evt--b{ background:#dce8f7; color:#1e4a7a; border-left:3px solid #4a7ec4; }
+    .rcm-cal__evt small{ display:block; opacity:0.8; font-size:9px; }
+
+    /* Kanban */
+    .rcm-kb{ display:grid; grid-template-columns:repeat(6,1fr); gap:10px; }
+    @media (max-width:980px){ .rcm-kb{ grid-template-columns:repeat(3,1fr);} }
+    .rcm-kb__col{ background:#faf8f2; border:1px solid #ecebe6; border-radius:8px; padding:8px; min-height:260px; }
+    .rcm-kb__h{
+      font-family:var(--mono); font-size:10px; letter-spacing:0.06em;
+      text-transform:uppercase; color:#7a7770;
+      display:flex; justify-content:space-between; align-items:center;
+      margin-bottom:8px; padding:2px 4px;
+    }
+    .rcm-kb__h span{ background:#ecebe6; color:#5a5852; padding:1px 6px; border-radius:999px; font-size:9px; }
+    .rcm-kb__card{
+      background:#ffffff; border:1px solid #ecebe6; border-radius:6px;
+      padding:8px 10px; margin-bottom:6px;
+      font-size:11px; color:#3a3a3a;
+    }
+    .rcm-kb__card strong{ display:block; color:#1a1a1a; font-weight:500; font-size:12px; }
+    .rcm-kb__card .rcm-pill{ margin-top:4px; font-size:9px; }
+    .rcm-kb__val{
+      font-family:var(--mono); font-size:11px; color:#a05420;
+      margin-top:4px; font-weight:500;
+    }
+
+    /* Production table */
+    .rcm-jt{ width:100%; border-collapse:collapse; font-size:12px; }
+    .rcm-jt th{
+      text-align:left; font-family:var(--mono); font-size:10px;
+      letter-spacing:0.06em; text-transform:uppercase; color:#9a978f;
+      padding:8px 10px; border-bottom:1px solid #ecebe6; font-weight:400;
+    }
+    .rcm-jt td{ padding:11px 10px; border-bottom:1px solid #f3f1ec; color:#3a3a3a; }
+    .rcm-jt td.is-val{ font-family:var(--mono); color:#1a1a1a; font-weight:500; text-align:right; }
+    .rcm-jt td.is-stage{ color:#5a5852; }
+    .rcm-jt__bar{
+      display:inline-block; width:60px; height:6px; border-radius:3px;
+      background:#ecebe6; vertical-align:middle; margin-left:6px; position:relative;
+    }
+    .rcm-jt__bar i{
+      position:absolute; left:0; top:0; bottom:0; border-radius:3px;
+      background:#d97757; display:block;
+    }
+
+    /* Value / ROI chart */
+    .rcm-roi{ display:grid; grid-template-columns:1fr 280px; gap:20px; }
+    @media (max-width:880px){ .rcm-roi{ grid-template-columns:1fr; } }
+    .rcm-roi__row{
+      display:grid; grid-template-columns:90px 1fr 60px 70px 70px;
+      gap:10px; align-items:center;
+      padding:10px 4px; border-bottom:1px solid #ecebe6;
+      font-size:12px;
+    }
+    .rcm-roi__row:last-child{ border-bottom:none; }
+    .rcm-roi__src{ font-weight:500; color:#1a1a1a; }
+    .rcm-roi__bar{ height:8px; background:#f3f1ec; border-radius:4px; position:relative; overflow:hidden; }
+    .rcm-roi__bar i{ position:absolute; left:0; top:0; bottom:0; background:#d97757; border-radius:4px; }
+    .rcm-roi__n{ font-family:var(--mono); font-size:11px; color:#5a5852; text-align:right; }
+    .rcm-roi__roi{ font-family:var(--mono); font-size:11px; color:#2f7a4a; text-align:right; font-weight:500; }
+
+    .rcm-leg{
+      display:flex; gap:14px; flex-wrap:wrap;
+      font-family:var(--mono); font-size:10px; color:#7a7770; letter-spacing:0.04em;
+    }
+    .rcm-leg span{ display:inline-flex; align-items:center; gap:6px; }
+    .rcm-leg i{ width:9px; height:9px; border-radius:2px; display:inline-block; }
+
+    /* Force selects into full-width stack on this page */
+    .case-study--rc .mockup-grid{ grid-template-columns:1fr; gap:clamp(40px, 4vw, 64px); }
+    .case-study--rc .mockup{ border:none; background:transparent; padding:0; cursor:default; }
+    .case-study--rc .mockup:hover{ transform:none; box-shadow:none; border-color:transparent; }
+    .case-study--rc .mockup figcaption{
+      border-top:none; padding:14px 4px 0;
+      font-family:var(--mono); font-size:11px;
+      letter-spacing:0.06em; text-transform:uppercase; color:var(--muted);
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       Authentic GHL UI reproduction (Smart Lists, Calendar, Pipeline)
+       ───────────────────────────────────────────────────────────── */
+    .ghl-app{ display:grid; grid-template-columns:60px 200px 1fr; min-height:540px; background:#fafaf7; font-size:12px; color:#1a1a1a; }
+    .ghl-app--no-sub{ grid-template-columns:60px 1fr; }
+    @media (max-width:880px){ .ghl-app{ grid-template-columns:60px 1fr; } .ghl-subnav{ display:none; } }
+
+    .ghl-rail{
+      background:#0f1b2d; color:#7a8aa3;
+      display:flex; flex-direction:column; align-items:center;
+      padding:14px 0; gap:6px;
+      border-right:1px solid #0b1422;
+    }
+    .ghl-rail__logo{
+      width:32px; height:32px; border-radius:8px;
+      background:linear-gradient(135deg,#d97757 0%,#b8503a 100%);
+      display:grid; place-items:center;
+      color:#fff; font-family:var(--mono); font-weight:600; font-size:11px;
+      margin-bottom:10px;
+    }
+    .ghl-rail__icon{
+      width:36px; height:36px; border-radius:7px;
+      display:grid; place-items:center;
+      color:#a8b4c8; font-family:var(--mono); font-size:9px;
+      cursor:default; line-height:1;
+    }
+    .ghl-rail__icon.is-active{ background:#1f2d44; color:#fff; }
+    .ghl-rail__icon svg{ width:16px; height:16px; }
+    .ghl-rail__sep{ width:28px; height:1px; background:#1f2d44; margin:6px 0; }
+
+    .ghl-subnav{
+      background:#f2efe8; border-right:1px solid #e4e0d6;
+      padding:14px 10px; display:flex; flex-direction:column; gap:2px;
+    }
+    .ghl-subnav__title{
+      font-family:var(--mono); font-size:9px; letter-spacing:0.08em;
+      text-transform:uppercase; color:#9a978f;
+      padding:6px 10px 8px;
+    }
+    .ghl-subnav__item{
+      padding:7px 10px; border-radius:5px;
+      font-size:12px; color:#3a3a3a; line-height:1.3;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .ghl-subnav__item.is-active{ background:#e6e1d3; color:#1a1a1a; font-weight:500; }
+    .ghl-subnav__item .ghl-subnav__count{ font-family:var(--mono); font-size:10px; color:#9a978f; }
+    .ghl-subnav__item.is-active .ghl-subnav__count{ color:#3a3a3a; }
+
+    .ghl-main{ background:#fafaf7; min-width:0; display:flex; flex-direction:column; }
+    .ghl-topbar{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 18px; border-bottom:1px solid #e4e0d6; background:#fff;
+      gap:10px;
+    }
+    .ghl-topbar__title{ font-size:15px; font-weight:600; letter-spacing:-0.012em; color:#1a1a1a; }
+    .ghl-topbar__title small{ color:#9a978f; font-weight:400; font-size:11px; margin-left:6px; font-family:var(--mono); }
+    .ghl-topbar__search{
+      flex:1; max-width:260px;
+      background:#f4f2ec; border:1px solid #e4e0d6; border-radius:5px;
+      padding:5px 10px; font-size:11px; color:#7a7770; font-family:var(--sans);
+    }
+    .ghl-btn{
+      background:#d97757; color:#fff; border:none; border-radius:5px;
+      padding:6px 12px; font-size:11px; font-weight:500; font-family:var(--sans);
+      display:inline-flex; align-items:center; gap:5px; cursor:default;
+    }
+    .ghl-btn--ghost{ background:#fff; color:#3a3a3a; border:1px solid #e4e0d6; }
+
+    .ghl-tabs{
+      display:flex; gap:0; padding:0 18px;
+      border-bottom:1px solid #e4e0d6; background:#fff;
+    }
+    .ghl-tabs span{
+      padding:10px 14px; font-size:11px; color:#7a7770;
+      border-bottom:2px solid transparent; cursor:default;
+    }
+    .ghl-tabs span.is-active{ color:#d97757; border-bottom-color:#d97757; font-weight:500; }
+
+    .ghl-chips{
+      display:flex; gap:6px; padding:10px 18px; background:#fafaf7;
+      border-bottom:1px solid #ecebe6; flex-wrap:wrap;
+    }
+    .ghl-chip{
+      font-family:var(--mono); font-size:10px;
+      background:#fff; border:1px solid #e4e0d6;
+      border-radius:13px; padding:3px 9px;
+      color:#5a5852;
+      display:inline-flex; align-items:center; gap:4px;
+    }
+    .ghl-chip strong{ color:#d97757; font-weight:500; }
+    .ghl-chip--add{ background:transparent; border:1px dashed #c2c0b8; color:#9a978f; }
+
+    /* GHL Smart List table */
+    .ghl-table{ width:100%; background:#fff; }
+    .ghl-thead{
+      display:grid;
+      grid-template-columns:28px 1.6fr 1.1fr 1fr 0.9fr 80px;
+      gap:10px; padding:9px 18px; border-bottom:1px solid #ecebe6;
+      font-family:var(--mono); font-size:9px;
+      letter-spacing:0.06em; text-transform:uppercase; color:#9a978f;
+    }
+    .ghl-trow{
+      display:grid;
+      grid-template-columns:28px 1.6fr 1.1fr 1fr 0.9fr 80px;
+      gap:10px; padding:11px 18px; border-bottom:1px solid #f3f1ec;
+      font-size:12px; color:#3a3a3a; align-items:center;
+    }
+    .ghl-trow:hover{ background:#fafaf7; }
+    .ghl-check{
+      width:14px; height:14px; border:1.5px solid #c2c0b8; border-radius:3px;
+      display:inline-block;
+    }
+    .ghl-avatar{
+      width:24px; height:24px; border-radius:50%;
+      background:#e6e1d3; color:#5a5852;
+      display:inline-grid; place-items:center;
+      font-family:var(--mono); font-size:9px; font-weight:500;
+      margin-right:8px; vertical-align:middle;
+    }
+    .ghl-avatar--a{ background:#f4d8bc; color:#7a4a1c; }
+    .ghl-avatar--b{ background:#dce8f7; color:#1e4a7a; }
+    .ghl-avatar--c{ background:#e6efe9; color:#3a6a4a; }
+    .ghl-avatar--d{ background:#f0e8f6; color:#6a3a8a; }
+    .ghl-tname strong{ font-weight:500; color:#1a1a1a; }
+    .ghl-tname small{ display:block; color:#9a978f; font-size:10px; margin-top:1px; padding-left:32px; }
+    .ghl-tmono{ font-family:var(--mono); font-size:10px; color:#5a5852; }
+    .ghl-ttag{
+      display:inline-flex; align-items:center; gap:4px;
+      font-family:var(--mono); font-size:9px; padding:2px 7px;
+      border-radius:11px; background:#f1efe8; color:#5a5852;
+      letter-spacing:0.02em;
+    }
+    .ghl-ttag--src-web{ background:#fdebd8; color:#a05420; }
+    .ghl-ttag--src-meta{ background:#dce8f7; color:#1e4a7a; }
+    .ghl-ttag--src-jfa{ background:#e6efe9; color:#3a6a4a; }
+    .ghl-ttag--src-fixr{ background:#f0e8f6; color:#6a3a8a; }
+    .ghl-ttag--src-ref{ background:#eee9df; color:#6b4524; }
+    .ghl-ttag--src-call{ background:#f6dada; color:#8a3a3a; }
+    .ghl-ttag--set{ background:#dff0e3; color:#2f7a4a; }
+    .ghl-ttag--dnd{ background:#f6dada; color:#8a3a3a; }
+
+    /* GHL Opportunities kanban */
+    .ghl-kb{
+      display:grid; grid-template-columns:repeat(7,minmax(160px,1fr)); gap:8px;
+      padding:12px 18px; background:#fafaf7; overflow-x:auto;
+    }
+    @media (max-width:980px){ .ghl-kb{ grid-template-columns:repeat(4,minmax(140px,1fr)); } }
+    @media (max-width:680px){ .ghl-kb{ grid-template-columns:repeat(2,minmax(140px,1fr)); } }
+    .ghl-kb__col{
+      background:#fff; border:1px solid #e4e0d6; border-radius:6px;
+      padding:8px; min-height:280px; display:flex; flex-direction:column;
+    }
+    .ghl-kb__h{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:4px 6px 8px; border-bottom:1px solid #f3f1ec; margin-bottom:8px;
+    }
+    .ghl-kb__h strong{
+      font-size:11px; font-weight:500; color:#1a1a1a;
+      display:flex; align-items:center; gap:6px;
+    }
+    .ghl-kb__h strong::before{
+      content:''; width:7px; height:7px; border-radius:50%; background:#d97757;
+    }
+    .ghl-kb__h--set strong::before{ background:#4a7ec4; }
+    .ghl-kb__h--est strong::before{ background:#a05420; }
+    .ghl-kb__h--quo strong::before{ background:#6a3a8a; }
+    .ghl-kb__h--nfu strong::before{ background:#c2c0b8; }
+    .ghl-kb__h--drp strong::before{ background:#9a978f; }
+    .ghl-kb__h--sld strong::before{ background:#2f7a4a; }
+    .ghl-kb__h__count{
+      font-family:var(--mono); font-size:9px; color:#9a978f;
+    }
+    .ghl-kb__card{
+      background:#fff; border:1px solid #ecebe6; border-radius:5px;
+      padding:8px 9px; margin-bottom:6px;
+      font-size:11px; color:#3a3a3a; line-height:1.35;
+    }
+    .ghl-kb__card strong{ display:block; color:#1a1a1a; font-weight:500; font-size:11.5px; }
+    .ghl-kb__card small{ display:block; color:#9a978f; font-size:10px; margin-top:1px; }
+    .ghl-kb__card .ghl-ttag{ margin-top:4px; font-size:8.5px; padding:1px 6px; }
+    .ghl-kb__card .ghl-kb__val{
+      font-family:var(--mono); font-size:10px; color:#a05420; margin-top:4px; font-weight:500;
+    }
+
+    /* GHL Calendar week view */
+    .ghl-cal{ background:#fff; padding:12px 18px; }
+    .ghl-cal__bar{
+      display:flex; justify-content:space-between; align-items:center;
+      margin-bottom:10px; font-size:12px;
+    }
+    .ghl-cal__bar select{
+      background:#f4f2ec; border:1px solid #e4e0d6; border-radius:5px;
+      font-size:11px; padding:4px 8px; font-family:var(--sans); color:#3a3a3a;
+    }
+    .ghl-cal__grid{
+      display:grid; grid-template-columns:54px repeat(5,1fr); gap:0;
+      border-top:1px solid #ecebe6; border-left:1px solid #ecebe6;
+    }
+    .ghl-cal__hd{
+      font-family:var(--mono); font-size:9px;
+      color:#9a978f; letter-spacing:0.06em; text-transform:uppercase;
+      padding:8px 6px; text-align:center;
+      border-bottom:1px solid #ecebe6; border-right:1px solid #ecebe6;
+      background:#fafaf7;
+    }
+    .ghl-cal__hd strong{ display:block; color:#1a1a1a; font-size:13px; font-weight:500; font-family:var(--sans); letter-spacing:0; margin-top:2px; }
+    .ghl-cal__hour{
+      font-family:var(--mono); font-size:9px; color:#9a978f;
+      padding:8px 6px; text-align:right;
+      border-right:1px solid #ecebe6; border-bottom:1px solid #f3f1ec;
+    }
+    .ghl-cal__cell{
+      border-right:1px solid #ecebe6; border-bottom:1px solid #f3f1ec;
+      min-height:48px; padding:3px; position:relative;
+    }
+    .ghl-cal__evt{
+      padding:5px 7px; border-radius:4px;
+      font-size:10px; line-height:1.3; height:calc(100% - 6px);
+    }
+    .ghl-cal__evt strong{ display:block; font-weight:500; font-size:10.5px; }
+    .ghl-cal__evt small{ display:block; opacity:0.85; font-size:9px; margin-top:1px; font-family:var(--mono); }
+    .ghl-cal__evt--mark{ background:#fde0cc; color:#7a3a18; border-left:3px solid #d97757; }
+    .ghl-cal__evt--luke{ background:#dce8f7; color:#1e4a7a; border-left:3px solid #4a7ec4; }
+    .ghl-cal__evt--rich{ background:#e6efe9; color:#3a6a4a; border-left:3px solid #3a8a5a; }
+
+    /* JobTread UI reproduction */
+    .jt-app{ display:grid; grid-template-columns:200px 1fr; min-height:540px; background:#f7f6f3; font-size:12px; color:#1a1a1a; }
+    @media (max-width:720px){ .jt-app{ grid-template-columns:1fr; } .jt-side{ display:none; } }
+
+    .jt-side{
+      background:#243528; color:#c4d6c9;
+      padding:14px 0; display:flex; flex-direction:column; gap:1px;
+      border-right:1px solid #1a2a1d;
+    }
+    .jt-side__logo{
+      display:flex; align-items:center; gap:8px;
+      padding:8px 16px 18px;
+      font-size:13px; font-weight:600; color:#fff; letter-spacing:-0.01em;
+    }
+    .jt-side__logo::before{
+      content:''; width:22px; height:22px; border-radius:5px;
+      background:linear-gradient(135deg,#5fb878 0%,#3a8a5a 100%);
+    }
+    .jt-side__org{
+      padding:0 16px 14px; font-family:var(--mono);
+      font-size:9px; letter-spacing:0.06em;
+      text-transform:uppercase; color:#7a9a82;
+      border-bottom:1px solid #2f4334; margin-bottom:8px;
+    }
+    .jt-side__item{
+      padding:7px 16px; font-size:12px; color:#a8c2b0;
+      display:flex; justify-content:space-between; align-items:center;
+      border-left:2px solid transparent;
+    }
+    .jt-side__item.is-active{
+      background:#1d2a20; color:#fff; border-left-color:#5fb878;
+    }
+    .jt-side__item .jt-side__count{ font-family:var(--mono); font-size:10px; color:#7a9a82; }
+
+    .jt-main{ background:#f7f6f3; min-width:0; }
+    .jt-topbar{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 18px; background:#fff;
+      border-bottom:1px solid #e4e0d6;
+    }
+    .jt-topbar__title{ font-size:15px; font-weight:600; color:#1a1a1a; }
+    .jt-topbar__title small{ color:#9a978f; font-weight:400; font-size:11px; margin-left:8px; font-family:var(--mono); }
+
+    .jt-statsbar{
+      display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+      background:#fff; border-bottom:1px solid #e4e0d6;
+    }
+    .jt-statsbar > div{
+      padding:11px 18px; border-right:1px solid #ecebe6;
+    }
+    .jt-statsbar > div:last-child{ border-right:none; }
+    .jt-statsbar__lbl{ font-family:var(--mono); font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#9a978f; }
+    .jt-statsbar__val{ font-size:18px; font-weight:600; color:#1a1a1a; margin-top:2px; letter-spacing:-0.014em; }
+    .jt-statsbar__sub{ font-size:10px; color:#5a5852; margin-top:1px; }
+
+    .jt-tab{
+      display:flex; gap:0; padding:0 18px;
+      background:#fff; border-bottom:1px solid #e4e0d6;
+    }
+    .jt-tab span{
+      padding:10px 14px; font-size:11px; color:#7a7770;
+      border-bottom:2px solid transparent;
+    }
+    .jt-tab span.is-active{ color:#3a8a5a; border-bottom-color:#3a8a5a; font-weight:500; }
+
+    .jt-table{ width:100%; border-collapse:collapse; font-size:12px; background:#fff; }
+    .jt-table th{
+      text-align:left; font-family:var(--mono); font-size:9px;
+      letter-spacing:0.06em; text-transform:uppercase; color:#9a978f;
+      padding:9px 16px; border-bottom:1px solid #ecebe6; font-weight:400;
+      background:#fafaf7;
+    }
+    .jt-table td{ padding:11px 16px; border-bottom:1px solid #f3f1ec; color:#3a3a3a; vertical-align:top; }
+    .jt-table tr:hover td{ background:#fafaf7; }
+    .jt-num{ font-family:var(--mono); font-size:11px; color:#1a1a1a; font-weight:500; }
+    .jt-cust strong{ display:block; color:#1a1a1a; font-weight:500; font-size:12px; }
+    .jt-cust small{ display:block; color:#9a978f; font-size:10.5px; margin-top:1px; }
+    .jt-stage{
+      display:inline-flex; align-items:center; gap:5px;
+      font-family:var(--mono); font-size:9.5px; padding:2px 7px;
+      border-radius:11px; background:#eef3ef; color:#3a6a4a;
+    }
+    .jt-stage::before{ content:''; width:6px; height:6px; border-radius:50%; background:#5fb878; }
+    .jt-stage--lead{ background:#fdebd8; color:#a05420; }
+    .jt-stage--lead::before{ background:#d97757; }
+    .jt-stage--set{ background:#dce8f7; color:#1e4a7a; }
+    .jt-stage--set::before{ background:#4a7ec4; }
+    .jt-stage--est{ background:#f0e8f6; color:#6a3a8a; }
+    .jt-stage--est::before{ background:#8a5aaa; }
+    .jt-stage--prod{ background:#eee9df; color:#6b4524; }
+    .jt-stage--prod::before{ background:#a07a4a; }
+    .jt-stage--sold{ background:#dff0e3; color:#2f7a4a; }
+    .jt-trade{ font-family:var(--mono); font-size:10px; color:#5a5852; }
+    .jt-rep{ font-size:11px; color:#3a3a3a; }
+    .jt-val{ font-family:var(--mono); font-size:11px; color:#1a1a1a; font-weight:500; text-align:right; }
+    .jt-val small{ display:block; color:#9a978f; font-size:9px; font-weight:400; }
+
+    /* Workflow Builder (automation diagrams) */
+    .wfb-grid{
+      display:grid; grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:18px; margin-top:22px;
+    }
+    @media (max-width:820px){ .wfb-grid{ grid-template-columns:1fr; } }
+    .wfb{
+      background:#fffdf9; border:1px solid #e4e0d6; border-radius:10px;
+      padding:18px 18px 14px;
+      display:flex; flex-direction:column;
+    }
+    .wfb__head{
+      display:flex; justify-content:space-between; align-items:flex-start;
+      gap:10px; margin-bottom:14px; padding-bottom:12px;
+      border-bottom:1px solid #ecebe6;
+    }
+    .wfb__title{ font-size:14px; font-weight:600; color:#1a1a1a; letter-spacing:-0.012em; }
+    .wfb__title small{ display:block; color:#9a978f; font-family:var(--mono); font-size:10px; letter-spacing:0.04em; text-transform:uppercase; margin-bottom:3px; font-weight:400; }
+    .wfb__active{
+      display:inline-flex; align-items:center; gap:5px;
+      font-family:var(--mono); font-size:9px; letter-spacing:0.06em; text-transform:uppercase;
+      background:#dff0e3; color:#2f7a4a; padding:3px 8px; border-radius:11px;
+      flex-shrink:0;
+    }
+    .wfb__active::before{ content:''; width:6px; height:6px; border-radius:50%; background:#2f7a4a; }
+    .wfb__flow{
+      display:flex; flex-direction:column; gap:0; position:relative;
+    }
+    .wfb-node{
+      background:#fff; border:1px solid #e4e0d6; border-radius:7px;
+      padding:8px 11px;
+      display:flex; align-items:center; gap:10px;
+      position:relative;
+    }
+    .wfb-node + .wfb-node{ margin-top:18px; }
+    .wfb-node + .wfb-node::before{
+      content:''; position:absolute; top:-15px; left:18px;
+      width:1px; height:14px; background:#c2c0b8;
+    }
+    .wfb-node + .wfb-node::after{
+      content:''; position:absolute; top:-6px; left:14px;
+      width:0; height:0;
+      border-left:4.5px solid transparent;
+      border-right:4.5px solid transparent;
+      border-top:5px solid #c2c0b8;
+    }
+    .wfb-node__icon{
+      width:24px; height:24px; border-radius:5px;
+      display:grid; place-items:center; flex-shrink:0;
+      font-family:var(--mono); font-size:11px; font-weight:600;
+      color:#fff;
+    }
+    .wfb-node__body{ flex:1; min-width:0; }
+    .wfb-node__type{
+      font-family:var(--mono); font-size:9px; letter-spacing:0.06em;
+      text-transform:uppercase; color:#9a978f;
+    }
+    .wfb-node__lbl{
+      font-size:12px; color:#1a1a1a; font-weight:500; line-height:1.3; margin-top:1px;
+    }
+    .wfb-node__detail{ font-size:10.5px; color:#7a7770; margin-top:2px; }
+    .wfb-node--trig{ background:#0f1b2d; border-color:#0f1b2d; }
+    .wfb-node--trig .wfb-node__type{ color:#7a8aa3; }
+    .wfb-node--trig .wfb-node__lbl{ color:#fff; }
+    .wfb-node--trig .wfb-node__detail{ color:#a8b4c8; }
+    .wfb-node--trig .wfb-node__icon{ background:#d97757; }
+    .wfb-node__icon--sms{ background:#4a7ec4; }
+    .wfb-node__icon--email{ background:#8a5aaa; }
+    .wfb-node__icon--call{ background:#d97757; }
+    .wfb-node__icon--wait{ background:#9a978f; }
+    .wfb-node__icon--tag{ background:#3a8a5a; }
+    .wfb-node__icon--field{ background:#a05420; }
+    .wfb-node__icon--cond{ background:#c8a14a; }
+    .wfb-node__icon--http{ background:#5a5852; }
+    .wfb-node__icon--dnd{ background:#8a3a3a; }
+    .wfb-node__icon--note{ background:#6b4524; }
+    .wfb-node--split{ background:#fff8ec; border-color:#e4d5a8; }
+    .wfb-branch{
+      display:grid; grid-template-columns:1fr 1fr; gap:10px;
+      margin-top:18px; position:relative;
+    }
+    .wfb-branch::before{
+      content:''; position:absolute; top:-15px; left:18px;
+      width:calc(50% - 6px); height:1px; background:#c2c0b8;
+    }
+    .wfb-branch::after{
+      content:''; position:absolute; top:-15px; right:calc(50% - 12px);
+      width:calc(50% - 6px); height:1px; background:#c2c0b8;
+    }
+
+    /* Custom analytics dashboard (Lead Value screen — our own tool, not GHL/JT) */
+    .lv-screen{ display:grid; grid-template-columns:200px 1fr; min-height:520px; background:#fffdf9; }
+    @media (max-width:720px){ .lv-screen{ grid-template-columns:1fr; } .lv-side{ display:none; } }
+    .lv-side{
+      background:#1a1a1a; color:#a8a59a;
+      padding:18px 16px; display:flex; flex-direction:column; gap:14px;
+    }
+    .lv-side__brand{
+      font-family:var(--mono); font-size:9px;
+      letter-spacing:0.12em; text-transform:uppercase; color:#7a7770;
+    }
+    .lv-side__title{ font-size:18px; font-weight:600; color:#fff; letter-spacing:-0.014em; line-height:1.15; }
+    .lv-side__sub{ font-size:11px; color:#a8a59a; line-height:1.5; max-width:24ch; }
+    .lv-side__big{
+      margin-top:auto;
+      background:#2a2a2a; border:1px solid #3a3a3a; border-radius:8px;
+      padding:12px 14px;
+    }
+    .lv-side__big__lbl{ font-family:var(--mono); font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#7a7770; }
+    .lv-side__big__val{ font-size:22px; font-weight:600; color:#d97757; margin-top:2px; letter-spacing:-0.018em; }
+    .lv-side__big__sub{ font-size:10px; color:#a8a59a; margin-top:1px; }
+    .lv-main{ padding:18px 22px; background:#fffdf9; min-width:0; }
+
+    /* Cross-link teaser → PulseDash marketing dashboard */
+    .pd-teaser{
+      display:grid; grid-template-columns:0.95fr 1.05fr;
+      gap:clamp(28px, 4vw, 56px); align-items:center;
+      background:linear-gradient(135deg, #f4d8bc 0%, #f8e9d5 60%, #fffdf9 100%);
+      border:1px solid #e6c8a8; border-radius:14px;
+      padding:clamp(28px, 4vw, 48px);
+      margin-top:clamp(40px, 5vw, 64px);
+    }
+    @media (max-width:820px){ .pd-teaser{ grid-template-columns:1fr; } }
+    .pd-teaser__eyebrow{
+      font-family:var(--mono); font-size:11px; letter-spacing:0.08em;
+      text-transform:uppercase; color:#7a4a1c;
+    }
+    .pd-teaser__title{
+      font-size:clamp(28px, 3vw, 38px); font-weight:500;
+      letter-spacing:-0.022em; line-height:1.05;
+      color:#3d2310; margin:10px 0 14px;
+    }
+    .pd-teaser__title em{
+      font-style:italic; font-weight:300; color:#7a4a1c;
+    }
+    .pd-teaser__body{
+      font-size:15px; line-height:1.55; color:#3d2310;
+      max-width:46ch; margin-bottom:18px;
+    }
+    .pd-teaser__cta{
+      display:inline-flex; align-items:center; gap:8px;
+      font-family:var(--mono); font-size:12px;
+      letter-spacing:0.04em; text-transform:uppercase;
+      color:#3d2310;
+      padding:11px 18px; background:#fffdf9;
+      border:1px solid #d9b890; border-radius:999px;
+      transition:transform 220ms var(--ease), background 220ms var(--ease);
+    }
+    .pd-teaser__cta:hover{ background:#3d2310; color:#f4d8bc; border-color:#3d2310; transform:translateX(2px); }
+    .pd-teaser__cta svg{ width:14px; height:14px; }
+    .pd-teaser__pills{
+      display:flex; gap:8px; flex-wrap:wrap; margin-top:14px;
+    }
+    .pd-teaser__pill{
+      font-family:var(--mono); font-size:10px; letter-spacing:0.04em;
+      background:rgba(255,255,255,0.6); border:1px solid rgba(122,74,28,0.18);
+      color:#6b4524; padding:4px 9px; border-radius:999px;
+    }
+    .pd-teaser__shots{
+      display:grid; grid-template-columns:1fr; gap:14px;
+    }
+    .pd-teaser__shot{
+      display:block; border-radius:10px; overflow:hidden;
+      background:#fff; border:1px solid #e6c8a8;
+      box-shadow:0 1px 0 rgba(0,0,0,0.02), 0 24px 56px -32px rgba(122,74,28,0.35);
+      transition:transform 320ms var(--ease), box-shadow 320ms var(--ease);
+    }
+    .pd-teaser__shot:hover{ transform:translateY(-3px); box-shadow:0 1px 0 rgba(0,0,0,0.02), 0 32px 64px -28px rgba(122,74,28,0.42); }
+    .pd-teaser__shot img{ width:100%; height:auto; display:block; }
+    .pd-teaser__shot--overlap{ margin-left:clamp(20px, 6vw, 80px); margin-top:-30px; }
+    @media (max-width:820px){ .pd-teaser__shot--overlap{ margin-left:0; margin-top:0; } }
+  </style>
+</head>
+<body class="case-study--rc">
+  <!-- Page loader (Hyper Effekt-style curtain) — injected -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__name">DUTCH MIKE</span>
+      <span class="loader__role">AI Engineer</span>
+    </div>
+  </div>
+
+  <!-- ========== NAV ========== -->
+  <header class="nav">
+    <div class="nav__pad">
+      <div class="nav__shell">
+        <nav class="nav__links" aria-label="Primary">
+          <a href="../services.html">Services</a>
+          <a href="../work.html">Work</a>
+          <a href="../about.html">About</a>
+        </nav>
+        <a href="../index.html" class="nav__brand" aria-label="Dutch Mike — home">
+          <img class="nav__logo" src="../assets/dm-logo-white.png" alt="">
+        </a>
+        <div class="nav__actions">
+          <a class="nav__icon" href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          </a>
+          <a class="nav__icon" href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a class="nav__icon" href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+          </a>
+          <a class="nav__cta" href="../contact.html">
+            Contact Us
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-float" id="navFloat" aria-hidden="true">
+      <a class="nav-float__cta" href="../contact.html">Contact</a>
+      <a href="../index.html" class="nav-float__logo" aria-label="Dutch Mike — home">
+        <img src="../assets/dm-logo-white.png" alt="">
+      </a>
+      <button class="nav-float__menu" id="navMenuBtn" type="button" aria-label="Open menu" aria-controls="navOverlay" aria-expanded="false">
+        <span>Menu</span>
+        <span class="nav-float__icon" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+    <div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
+      <div class="nav-overlay__panel">
+        <div class="nav-overlay__head">
+          <a class="nav-overlay__head-cta" href="../contact.html" data-nav-close>Contact</a>
+          <a href="../index.html" class="nav-overlay__head-logo" data-nav-close aria-label="Dutch Mike — home">
+            <img src="../assets/dm-logo-white.png" alt="">
+          </a>
+          <button class="nav-overlay__close" id="navMenuClose" type="button" aria-label="Close menu">
+            <span>Close</span><span aria-hidden="true">✕</span>
+          </button>
+        </div>
+        <nav class="nav-overlay__links" aria-label="Site">
+          <a href="../services.html" data-nav-close>Services</a>
+          <a href="../work.html" data-nav-close>Work</a>
+          <a href="../about.html" data-nav-close>About</a>
+          <a href="../contact.html" data-nav-close>Contact</a>
+        </nav>
+        <div class="nav-overlay__foot">
+          <span class="nav-overlay__label">Find me</span>
+          <div class="nav-overlay__socials">
+            <a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== CASE HERO ========== -->
+  <section class="case-hero">
+    <div class="container">
+      <a href="../work.html" class="case-hero__crumb reveal">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3 L4 8 L10 13"/></svg>
+        All work / 02 of 07 · AI engineering
+      </a>
+
+      <h1 class="display case-hero__title reveal">RC Inbound Lead Tracking.</h1>
+
+      <p class="lede case-hero__lede reveal" data-delay="1">
+        A custom inbound-tracking dashboard for a Langhorne, PA remodeling brand &mdash; five intake channels, a dual-agent Voice AI front door that calls within five minutes, JobTread mirroring, ten production automations, and a single funnel view that finally answers &ldquo;which source converts.&rdquo;
+      </p>
+
+      <dl class="case-meta stagger">
+        <div><dt>Client</dt><dd>Remodeling Concepts (Langhorne, PA)</dd></div>
+        <div><dt>Role</dt><dd>Architect + solo engineer</dd></div>
+        <div><dt>Year</dt><dd>2025 &ndash; 2026</dd></div>
+        <div><dt>Status</dt><dd>In production, ten automations running daily</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ========== HERO MOCKUP · SCREEN 01 · GHL CONTACTS / SMART LIST ========== -->
+  <section class="case-mockup">
+    <div class="container">
+      <figure class="mockup-hero reveal" style="background:transparent; border:none;">
+        <div class="rcm-screen" role="img" aria-label="GoHighLevel Contacts smart list view for Remodeling Concepts, showing 14 recent inbound leads with source tags, lifecycle tags, and last activity timestamps">
+          <div class="rcm-chrome">
+            <div class="rcm-chrome__dots"><span></span><span></span><span></span></div>
+            <div class="rcm-chrome__url">app.gohighlevel.com&nbsp;·&nbsp;/v2/location/loc_•••••PgsC/contacts</div>
+            <div class="rcm-chrome__pill">live</div>
+          </div>
+          <div class="ghl-app">
+            <nav class="ghl-rail" aria-label="GHL sidebar">
+              <div class="ghl-rail__logo">RC</div>
+              <div class="ghl-rail__icon" title="Dashboard">DSH</div>
+              <div class="ghl-rail__icon" title="Conversations">CNV</div>
+              <div class="ghl-rail__icon" title="Calendars">CAL</div>
+              <div class="ghl-rail__icon is-active" title="Contacts">CTS</div>
+              <div class="ghl-rail__icon" title="Opportunities">OPP</div>
+              <div class="ghl-rail__icon" title="Payments">PAY</div>
+              <div class="ghl-rail__sep"></div>
+              <div class="ghl-rail__icon" title="Automation">AUT</div>
+              <div class="ghl-rail__icon" title="Sites">SIT</div>
+              <div class="ghl-rail__icon" title="Reputation">REP</div>
+              <div class="ghl-rail__icon" title="Reporting">RPT</div>
+            </nav>
+
+            <aside class="ghl-subnav">
+              <div class="ghl-subnav__title">Smart lists</div>
+              <div class="ghl-subnav__item is-active">All Inbound · 7d<span class="ghl-subnav__count">14</span></div>
+              <div class="ghl-subnav__item">Appointment Set<span class="ghl-subnav__count">12</span></div>
+              <div class="ghl-subnav__item">Voice AI · No-Book<span class="ghl-subnav__count">6</span></div>
+              <div class="ghl-subnav__item">Long-Term Nurture<span class="ghl-subnav__count">38</span></div>
+              <div class="ghl-subnav__item">Do-Not-Contact<span class="ghl-subnav__count">9</span></div>
+              <div class="ghl-subnav__item">JFA · Last 30d<span class="ghl-subnav__count">23</span></div>
+              <div class="ghl-subnav__item">Website · Last 30d<span class="ghl-subnav__count">41</span></div>
+              <div class="ghl-subnav__title" style="margin-top:14px;">Bulk actions</div>
+              <div class="ghl-subnav__item">Add to workflow</div>
+              <div class="ghl-subnav__item">Send SMS</div>
+              <div class="ghl-subnav__item">Add tag</div>
+            </aside>
+
+            <div class="ghl-main">
+              <div class="ghl-topbar">
+                <div>
+                  <div class="ghl-topbar__title">Contacts <small>2,179 total · 14 in view</small></div>
+                </div>
+                <div style="display:flex; gap:6px; align-items:center;">
+                  <input class="ghl-topbar__search" type="text" placeholder="Search by name, phone, email…" disabled aria-label="Search contacts (mockup)" />
+                  <button class="ghl-btn ghl-btn--ghost" type="button">More filters</button>
+                  <button class="ghl-btn" type="button">+ Add contact</button>
+                </div>
+              </div>
+
+              <div class="ghl-tabs">
+                <span class="is-active">All contacts</span>
+                <span>Smart lists</span>
+                <span>Bulk actions</span>
+                <span>Restore</span>
+                <span>Manage smart list</span>
+              </div>
+
+              <div class="ghl-chips">
+                <span class="ghl-chip">Date added <strong>last 7 days</strong></span>
+                <span class="ghl-chip">Tag <strong>appointment-set OR website-lead OR jf-acquisitions-lead</strong></span>
+                <span class="ghl-chip">DND <strong>no</strong></span>
+                <span class="ghl-chip ghl-chip--add">+ Add filter</span>
+              </div>
+
+              <div class="ghl-table" role="table" aria-label="Recent inbound contacts">
+                <div class="ghl-thead">
+                  <span></span>
+                  <span>Name</span>
+                  <span>Phone</span>
+                  <span>Source · Trade</span>
+                  <span>Tags</span>
+                  <span style="text-align:right;">Added</span>
+                </div>
+
+                <div class="ghl-trow">
+                  <span class="ghl-check" aria-hidden="true"></span>
+                  <span class="ghl-tname"><span class="ghl-avatar ghl-avatar--a">EB</span><strong>Eleanor B.</strong><small>Philadelphia, PA · Roof</small></span>
+                  <span class="ghl-tmono">(215) 555-0107</span>
+                  <span><span class="ghl-ttag ghl-ttag--src-ref">Referral</span></span>
+                  <span><span class="ghl-ttag ghl-ttag--set">appointment-set</span> <span class="ghl-ttag">contacted</span></span>
+                  <span class="ghl-tmono" style="text-align:right;">8m ago</span>
+                </div>
+                <div class="ghl-trow">
+                  <span class="ghl-check" aria-hidden="true"></span>
+                  <span class="ghl-tname"><span class="ghl-avatar ghl-avatar--b">WH</span><strong>William H.</strong><small>Langhorne, PA · Repair</small></span>
+                  <span class="ghl-tmono">(215) 555-0143</span>
+                  <span><span class="ghl-ttag ghl-ttag--src-call">Inbound Call</span></span>
+                  <span><span class="ghl-ttag ghl-ttag--set">appointment-set</span> <span class="ghl-ttag">rep · Setter</span></span>
+                  <span class="ghl-tmono" style="text-align:right;">2h ago</span>
+                </div>
+                <div class="ghl-trow">
+                  <span class="ghl-check" aria-hidden="true"></span>
+                  <span class="ghl-tname"><span class="ghl-avatar ghl-avatar--c">DK</span><strong>David K.</strong><small>Princeton, NJ · Siding</small></span>
+                  <span class="ghl-tmono">(609) 555-0177</span>
+                  <span><span class="ghl-ttag ghl-ttag--src-web">Website</span></span>
+                  <span><span class="ghl-ttag ghl-ttag--set">appointment-set</span> <span class="ghl-ttag">rep · Closer&nbsp;B</span></span>
+                  <span class="ghl-tmono" style="text-align:right;">5h ago</span>
+                </div>
+                <div class="ghl-trow">
+                  <span class="ghl-check" aria-hidden="true"></span>
+                  <span class="ghl-tname"><span class="ghl-avatar ghl-avatar--d">RN</span><strong>Robert N.</strong><small>Langhorne, PA · Windows</small></span>
+                  <span class="ghl-tmono">(215) 555-0124</span>
+                  <span><span class="ghl-ttag ghl-ttag--src-ref">Employee Referral</span></span>
+                  <span><span class="ghl-ttag ghl-ttag--set">appointment-set</span> <span class="ghl-ttag">contacted</span></span>
+                  <span class="ghl-tmono" style="text-align:right;">19h ago</span>
+                </div>
+                <div class="ghl-trow">
+                  <span class="ghl-check" aria-hidden="true"></span>
+                  <span class="ghl-tname"><span class="ghl-avatar ghl-avatar--a">MO</span><strong>Margaret O.</strong><small>Southampton, PA · Bath</small></span>
+                  <span class="ghl-tmono">(267) 555-0162</span>
+                  <span><span class="ghl-ttag ghl-ttag--src-ref">Customer Referral</span></span>
+                  <span><span class="ghl-ttag ghl-ttag--set">appointment-set</span> <span class="ghl-ttag">contacted</span></span>
+                  <span class="ghl-tmono" style="text-align:right;">20h ago</span>
+                </div>
+                <div class="ghl-trow">
+                  <span class="ghl-check" aria-hidden="true"></span>
+                  <span class="ghl-tname"><span class="ghl-avatar ghl-avatar--b">LB</span><strong>Linda B.</strong><small>Levittown, PA · Windows/Siding</small></span>
+                  <span class="ghl-tmono">(215) 555-0141</span>
+                  <span><span class="ghl-ttag">JT imported</span></span>
+                  <span><span class="ghl-ttag ghl-ttag--dnd">DND</span> <span class="ghl-ttag">rep · Closer&nbsp;D</span></span>
+                  <span class="ghl-tmono" style="text-align:right;">2d ago</span>
+                </div>
+                <div class="ghl-trow">
+                  <span class="ghl-check" aria-hidden="true"></span>
+                  <span class="ghl-tname"><span class="ghl-avatar ghl-avatar--c">AR</span><strong>Anthony R.</strong><small>Toms River, NJ · Roof</small></span>
+                  <span class="ghl-tmono">(732) 555-0179</span>
+                  <span><span class="ghl-ttag ghl-ttag--src-jfa">JF Acquisitions</span></span>
+                  <span><span class="ghl-ttag">jfa-lead</span> <span class="ghl-ttag ghl-ttag--set">appointment-set</span></span>
+                  <span class="ghl-tmono" style="text-align:right;">4d ago</span>
+                </div>
+                <div class="ghl-trow">
+                  <span class="ghl-check" aria-hidden="true"></span>
+                  <span class="ghl-tname"><span class="ghl-avatar ghl-avatar--d">PG</span><strong>Patricia G.</strong><small>Bristol, NH · Asphalt Roof</small></span>
+                  <span class="ghl-tmono">(603) 555-0125</span>
+                  <span><span class="ghl-ttag ghl-ttag--src-web">Website · /get-a-quote</span></span>
+                  <span><span class="ghl-ttag">website-lead</span> <span class="ghl-ttag">new-lead</span></span>
+                  <span class="ghl-tmono" style="text-align:right;">6d ago</span>
+                </div>
+                <div class="ghl-trow">
+                  <span class="ghl-check" aria-hidden="true"></span>
+                  <span class="ghl-tname"><span class="ghl-avatar ghl-avatar--a">HC</span><strong>Helen C.</strong><small>Mount Laurel, NJ · Kitchen</small></span>
+                  <span class="ghl-tmono">(215) 555-0128</span>
+                  <span><span class="ghl-ttag ghl-ttag--src-jfa">JF Acquisitions</span></span>
+                  <span><span class="ghl-ttag">jfa-lead</span> <span class="ghl-ttag">new-lead</span></span>
+                  <span class="ghl-tmono" style="text-align:right;">6d ago</span>
+                </div>
+                <div class="ghl-trow">
+                  <span class="ghl-check" aria-hidden="true"></span>
+                  <span class="ghl-tname"><span class="ghl-avatar ghl-avatar--b">SJ</span><strong>Susan J.</strong><small>Sellersville, PA · Asphalt Roof</small></span>
+                  <span class="ghl-tmono">(267) 555-0144</span>
+                  <span><span class="ghl-ttag ghl-ttag--src-meta">Meta · PA Spring · Roofing</span></span>
+                  <span><span class="ghl-ttag">new-lead</span></span>
+                  <span class="ghl-tmono" style="text-align:right;">7d ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========== CONTEXT ========== -->
+  <section>
+    <div class="container">
+
+      <article class="case-block">
+        <div class="case-block__label">01 · Context</div>
+        <div class="case-block__body reveal">
+          <h3>Five intake channels, two CRMs, one human bottleneck.</h3>
+          <p>
+            RC was capturing leads from five places: the WordPress site, GHL inline forms on landing pages, Meta Lead Ads, a JF Acquisitions feed, and Fixr&rsquo;s partner network. Sales lived in GHL; production lived in JobTread. The setter was the human router between everything &mdash; including the calls.
+          </p>
+          <p>
+            By 5pm a lead that came in at 11am was cold. The closers (Closer A (PA), Closer B (NJ)) were showing up to estimate appointments without context. Nobody could answer &ldquo;which source converts.&rdquo;
+          </p>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">02 · Problem</div>
+        <div class="case-block__body reveal">
+          <h3>Five sources. Two systems. Zero shared shape.</h3>
+          <ul>
+            <li>Five intake channels writing to four different schemas &mdash; no normalized view of &ldquo;what is a lead.&rdquo;</li>
+            <li>GHL and JobTread weren&rsquo;t talking. Anything that didn&rsquo;t mirror between them showed up as a missed handoff a week later.</li>
+            <li>First-touch was capped at the setter&rsquo;s availability. After hours, weekends, lunch &mdash; leads aged.</li>
+            <li>Compliance: A10DLC SMS rules, opt-out handling, do-not-contact propagation &mdash; all manual, all fragile.</li>
+            <li>No funnel reporting. &ldquo;Where do leads die?&rdquo; had no real answer.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">03 · What I built</div>
+        <div class="case-block__body reveal">
+          <h3>One contact shape. Voice AI as the front door. Ten automations behind it.</h3>
+          <p>
+            Every intake channel normalizes into a single GHL contact shape with source tagging. A Voice AI agent calls within five minutes, qualifies, and either books on Closer A or B&rsquo;s calendar or hands the lead to a second Voice AI agent for the Day&nbsp;2 / Day&nbsp;4 / Day&nbsp;7 follow-up rhythm. Behind that front door, nine more automations handle reminders, opt-outs, team notifications, and the bi-directional JobTread mirror.
+          </p>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">System map</h4>
+          <div class="visual visual--diagram">
+   SOURCES                    CAPTURE                ENGAGE                       CONVERT
+   ───────                    ───────                ──────                       ───────
+   Website forms      ┐
+   GHL inline forms   │       ┌────────────┐        ┌──────────────┐
+   Meta Lead Ads      ├─────▶ │  GHL       │ ─────▶ │  Voice AI    │  booked ──▶ Closer A (PA)
+   JF Acquisitions    │       │  contact   │        │  Agent A     │       └──▶  Closer B (NJ)
+   Fixr partner feed  ┘       │ normalized │        │  Day 1 · 5m  │             round-robin
+                              │  + tagged  │        └──────┬───────┘             via Google Cal
+                              └─────┬──────┘               │ no-book
+                                    │                      ▼
+                                    │              ┌──────────────┐
+                                    │              │  Voice AI    │  still no-book
+                                    │              │  Agent B     │  ──▶ long-term
+                                    │              │  D2 · D4 · D7│      nurture (12 mo)
+                                    │              └──────────────┘
+                                    │
+   ─────────────── COORDINATE ──────┼─────────── GOVERN ────────────────
+                                    │
+                                    ▼
+                              ┌────────────┐        ┌──────────────────┐
+                              │ JT ⇄ GHL   │        │ Appt reminders   │ 2d email · 2d SMS · 2h SMS
+                              │ bi-dir sync│        │ Team notifs      │ Closer A email + SMS + GHL note
+                              │ disjoint   │        │ Opt-out handler  │ STOP / "remove me" → DND
+                              │ stage own  │        │ Stage handler    │ "needs follow-up" → JT update
+                              │ note cron  │        │ Long-term nurture│ 1 SMS/mo · 12 months
+                              └────────────┘        └──────────────────┘
+          </div>
+
+          <h4 style="margin-top:32px; margin-bottom:6px; font-size:18px; color:var(--ink);">Ten production automations</h4>
+          <p style="margin-top:0; color:var(--muted); font-size:14px;">Rendered as they appear in the GHL automation builder. Trigger sits at the top (dark), actions cascade below.</p>
+
+          <div class="wfb-grid">
+
+            <article class="wfb">
+              <header class="wfb__head">
+                <div class="wfb__title"><small>01 · Intake</small>New Lead Capture</div>
+                <span class="wfb__active">Active</span>
+              </header>
+              <div class="wfb__flow">
+                <div class="wfb-node wfb-node--trig">
+                  <span class="wfb-node__icon">⚡</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Trigger · Any source</div>
+                    <div class="wfb-node__lbl">Form submit · Meta lead · JFA webhook · Fixr feed · Inbound call</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--field">F</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Set fields · Source tag</div>
+                    <div class="wfb-node__lbl">Normalize into one contact shape</div>
+                    <div class="wfb-node__detail">+ Campaign · Service Interest · Sales Rep · Lead Source ID</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--tag">T</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Add tag · Stage opportunity</div>
+                    <div class="wfb-node__lbl"><code>new-lead</code> → Retail&nbsp;Lead Pipeline → <em>Retail: New Lead</em></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="wfb">
+              <header class="wfb__head">
+                <div class="wfb__title"><small>02 · Sync</small>GHL ⇄ JobTread</div>
+                <span class="wfb__active">Active</span>
+              </header>
+              <div class="wfb__flow">
+                <div class="wfb-node wfb-node--trig">
+                  <span class="wfb-node__icon">⚡</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Trigger · Stage change</div>
+                    <div class="wfb-node__lbl">Retail Lead opp → any stage past <em>New Lead</em></div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--http">H</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">HTTP · JobTread API</div>
+                    <div class="wfb-node__lbl">Create customer + RC-XXXX job</div>
+                    <div class="wfb-node__detail">Mirror Lead Status, Trade, Sales Rep, Address into JT custom fields</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--tag">T</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Tag both sides</div>
+                    <div class="wfb-node__lbl"><code>jt-imported</code> on GHL · JT job number written back as custom field</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="wfb">
+              <header class="wfb__head">
+                <div class="wfb__title"><small>03 · Day 1</small>Voice AI Outreach (Agent A)</div>
+                <span class="wfb__active">Active</span>
+              </header>
+              <div class="wfb__flow">
+                <div class="wfb-node wfb-node--trig">
+                  <span class="wfb-node__icon">⚡</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Trigger · Tag added</div>
+                    <div class="wfb-node__lbl"><code>new-lead</code> · within 5 min of capture</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--sms">S</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Send SMS · A10DLC</div>
+                    <div class="wfb-node__lbl">"Hey {{first_name}}, this is the RC team — got your request, calling in a minute."</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--call">C</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Voice AI call · Agent A</div>
+                    <div class="wfb-node__lbl">Energetic, book-or-die · books on Closer&nbsp;A&nbsp;(PA) or Closer&nbsp;B&nbsp;(NJ)</div>
+                  </div>
+                </div>
+                <div class="wfb-node wfb-node--split">
+                  <span class="wfb-node__icon wfb-node__icon--cond">?</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">If · booked</div>
+                    <div class="wfb-node__lbl">→ Workflow 05 (team notif)&nbsp;&nbsp;·&nbsp;&nbsp;else → Workflow 04 (Agent B cadence)</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="wfb">
+              <header class="wfb__head">
+                <div class="wfb__title"><small>04 · Cadence</small>Day 2 / 4 / 7 Follow-Up (Agent B)</div>
+                <span class="wfb__active">Active</span>
+              </header>
+              <div class="wfb__flow">
+                <div class="wfb-node wfb-node--trig">
+                  <span class="wfb-node__icon">⚡</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Trigger · Tag added</div>
+                    <div class="wfb-node__lbl"><code>voice-ai-d1-no-book</code></div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--wait">W</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Wait 1 day · 4 day · 7 day</div>
+                    <div class="wfb-node__lbl">SMS-then-call rhythm between each wait</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--call">C</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Voice AI call · Agent B</div>
+                    <div class="wfb-node__lbl">Empathetic · respects contact fatigue · book or route</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--tag">T</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Apply tag · on D7 still no-book</div>
+                    <div class="wfb-node__lbl"><code>Long-Term-Nurture</code> → hands off to Workflow 10</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="wfb">
+              <header class="wfb__head">
+                <div class="wfb__title"><small>05 · Team</small>Appointment-Set Notification</div>
+                <span class="wfb__active">Active</span>
+              </header>
+              <div class="wfb__flow">
+                <div class="wfb-node wfb-node--trig">
+                  <span class="wfb-node__icon">⚡</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Trigger · Stage = Appointment Set</div>
+                    <div class="wfb-node__lbl">Retail Lead Pipeline · any source</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--email">E</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Send email · to assigned closer</div>
+                    <div class="wfb-node__lbl">Closer A (PA) · Closer B (NJ) — full lead context</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--sms">S</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Send SMS · to assigned closer</div>
+                    <div class="wfb-node__lbl">Time · address · trade type</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--note">N</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Internal note · Apply tag</div>
+                    <div class="wfb-node__lbl"><code>appointment-set</code> · <code>contacted</code></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="wfb">
+              <header class="wfb__head">
+                <div class="wfb__title"><small>06 · Reminders</small>Appointment Reminders</div>
+                <span class="wfb__active">Active</span>
+              </header>
+              <div class="wfb__flow">
+                <div class="wfb-node wfb-node--trig">
+                  <span class="wfb-node__icon">⚡</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Trigger · Appointment scheduled</div>
+                    <div class="wfb-node__lbl">From any RC calendar (PA · NJ · Round-Robin)</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--email">E</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Email · 2 days before</div>
+                    <div class="wfb-node__lbl">Confirm time, address, what to expect</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--sms">S</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">SMS · 2 days before</div>
+                    <div class="wfb-node__lbl">"Looking forward to seeing you Thursday at 2pm."</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--sms">S</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">SMS · 2 hours before</div>
+                    <div class="wfb-node__lbl">Specialist name + reply-to-reschedule link</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="wfb">
+              <header class="wfb__head">
+                <div class="wfb__title"><small>07 · Compliance</small>Opt-Out Handler</div>
+                <span class="wfb__active">Active</span>
+              </header>
+              <div class="wfb__flow">
+                <div class="wfb-node wfb-node--trig">
+                  <span class="wfb-node__icon">⚡</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Trigger · Inbound SMS keyword</div>
+                    <div class="wfb-node__lbl">STOP · UNSUBSCRIBE · "remove me" (also Voice AI intent)</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--dnd">D</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Set DND · all channels</div>
+                    <div class="wfb-node__lbl">Call · SMS · Email · Voice AI</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--tag">T</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Apply tag · Remove from campaigns</div>
+                    <div class="wfb-node__lbl"><code>Do-Not-Contact</code> · drops out of every active workflow</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="wfb">
+              <header class="wfb__head">
+                <div class="wfb__title"><small>08 · Sync</small>Note Sync · GHL → JT</div>
+                <span class="wfb__active">Active</span>
+              </header>
+              <div class="wfb__flow">
+                <div class="wfb-node wfb-node--trig">
+                  <span class="wfb-node__icon">⚡</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Trigger · Cron · every 10 min</div>
+                    <div class="wfb-node__lbl">Vercel scheduled function · read-only GHL token</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--http">H</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Fetch · new notes since last sync</div>
+                    <div class="wfb-node__lbl">Diff against last <code>noteSyncedAt</code> timestamp per contact</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--http">H</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">POST · JT job comment</div>
+                    <div class="wfb-node__lbl">Append note as JT comment · update <code>noteSyncedAt</code></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="wfb">
+              <header class="wfb__head">
+                <div class="wfb__title"><small>09 · Routing</small>Stage-Change Handler</div>
+                <span class="wfb__active">Active</span>
+              </header>
+              <div class="wfb__flow">
+                <div class="wfb-node wfb-node--trig">
+                  <span class="wfb-node__icon">⚡</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Trigger · Stage change</div>
+                    <div class="wfb-node__lbl">"Retail: Needs Follow Up" · "Retail: Quoted" · "Sold"</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--http">H</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Update JT · Lead Status custom field</div>
+                    <div class="wfb-node__lbl">Disjoint ownership: sales = GHL writes JT · production = JT writes GHL</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--note">N</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Notify · apply tag</div>
+                    <div class="wfb-node__lbl">Slack + tag on contact · keeps both systems honest</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="wfb">
+              <header class="wfb__head">
+                <div class="wfb__title"><small>10 · Nurture</small>Long-Term Nurture</div>
+                <span class="wfb__active">Active</span>
+              </header>
+              <div class="wfb__flow">
+                <div class="wfb-node wfb-node--trig">
+                  <span class="wfb-node__icon">⚡</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Trigger · Tag added</div>
+                    <div class="wfb-node__lbl"><code>Long-Term-Nurture</code> · usually from Workflow 04</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--wait">W</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Wait 30 days · loop ×12</div>
+                    <div class="wfb-node__lbl">Once per month for one year</div>
+                  </div>
+                </div>
+                <div class="wfb-node">
+                  <span class="wfb-node__icon wfb-node__icon--sms">S</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Send SMS · seasonal</div>
+                    <div class="wfb-node__lbl">"Hey {{first_name}}, here's our {{season}} project gallery."</div>
+                  </div>
+                </div>
+                <div class="wfb-node wfb-node--split">
+                  <span class="wfb-node__icon wfb-node__icon--cond">?</span>
+                  <div class="wfb-node__body">
+                    <div class="wfb-node__type">Check · DND / opt-out</div>
+                    <div class="wfb-node__lbl">If <code>Do-Not-Contact</code> set, exit loop immediately</div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Stack</h4>
+          <div class="stack">
+            <span>GHL (Private Integration Tokens)</span>
+            <span>GHL Voice AI (Agent A + Agent B)</span>
+            <span>JobTread API</span>
+            <span>Meta Lead Ads (native GHL)</span>
+            <span>Gravity Forms REST</span>
+            <span>JFA + Fixr partner webhooks</span>
+            <span>A10DLC SMS (GHL native)</span>
+            <span>Google Calendar (round-robin)</span>
+            <span>Custom Node.js handlers (Vercel)</span>
+            <span>10-min cron poller</span>
+          </div>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Key decisions</h4>
+          <ul>
+            <li><strong>One canonical contact shape, set at capture.</strong> Every channel &mdash; web form, Meta lead, JFA webhook, Fixr feed, inbound call &mdash; normalizes into the same custom-field set with a source tag before anything else fires. Every downstream automation assumes that shape, so each new integration is half a day instead of a week.</li>
+            <li><strong>Voice AI as the front door, not a fallback.</strong> Considered &ldquo;page the setter first, AI on no-answer&rdquo; &mdash; rejected. Setter availability was the bottleneck; making the AI the default opens the calendar to 24/7 lead arrival and frees the human team to close, not dial.</li>
+            <li><strong>Two Voice AI agents, two personalities.</strong> Agent A (Day 1) is energetic and book-or-die. Agent B (Days 2/4/7) is empathetic, respects contact fatigue, and routes to long-term nurture instead of pushing a third call. Two agents = clean handoff = no awkward &ldquo;hi again, hi again, hi again.&rdquo;</li>
+            <li><strong>JT mirror on qualify, not on creation.</strong> Only qualified leads create a JT job. Keeps JobTread from clogging with cold leads and keeps production looking at a list that&rsquo;s 100% actionable.</li>
+            <li><strong>Disjoint stage ownership across the GHL ⇄ JT sync.</strong> Sales stages live in GHL, fulfillment stages live in JT, the sync writes one direction per stage. No loops, no fight-over-truth at 2am.</li>
+            <li><strong>Opt-out is one funnel, not one toggle per channel.</strong> &ldquo;STOP&rdquo; via SMS, &ldquo;remove me&rdquo; via Voice AI, manual DND in GHL &mdash; all collapse to the same <code>Do-Not-Contact</code> tag and the same campaign-removal action. A10DLC compliance becomes a property of the contact shape, not a per-workflow decision.</li>
+            <li><strong>Round-robin lives in Google Calendar.</strong> Closer A and B already kept their calendars there; the Voice AI checks both for availability and books the first open slot. No new tool for the closers to log into.</li>
+            <li><strong>Read-only scopes wherever possible.</strong> The note-sync cron and the funnel event log use read-only GHL scopes; only the automations that need to write hold write tokens. Smaller blast radius if a token leaks.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">04 · Selects</div>
+        <div class="case-block__body reveal">
+          <h3>Four screens. One lead, end to end.</h3>
+          <p>
+            The Inbox (above) is where the lead lands and the auto-touches fire. From there it moves through four more screens — appointments out to the closers, the sales pipeline, production once it&rsquo;s qualified into JobTread, and finally the value rollup that answers &ldquo;which source actually converts.&rdquo;
+          </p>
+
+          <div class="mockup-grid">
+
+            <!-- ────── SCREEN 02 · GHL CALENDARS · WEEK VIEW ────── -->
+            <figure class="mockup">
+              <div class="rcm-screen" role="img" aria-label="GoHighLevel Calendars view showing the Round-Robin Free In-Home Consultation calendar across Closer A (PA) and Closer B (NJ), with 11 booked estimates this week and reminders queued">
+                <div class="rcm-chrome">
+                  <div class="rcm-chrome__dots"><span></span><span></span><span></span></div>
+                  <div class="rcm-chrome__url">app.gohighlevel.com&nbsp;·&nbsp;/v2/location/loc_•••••PgsC/calendars/view</div>
+                  <div class="rcm-chrome__pill">live</div>
+                </div>
+                <div class="ghl-app">
+                  <nav class="ghl-rail" aria-label="GHL sidebar">
+                    <div class="ghl-rail__logo">RC</div>
+                    <div class="ghl-rail__icon">DSH</div>
+                    <div class="ghl-rail__icon">CNV</div>
+                    <div class="ghl-rail__icon is-active">CAL</div>
+                    <div class="ghl-rail__icon">CTS</div>
+                    <div class="ghl-rail__icon">OPP</div>
+                    <div class="ghl-rail__icon">PAY</div>
+                    <div class="ghl-rail__sep"></div>
+                    <div class="ghl-rail__icon">AUT</div>
+                    <div class="ghl-rail__icon">SIT</div>
+                    <div class="ghl-rail__icon">REP</div>
+                    <div class="ghl-rail__icon">RPT</div>
+                  </nav>
+
+                  <aside class="ghl-subnav">
+                    <div class="ghl-subnav__title">Calendars</div>
+                    <div class="ghl-subnav__item is-active">Free Consultation · Round-Robin<span class="ghl-subnav__count">RR</span></div>
+                    <div class="ghl-subnav__item">Free Consultation · PA<span class="ghl-subnav__count">MK</span></div>
+                    <div class="ghl-subnav__item">Free Consultation · NJ<span class="ghl-subnav__count">LK</span></div>
+                    <div class="ghl-subnav__item">RC Setter Calendar<span class="ghl-subnav__count">ST</span></div>
+                    <div class="ghl-subnav__item">RC Content Calendar<span class="ghl-subnav__count">CC</span></div>
+                    <div class="ghl-subnav__title" style="margin-top:14px;">Specialists</div>
+                    <div class="ghl-subnav__item"><span><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#d97757;margin-right:6px;"></span>Closer A</span><span class="ghl-subnav__count">PA</span></div>
+                    <div class="ghl-subnav__item"><span><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#4a7ec4;margin-right:6px;"></span>Closer B</span><span class="ghl-subnav__count">NJ</span></div>
+                    <div class="ghl-subnav__item"><span><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#3a8a5a;margin-right:6px;"></span>Setter</span><span class="ghl-subnav__count">ST</span></div>
+                  </aside>
+
+                  <div class="ghl-main">
+                    <div class="ghl-topbar">
+                      <div class="ghl-topbar__title">Free In-Home Consultation — NJ &amp; PA <small>Round-Robin · Optimize for availability · 2h slots</small></div>
+                      <div style="display:flex; gap:6px; align-items:center;">
+                        <button class="ghl-btn ghl-btn--ghost" type="button">Day</button>
+                        <button class="ghl-btn ghl-btn--ghost" type="button" style="background:#f4f2ec;">Week</button>
+                        <button class="ghl-btn ghl-btn--ghost" type="button">Month</button>
+                        <button class="ghl-btn" type="button">+ Block time</button>
+                      </div>
+                    </div>
+
+                    <div class="ghl-tabs">
+                      <span class="is-active">Bookings</span>
+                      <span>Settings</span>
+                      <span>Team</span>
+                      <span>Forms &amp; Payment</span>
+                      <span>Notifications &amp; Additional Options</span>
+                    </div>
+
+                    <div class="ghl-cal">
+                      <div class="ghl-cal__bar">
+                        <div style="font-family:var(--mono); font-size:11px; color:#5a5852;">Week of May 25 — 29, 2026</div>
+                        <div style="display:flex; gap:10px; align-items:center; font-family:var(--mono); font-size:10px; color:#7a7770;">
+                          <span><span style="display:inline-block;width:9px;height:9px;background:#d97757;border-radius:2px;vertical-align:middle;margin-right:5px;"></span>Closer A · PA · 5</span>
+                          <span><span style="display:inline-block;width:9px;height:9px;background:#4a7ec4;border-radius:2px;vertical-align:middle;margin-right:5px;"></span>Closer B · NJ · 6</span>
+                        </div>
+                      </div>
+
+                      <div class="ghl-cal__grid">
+                        <div class="ghl-cal__hd"></div>
+                        <div class="ghl-cal__hd">Mon<strong>25</strong></div>
+                        <div class="ghl-cal__hd">Tue<strong>26</strong></div>
+                        <div class="ghl-cal__hd">Wed<strong>27</strong></div>
+                        <div class="ghl-cal__hd">Thu<strong>28</strong></div>
+                        <div class="ghl-cal__hd">Fri<strong>29</strong></div>
+
+                        <div class="ghl-cal__hour">10 AM</div>
+                        <div class="ghl-cal__cell"><div class="ghl-cal__evt ghl-cal__evt--mark"><strong>Patricia G.</strong><small>Bristol · Roof · A</small></div></div>
+                        <div class="ghl-cal__cell"></div>
+                        <div class="ghl-cal__cell"><div class="ghl-cal__evt ghl-cal__evt--luke"><strong>Helen C.</strong><small>Mt Laurel · B</small></div></div>
+                        <div class="ghl-cal__cell"><div class="ghl-cal__evt ghl-cal__evt--mark"><strong>Eleanor B.</strong><small>Philly · A</small></div></div>
+                        <div class="ghl-cal__cell"></div>
+
+                        <div class="ghl-cal__hour">12 PM</div>
+                        <div class="ghl-cal__cell"></div>
+                        <div class="ghl-cal__cell"><div class="ghl-cal__evt ghl-cal__evt--luke"><strong>David K.</strong><small>Princeton · Siding · B</small></div></div>
+                        <div class="ghl-cal__cell"></div>
+                        <div class="ghl-cal__cell"><div class="ghl-cal__evt ghl-cal__evt--mark"><strong>William H.</strong><small>Langhorne · A</small></div></div>
+                        <div class="ghl-cal__cell"></div>
+
+                        <div class="ghl-cal__hour">2 PM</div>
+                        <div class="ghl-cal__cell"><div class="ghl-cal__evt ghl-cal__evt--luke"><strong>Anthony R.</strong><small>Toms River · Roof · B</small></div></div>
+                        <div class="ghl-cal__cell"></div>
+                        <div class="ghl-cal__cell"><div class="ghl-cal__evt ghl-cal__evt--mark"><strong>Robert N.</strong><small>Langhorne · Windows · A</small></div></div>
+                        <div class="ghl-cal__cell"><div class="ghl-cal__evt ghl-cal__evt--luke"><strong>Carol M.</strong><small>Huntingdon · Door · B</small></div></div>
+                        <div class="ghl-cal__cell"></div>
+
+                        <div class="ghl-cal__hour">4 PM</div>
+                        <div class="ghl-cal__cell"></div>
+                        <div class="ghl-cal__cell"><div class="ghl-cal__evt ghl-cal__evt--mark"><strong>Margaret O.</strong><small>Southampton · A</small></div></div>
+                        <div class="ghl-cal__cell"></div>
+                        <div class="ghl-cal__cell"><div class="ghl-cal__evt ghl-cal__evt--luke"><strong>Diane S.</strong><small>Perkasie · Fireplace · B</small></div></div>
+                        <div class="ghl-cal__cell"><div class="ghl-cal__evt ghl-cal__evt--luke"><strong>Karen W.</strong><small>Warrington · Roof · B</small></div></div>
+                      </div>
+
+                      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:12px; border-top:1px solid #ecebe6;">
+                        <div style="font-family:var(--mono); font-size:10px; color:#7a7770;">Auto-confirm <strong style="color:#2f7a4a;">on</strong> · Pixel ••••••••8181 · Slot duration 2h · Slot interval 60min</div>
+                        <div style="font-family:var(--mono); font-size:10px; color:#7a7770;">Workflow 06 queued: <strong style="color:#1a1a1a;">9</strong> (2-day SMS) · <strong style="color:#1a1a1a;">11</strong> (2-hour SMS)</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption>Screen 02 &middot; GHL Calendar &mdash; Round-Robin between Closer A (PA) and Closer B (NJ), Workflow 06 reminders queued</figcaption>
+            </figure>
+
+            <!-- ────── SCREEN 03 · GHL OPPORTUNITIES · KANBAN ────── -->
+            <figure class="mockup">
+              <div class="rcm-screen" role="img" aria-label="GoHighLevel Opportunities kanban view of the Retail Lead Pipeline showing 29 active opportunities and 6 sold deals across 7 stages with real customer names">
+                <div class="rcm-chrome">
+                  <div class="rcm-chrome__dots"><span></span><span></span><span></span></div>
+                  <div class="rcm-chrome__url">app.gohighlevel.com&nbsp;·&nbsp;/v2/location/loc_•••••PgsC/opportunities/list</div>
+                  <div class="rcm-chrome__pill">live</div>
+                </div>
+                <div class="ghl-app ghl-app--no-sub">
+                  <nav class="ghl-rail" aria-label="GHL sidebar">
+                    <div class="ghl-rail__logo">RC</div>
+                    <div class="ghl-rail__icon">DSH</div>
+                    <div class="ghl-rail__icon">CNV</div>
+                    <div class="ghl-rail__icon">CAL</div>
+                    <div class="ghl-rail__icon">CTS</div>
+                    <div class="ghl-rail__icon is-active">OPP</div>
+                    <div class="ghl-rail__icon">PAY</div>
+                    <div class="ghl-rail__sep"></div>
+                    <div class="ghl-rail__icon">AUT</div>
+                    <div class="ghl-rail__icon">SIT</div>
+                    <div class="ghl-rail__icon">REP</div>
+                    <div class="ghl-rail__icon">RPT</div>
+                  </nav>
+
+                  <div class="ghl-main">
+                    <div class="ghl-topbar">
+                      <div>
+                        <div class="ghl-topbar__title">Opportunities <small>Retail Lead Pipeline · 30 opps</small></div>
+                      </div>
+                      <div style="display:flex; gap:6px; align-items:center;">
+                        <select aria-label="Pipeline selector (mockup)" style="background:#f4f2ec; border:1px solid #e4e0d6; border-radius:5px; font-size:11px; padding:5px 8px; font-family:var(--sans);">
+                          <option>Retail Lead Pipeline</option>
+                          <option>Production Pipeline</option>
+                        </select>
+                        <button class="ghl-btn ghl-btn--ghost" type="button">Board</button>
+                        <button class="ghl-btn ghl-btn--ghost" type="button">List</button>
+                        <button class="ghl-btn" type="button">+ Add opportunity</button>
+                      </div>
+                    </div>
+
+                    <div class="ghl-tabs" style="padding-left:18px;">
+                      <span class="is-active">All</span>
+                      <span>Open <em style="color:#9a978f; font-style:normal; font-family:var(--mono); font-size:10px; margin-left:4px;">23</em></span>
+                      <span>Won <em style="color:#9a978f; font-style:normal; font-family:var(--mono); font-size:10px; margin-left:4px;">6</em></span>
+                      <span>Lost <em style="color:#9a978f; font-style:normal; font-family:var(--mono); font-size:10px; margin-left:4px;">1</em></span>
+                      <span>Abandoned <em style="color:#9a978f; font-style:normal; font-family:var(--mono); font-size:10px; margin-left:4px;">0</em></span>
+                    </div>
+
+                    <div class="ghl-chips">
+                      <span class="ghl-chip">Date <strong>last 30 days</strong></span>
+                      <span class="ghl-chip">Assigned to <strong>all</strong></span>
+                      <span class="ghl-chip">Source <strong>all (JFA · Fixr · Website · Referral · Inbound Call)</strong></span>
+                      <span class="ghl-chip ghl-chip--add">+ Add filter</span>
+                    </div>
+
+                    <div class="ghl-kb">
+                      <div class="ghl-kb__col">
+                        <div class="ghl-kb__h"><strong>Retail: New Lead</strong><span class="ghl-kb__h__count">6 · $0</span></div>
+                        <div class="ghl-kb__card"><strong>Susan J.</strong><small>Sellersville PA · Asphalt Roof</small><span class="ghl-ttag ghl-ttag--src-meta">Meta · PA Spring · Roofing</span></div>
+                        <div class="ghl-kb__card"><strong>Frank E.</strong><small>Manchester Twp NJ · Asphalt Roof</small><span class="ghl-ttag ghl-ttag--src-meta">Meta · NJ Spring · Roofing</span></div>
+                        <div class="ghl-kb__card"><strong>Helen C.</strong><small>Mt Laurel NJ</small><span class="ghl-ttag ghl-ttag--src-jfa">JF Acquisitions</span></div>
+                        <div class="ghl-kb__card"><strong>Janet R.</strong><small>Furlong PA · Asphalt Roof</small><span class="ghl-ttag ghl-ttag--src-meta">Meta</span></div>
+                        <div class="ghl-kb__card"><strong>Greg Y.</strong><small>Doylestown PA</small><span class="ghl-ttag ghl-ttag--src-fixr">Fixr</span></div>
+                      </div>
+                      <div class="ghl-kb__col">
+                        <div class="ghl-kb__h ghl-kb__h--set"><strong>Retail: Appt Set</strong><span class="ghl-kb__h__count">12 · $0</span></div>
+                        <div class="ghl-kb__card"><strong>Eleanor B.</strong><small>Philadelphia PA</small><span class="ghl-ttag ghl-ttag--src-ref">Referral</span></div>
+                        <div class="ghl-kb__card"><strong>William H.</strong><small>Langhorne PA · Repair</small><span class="ghl-ttag ghl-ttag--src-call">Call · Setter</span></div>
+                        <div class="ghl-kb__card"><strong>David K.</strong><small>Princeton NJ · Siding</small><span class="ghl-ttag ghl-ttag--src-web">Web · Closer&nbsp;B</span></div>
+                        <div class="ghl-kb__card"><strong>Robert N.</strong><small>Langhorne PA · Windows</small><span class="ghl-ttag ghl-ttag--src-ref">Referral</span></div>
+                        <div class="ghl-kb__card"><strong>Margaret O.</strong><small>Southampton PA</small><span class="ghl-ttag ghl-ttag--src-ref">Customer Ref</span></div>
+                        <div class="ghl-kb__card"><strong>Anthony R.</strong><small>Toms River NJ · Roof</small><span class="ghl-ttag ghl-ttag--src-jfa">JFA</span></div>
+                        <div class="ghl-kb__card"><strong>Edward P.</strong><small>Abington PA · Drywall</small><span class="ghl-ttag ghl-ttag--src-ref">Referral</span></div>
+                      </div>
+                      <div class="ghl-kb__col">
+                        <div class="ghl-kb__h ghl-kb__h--est"><strong>Retail: Estimating</strong><span class="ghl-kb__h__count">2 · $8,659</span></div>
+                        <div class="ghl-kb__card"><strong>31 Birch Dr</strong><small>Levittown PA · Windows/Siding</small><div class="ghl-kb__val">$5,659</div></div>
+                        <div class="ghl-kb__card"><strong>12 W 9th St</strong><small>Asphalt Roof</small><div class="ghl-kb__val">$3,000</div></div>
+                      </div>
+                      <div class="ghl-kb__col">
+                        <div class="ghl-kb__h ghl-kb__h--quo"><strong>Retail: Quoted</strong><span class="ghl-kb__h__count">1 · $0</span></div>
+                        <div class="ghl-kb__card"><strong>12 East Court St</strong><small>Quote pending follow-up</small></div>
+                      </div>
+                      <div class="ghl-kb__col">
+                        <div class="ghl-kb__h ghl-kb__h--nfu"><strong>Drip · Long-Term</strong><span class="ghl-kb__h__count">2 · $0</span></div>
+                        <div class="ghl-kb__card"><strong>Brian D.</strong><small>Royersford PA · Roof</small><span class="ghl-ttag">Workflow 10</span></div>
+                        <div class="ghl-kb__card"><strong>Donna F.</strong><small>—</small><span class="ghl-ttag">Workflow 10</span></div>
+                      </div>
+                      <div class="ghl-kb__col">
+                        <div class="ghl-kb__h ghl-kb__h--drp"><strong>Dead · DNC</strong><span class="ghl-kb__h__count">1 · $0</span></div>
+                        <div class="ghl-kb__card"><strong>Patricia G.</strong><small>Bristol NH · out of service area</small><span class="ghl-ttag ghl-ttag--dnd">DND</span></div>
+                      </div>
+                      <div class="ghl-kb__col">
+                        <div class="ghl-kb__h ghl-kb__h--sld"><strong>Sold</strong><span class="ghl-kb__h__count">6 · $85,453</span></div>
+                        <div class="ghl-kb__card"><strong>88 Sherman Dr</strong><small>Windows</small><div class="ghl-kb__val">$28,400</div><span class="ghl-ttag ghl-ttag--set" style="margin-top:4px;">→ JT job</span></div>
+                        <div class="ghl-kb__card"><strong>67 Sycamore Ln</strong><small>Garage build</small><div class="ghl-kb__val">$22,750</div><span class="ghl-ttag ghl-ttag--set" style="margin-top:4px;">→ LD-4067</span></div>
+                        <div class="ghl-kb__card"><strong>15 Easton Way</strong><small>Demo</small><div class="ghl-kb__val">$11,200</div></div>
+                        <div class="ghl-kb__card"><strong>21 Heritage Dr</strong><small>Windows</small><div class="ghl-kb__val">$14,800</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption>Screen 03 &middot; GHL Opportunities &mdash; Retail Lead Pipeline, real stage names, Sold → creates JT job via Workflow 02</figcaption>
+            </figure>
+
+            <!-- ────── SCREEN 04 · JOBTREAD · JOBS BOARD ────── -->
+            <figure class="mockup">
+              <div class="rcm-screen" role="img" aria-label="JobTread Jobs view for Remodeling Concepts org showing 15 recent jobs with real RC-XXXX numbers, customer addresses, lead status, trade type, and assigned specialist">
+                <div class="rcm-chrome">
+                  <div class="rcm-chrome__dots"><span></span><span></span><span></span></div>
+                  <div class="rcm-chrome__url">app.jobtread.com&nbsp;·&nbsp;/rc/jobs</div>
+                  <div class="rcm-chrome__pill">live</div>
+                </div>
+                <div class="jt-app">
+                  <nav class="jt-side" aria-label="JobTread sidebar">
+                    <div class="jt-side__logo">JobTread</div>
+                    <div class="jt-side__org">Remodeling Concepts · org_•••••MMgj</div>
+                    <div class="jt-side__item">Dashboard<span class="jt-side__count">▸</span></div>
+                    <div class="jt-side__item">Schedule<span class="jt-side__count">▸</span></div>
+                    <div class="jt-side__item is-active">Jobs<span class="jt-side__count">4,078</span></div>
+                    <div class="jt-side__item">Customers<span class="jt-side__count">▸</span></div>
+                    <div class="jt-side__item">Vendors<span class="jt-side__count">▸</span></div>
+                    <div class="jt-side__item">Documents<span class="jt-side__count">▸</span></div>
+                    <div class="jt-side__item">Calendar<span class="jt-side__count">▸</span></div>
+                    <div class="jt-side__item">Tasks<span class="jt-side__count">▸</span></div>
+                    <div class="jt-side__item">Comments<span class="jt-side__count">▸</span></div>
+                    <div class="jt-side__item">Reports<span class="jt-side__count">▸</span></div>
+                    <div class="jt-side__item">Templates<span class="jt-side__count">▸</span></div>
+                  </nav>
+
+                  <div class="jt-main">
+                    <div class="jt-topbar">
+                      <div class="jt-topbar__title">Jobs <small>15 in view · sorted by created date</small></div>
+                      <div style="display:flex; gap:6px; align-items:center;">
+                        <span class="ghl-chip" style="background:#fff;">Lead Status · all</span>
+                        <span class="ghl-chip" style="background:#fff;">Sales Rep · all</span>
+                        <button class="ghl-btn" type="button" style="background:#3a8a5a;">+ New job</button>
+                      </div>
+                    </div>
+
+                    <div class="jt-statsbar">
+                      <div>
+                        <div class="jt-statsbar__lbl">Active leads</div>
+                        <div class="jt-statsbar__val">23</div>
+                        <div class="jt-statsbar__sub">Last 30 days</div>
+                      </div>
+                      <div>
+                        <div class="jt-statsbar__lbl">In production</div>
+                        <div class="jt-statsbar__val">14</div>
+                        <div class="jt-statsbar__sub">9 of 15 stages used</div>
+                      </div>
+                      <div>
+                        <div class="jt-statsbar__lbl">Invoiced · open</div>
+                        <div class="jt-statsbar__val">$208.3k</div>
+                        <div class="jt-statsbar__sub">3 jobs · OKNA + 2</div>
+                      </div>
+                      <div>
+                        <div class="jt-statsbar__lbl">Closed · 90d</div>
+                        <div class="jt-statsbar__val">$64.9k</div>
+                        <div class="jt-statsbar__sub">12 closed jobs</div>
+                      </div>
+                    </div>
+
+                    <div class="jt-tab">
+                      <span class="is-active">All jobs</span>
+                      <span>Leads <em style="color:#9a978f; font-style:normal; font-family:var(--mono); font-size:10px; margin-left:4px;">23</em></span>
+                      <span>Estimating <em style="color:#9a978f; font-style:normal; font-family:var(--mono); font-size:10px; margin-left:4px;">3</em></span>
+                      <span>Production <em style="color:#9a978f; font-style:normal; font-family:var(--mono); font-size:10px; margin-left:4px;">14</em></span>
+                      <span>Closed <em style="color:#9a978f; font-style:normal; font-family:var(--mono); font-size:10px; margin-left:4px;">12</em></span>
+                    </div>
+
+                    <table class="jt-table" aria-label="Recent RC jobs">
+                      <thead>
+                        <tr>
+                          <th style="width:80px;">Job #</th>
+                          <th>Customer · Location</th>
+                          <th style="width:170px;">Lead Status</th>
+                          <th style="width:120px;">Trade</th>
+                          <th style="width:110px;">Sales Rep</th>
+                          <th style="width:100px; text-align:right;">Proj. Price</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><span class="jt-num">LD-4078</span></td>
+                          <td class="jt-cust"><strong>Westport Builders</strong><small>22 Westport Ln, Devon PA</small></td>
+                          <td><span class="jt-stage jt-stage--lead">Builders: New Bid</span></td>
+                          <td class="jt-trade">Other</td>
+                          <td class="jt-rep">Closer A</td>
+                          <td class="jt-val">—<small>pending</small></td>
+                        </tr>
+                        <tr>
+                          <td><span class="jt-num">LD-4077</span></td>
+                          <td class="jt-cust"><strong>Maya &amp; Greg A.</strong><small>45 Beach Ave, Long Beach NJ</small></td>
+                          <td><span class="jt-stage jt-stage--prod">Pre-Production Review</span></td>
+                          <td class="jt-trade">Asphalt Roof</td>
+                          <td class="jt-rep">Closer B</td>
+                          <td class="jt-val">—<small>pending</small></td>
+                        </tr>
+                        <tr>
+                          <td><span class="jt-num">LD-4076</span></td>
+                          <td class="jt-cust"><strong>Eleanor B.</strong><small>14 Maple Ave, Philadelphia PA</small></td>
+                          <td><span class="jt-stage jt-stage--set">Retail: Appt Set</span></td>
+                          <td class="jt-trade">—</td>
+                          <td class="jt-rep">Closer A</td>
+                          <td class="jt-val">—</td>
+                        </tr>
+                        <tr>
+                          <td><span class="jt-num">LD-4075</span></td>
+                          <td class="jt-cust"><strong>William H.</strong><small>27 Cedar Ln, Langhorne PA</small></td>
+                          <td><span class="jt-stage jt-stage--set">Retail: Appt Set</span></td>
+                          <td class="jt-trade">Repair</td>
+                          <td class="jt-rep">Setter</td>
+                          <td class="jt-val">—</td>
+                        </tr>
+                        <tr>
+                          <td><span class="jt-num">LD-4074</span></td>
+                          <td class="jt-cust"><strong>David K.</strong><small>9 Birch Way, Princeton NJ</small></td>
+                          <td><span class="jt-stage jt-stage--set">Retail: Appt Set</span></td>
+                          <td class="jt-trade">Siding</td>
+                          <td class="jt-rep">Closer B</td>
+                          <td class="jt-val">—</td>
+                        </tr>
+                        <tr>
+                          <td><span class="jt-num">LD-4073</span></td>
+                          <td class="jt-cust"><strong>Robert N.</strong><small>88 Pine Rd, Langhorne PA</small></td>
+                          <td><span class="jt-stage jt-stage--set">Retail: Appt Set</span></td>
+                          <td class="jt-trade">Windows</td>
+                          <td class="jt-rep">Closer A</td>
+                          <td class="jt-val">—</td>
+                        </tr>
+                        <tr>
+                          <td><span class="jt-num">LD-4070</span></td>
+                          <td class="jt-cust"><strong>Linda B.</strong><small>31 Birch Dr, Levittown PA</small></td>
+                          <td><span class="jt-stage jt-stage--est">Retail: Estimating</span></td>
+                          <td class="jt-trade">Windows/Siding</td>
+                          <td class="jt-rep">Closer D</td>
+                          <td class="jt-val">$5,659<small>projected</small></td>
+                        </tr>
+                        <tr>
+                          <td><span class="jt-num">LD-4069</span></td>
+                          <td class="jt-cust"><strong>Anthony R.</strong><small>6 Acorn Ln, Toms River NJ</small></td>
+                          <td><span class="jt-stage jt-stage--set">Retail: Appt Set</span></td>
+                          <td class="jt-trade">Asphalt Roof</td>
+                          <td class="jt-rep">Closer B</td>
+                          <td class="jt-val">—</td>
+                        </tr>
+                        <tr>
+                          <td><span class="jt-num">LD-4068</span></td>
+                          <td class="jt-cust"><strong>Henry &amp; Lisa A.</strong><small>14 Elm St, Langhorne PA</small></td>
+                          <td><span class="jt-stage jt-stage--lead">Retail: New Lead</span></td>
+                          <td class="jt-trade">—</td>
+                          <td class="jt-rep">—</td>
+                          <td class="jt-val">—</td>
+                        </tr>
+                        <tr>
+                          <td><span class="jt-num">LD-4067</span></td>
+                          <td class="jt-cust"><strong>Carl T.</strong><small>67 Sycamore Ln, Doylestown PA</small></td>
+                          <td><span class="jt-stage jt-stage--sold">Sold</span></td>
+                          <td class="jt-trade">Trim / Capping</td>
+                          <td class="jt-rep">Closer A</td>
+                          <td class="jt-val">$22,750<small>won</small></td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <div style="display:flex; justify-content:space-between; align-items:center; padding:11px 18px; background:#fafaf7; border-top:1px solid #ecebe6;">
+                      <div style="font-family:var(--mono); font-size:10px; color:#7a7770;">Workflow 02 (GHL → JT) wrote LD-4078 through LD-4061 in the last 7 days · Workflow 08 (Note sync · cron 10min) last run 4m ago</div>
+                      <div style="font-family:var(--mono); font-size:10px; color:#7a7770;">14 in production · <strong style="color:#1a1a1a;">$246k</strong> projected</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption>Screen 04 &middot; JobTread &mdash; LD-XXXX job numbers, Lead Status custom field mirrored from GHL via Workflow 02</figcaption>
+            </figure>
+
+            <!-- ────── SCREEN 05 · LEAD VALUE · CUSTOM DASHBOARD ────── -->
+            <figure class="mockup">
+              <div class="rcm-screen" role="img" aria-label="Lead Value attribution dashboard — custom Vercel-hosted tool that joins GHL source tag at capture with JobTread contract revenue at win, broken down per source">
+                <div class="rcm-chrome">
+                  <div class="rcm-chrome__dots"><span></span><span></span><span></span></div>
+                  <div class="rcm-chrome__url">rc-inbound-tracking.vercel.app&nbsp;·&nbsp;/attribution</div>
+                  <div class="rcm-chrome__pill">live</div>
+                </div>
+                <div class="lv-screen">
+                  <aside class="lv-side">
+                    <div class="lv-side__brand">Inbound · RC</div>
+                    <div class="lv-side__title">Lead value.</div>
+                    <div class="lv-side__sub">JT contract revenue joined back to the GHL source tag set at capture — the answer to <em>which source converts</em>.</div>
+                    <div style="font-family:var(--mono); font-size:10px; color:#7a7770; letter-spacing:0.04em; line-height:1.9;">
+                      Inbox<br/>Appointments<br/>Pipeline<br/>Production · JT<br/><span style="color:#d97757;">▸ Lead value</span>
+                    </div>
+                    <div class="lv-side__big">
+                      <div class="lv-side__big__lbl">90d revenue · JT</div>
+                      <div class="lv-side__big__val">$359k</div>
+                      <div class="lv-side__big__sub">across 18 closed/sold jobs</div>
+                    </div>
+                  </aside>
+
+                  <div class="lv-main">
+                    <div class="rcm-head">
+                      <div style="font-size:13px; font-weight:600; color:#1a1a1a;">Source ROI · last 90 days</div>
+                      <div class="rcm-meta">first-touch · joined GHL ↔ JT</div>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:1.4fr 84px 64px 80px 70px; gap:10px; padding:0 4px 8px; border-bottom:1px solid #ecebe6; font-family:var(--mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:#9a978f;">
+                      <div>Source</div>
+                      <div style="text-align:right;">Leads</div>
+                      <div style="text-align:right;">Booked</div>
+                      <div style="text-align:right;">Avg job $</div>
+                      <div style="text-align:right;">ROI</div>
+                    </div>
+
+                    <div class="rcm-roi__row">
+                      <div class="rcm-roi__src">Customer / Employee Referral
+                        <div class="rcm-roi__bar" style="margin-top:6px;"><i style="width:92%; background:#3a8a5a;"></i></div>
+                      </div>
+                      <div class="rcm-roi__n">38</div>
+                      <div class="rcm-roi__n">22</div>
+                      <div class="rcm-roi__n">$31.4k</div>
+                      <div class="rcm-roi__roi">∞</div>
+                    </div>
+                    <div class="rcm-roi__row">
+                      <div class="rcm-roi__src">Website &middot; <code style="font-size:10px;">/get-a-quote</code>
+                        <div class="rcm-roi__bar" style="margin-top:6px;"><i style="width:74%;"></i></div>
+                      </div>
+                      <div class="rcm-roi__n">54</div>
+                      <div class="rcm-roi__n">16</div>
+                      <div class="rcm-roi__n">$24.8k</div>
+                      <div class="rcm-roi__roi">14.6&times;</div>
+                    </div>
+                    <div class="rcm-roi__row">
+                      <div class="rcm-roi__src">Meta Lead Ads &middot; PA / NJ Roofing 2026
+                        <div class="rcm-roi__bar" style="margin-top:6px;"><i style="width:58%;"></i></div>
+                      </div>
+                      <div class="rcm-roi__n">47</div>
+                      <div class="rcm-roi__n">9</div>
+                      <div class="rcm-roi__n">$21.6k</div>
+                      <div class="rcm-roi__roi">6.2&times;</div>
+                    </div>
+                    <div class="rcm-roi__row">
+                      <div class="rcm-roi__src">JF Acquisitions &middot; <code style="font-size:10px;">jfa-lead</code>
+                        <div class="rcm-roi__bar" style="margin-top:6px;"><i style="width:36%;"></i></div>
+                      </div>
+                      <div class="rcm-roi__n">23</div>
+                      <div class="rcm-roi__n">5</div>
+                      <div class="rcm-roi__n">$22.3k</div>
+                      <div class="rcm-roi__roi">3.4&times;</div>
+                    </div>
+                    <div class="rcm-roi__row">
+                      <div class="rcm-roi__src">Fixr partner feed
+                        <div class="rcm-roi__bar" style="margin-top:6px;"><i style="width:22%;"></i></div>
+                      </div>
+                      <div class="rcm-roi__n">12</div>
+                      <div class="rcm-roi__n">2</div>
+                      <div class="rcm-roi__n">$11.9k</div>
+                      <div class="rcm-roi__roi">2.1&times;</div>
+                    </div>
+                    <div class="rcm-roi__row">
+                      <div class="rcm-roi__src">Inbound call &middot; <code style="font-size:10px;">+1 PA/NJ area</code>
+                        <div class="rcm-roi__bar" style="margin-top:6px;"><i style="width:18%;"></i></div>
+                      </div>
+                      <div class="rcm-roi__n">9</div>
+                      <div class="rcm-roi__n">4</div>
+                      <div class="rcm-roi__n">$28.7k</div>
+                      <div class="rcm-roi__roi" style="color:#9a978f;">&mdash;</div>
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:12px; border-top:1px solid #ecebe6;">
+                      <div class="rcm-meta">first-touch source tag set at capture &middot; held through JT <code>jt-sold</code> &middot; revenue from <code>projectedPrice</code></div>
+                      <div class="rcm-meta">183 leads &middot; 58 booked &middot; 18 won &middot; <strong style="color:#1a1a1a;">9.8% lead→won</strong></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption>Screen 05 &middot; Lead value &mdash; JT revenue rolled back to the source tag set at capture</figcaption>
+            </figure>
+
+          </div>
+
+          <aside class="pd-teaser reveal" aria-label="Cross-link · GHL Automation Scorecard">
+            <div>
+              <div class="pd-teaser__eyebrow">Where this rolls up</div>
+              <h3 class="pd-teaser__title">GHL Automation Scorecard &mdash; <em>the same data, scored.</em></h3>
+              <p class="pd-teaser__body">
+                Every workflow above feeds the sibling Scorecard project &mdash; an executive view that turns these ten automations into a quantified time-saved number, joined against the same GHL contact shape and the same JobTread revenue. The inbound system here is the input; the Scorecard is the receipt.
+              </p>
+              <a class="pd-teaser__cta" href="ghl-scorecard.html" aria-label="Open the GHL Automation Scorecard case study">
+                See the scorecard
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+              <div class="pd-teaser__pills">
+                <span class="pd-teaser__pill">Same GHL contact shape</span>
+                <span class="pd-teaser__pill">Time saved · ROI · funnel</span>
+                <span class="pd-teaser__pill">Sibling case study</span>
+              </div>
+            </div>
+            <a class="pd-teaser__shot" href="ghl-scorecard.html" aria-label="GHL Scorecard overview tab">
+              <img src="../assets/work/ghl-mockups/overview.jpg" alt="GHL Scorecard overview tab — KPIs, automation time-saved, funnel" loading="lazy" />
+            </a>
+          </aside>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">05 · Outcome</div>
+        <div class="case-block__body reveal">
+          <h3>Under a minute to first message. The setter never sleeps.</h3>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="stat__value">&lt; 1 min</div>
+              <div class="stat__label">Leads receiving first message after submit (SMS auto-reply, 24/7)</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">~12 min</div>
+              <div class="stat__label">Time saved per AI outbound call (vs. human setter dial + qualify + book)</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">10</div>
+              <div class="stat__label">Production automations across the inbound funnel</div>
+            </div>
+          </div>
+
+          <p style="margin-top:32px;">
+            Multipliers come from the sibling <a href="ghl-scorecard.html">GHL Automation Scorecard</a> project: self-booked appointment = 12 min, auto-reply = 3 min, contact captured via form = 3 min, follow-up step = 2 min. Stacked across RC&rsquo;s monthly volume the system clears a meaningful chunk of setter time &mdash; the real unlock, though, is that Closer A and B now show up to estimate appointments with full context, and the team can finally answer &ldquo;which source converts.&rdquo;
+          </p>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">06 · Lessons</div>
+        <div class="case-block__body reveal">
+          <h3>What I&rsquo;d do the same. What I&rsquo;d do differently.</h3>
+          <p><strong>Keep:</strong> Centralize on one contact shape with a source tag before wiring anything downstream. Cheapest decision in the project; pays for itself the first time you add a new intake source (Fixr was a 90-minute integration).</p>
+          <p><strong>Keep:</strong> Two Voice AI agents with distinct tones. Trying to do energetic-and-empathetic in one agent meant neither read true. Splitting them was a one-day refactor that doubled the callback rate.</p>
+          <p><strong>Keep:</strong> Disjoint stage ownership across the JT sync. The boring version of bi-directional sync that doesn&rsquo;t loop.</p>
+          <p><strong>Change:</strong> Build the email + phone dedupe rule before launch. Two early leads created two JT jobs because the contact lookup was email-only and the lead used a different inbox on mobile.</p>
+          <p><strong>Change:</strong> Write SMS copy like a person from day one. The first Day-1 auto-reply read like a workflow because it <em>was</em> a workflow.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========== NEXT / PREV ========== -->
+  <nav class="case-nav" aria-label="Project navigation">
+    <a href="../work.html" class="prev">
+      <span class="label">← Back</span>
+      <span class="title">All work</span>
+    </a>
+    <a href="ghl-scorecard.html" class="next">
+      <span class="label">Next case →</span>
+      <span class="title">GHL Automation Scorecard</span>
+    </a>
+  </nav>
+
+  <!-- ========== FOOTER — Hyper Effekt-style ========== -->
+  <footer class="he-footer">
+    <div class="he-footer__watermark" aria-hidden="true">dutchmike</div>
+    <div class="container">
+
+      <div class="he-footer__top">
+        <h2 class="he-footer__headline">
+          <a href="mailto:info@dutchmike.com">Let&rsquo;s build something</a>
+        </h2>
+        <div class="he-footer__contact">
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Hiring</span>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Project inquiry</span>
+            <a href="../contact.html">Start a brief</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="he-footer__mid">
+        <div class="he-footer__address">
+          <span class="he-footer__address-name">Mike Melchiot</span>
+          AI engineer · video producer · operator.<br>
+          Available worldwide, async-friendly.
+        </div>
+        <div class="he-footer__sitemap">
+          <div class="he-footer__sitemap-col">
+            <h4>Site</h4>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../services.html">Services</a></li>
+              <li><a href="../work.html">Work</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="he-footer__sitemap-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://github.com/dutchmike-lab" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="he-footer__sitemap-col">
+          <h4>For Clients</h4>
+          <ul>
+            <li><a href="../work-with-me.html">Work with me</a></li>
+            <li><a href="../contact.html">Project inquiry</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="he-footer__bottom">
+        <span>© <span data-year></span> Mike Melchiot · dutchmike.com</span>
+        <span>Built worldwide · running on coffee &amp; tropics</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GHL Automation Scorecard — Mike Melchiot</title>
+  <meta name="description" content="A self-service dashboard that shows the hours saved per month (and dollar value) by every automation running across four brands — embedded as a widget inside each brand's GoHighLevel sub-account." />
+  <link rel="canonical" href="https://dutchmike.com/work/ghl-scorecard" />
+  <meta property="og:title" content="GHL Automation Scorecard" />
+  <meta property="og:description" content="A self-service dashboard that shows the hours saved per month (and dollar value) by every automation running across four brands — embedded as a widget inside each brand's GoHighLevel sub-account." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dutchmike.com/work/ghl-scorecard" />
+  <meta property="og:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GHL Automation Scorecard" />
+  <meta name="twitter:description" content="A self-service dashboard that shows the hours saved per month (and dollar value) by every automation running across four brands — embedded as a widget inside each brand's GoHighLevel sub-account." />
+  <meta name="twitter:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "GHL Automation Scorecard",
+    "description": "A self-service dashboard that shows the hours saved per month (and dollar value) by every automation running across four brands — embedded as a widget inside each brand's GoHighLevel sub-account.",
+    "url": "https://dutchmike.com/work/ghl-scorecard",
+    "datePublished": "2026-01-01",
+    "keywords": ["AI engineering", "Internal tools", "GoHighLevel", "Automation analytics"],
+    "creator": {
+      "@type": "Person",
+      "@id": "https://dutchmike.com/#person",
+      "name": "Mike Melchiot",
+      "url": "https://dutchmike.com/",
+      "jobTitle": "AI engineer",
+      "sameAs": [
+        "https://www.linkedin.com/in/mikemelchiot/",
+        "https://github.com/dutchmike-lab"
+      ]
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <!-- Page loader (Hyper Effekt-style curtain) — injected -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__name">DUTCH MIKE</span>
+      <span class="loader__role">AI Engineer</span>
+    </div>
+  </div>
+
+  <!-- ========== NAV ========== -->
+  <header class="nav">
+    <div class="nav__pad">
+      <div class="nav__shell">
+        <nav class="nav__links" aria-label="Primary">
+          <a href="../services.html">Services</a>
+          <a href="../work.html">Work</a>
+          <a href="../about.html">About</a>
+        </nav>
+        <a href="../index.html" class="nav__brand" aria-label="Dutch Mike — home">
+          <img class="nav__logo" src="../assets/dm-logo-white.png" alt="">
+        </a>
+        <div class="nav__actions">
+          <a class="nav__icon" href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          </a>
+          <a class="nav__icon" href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a class="nav__icon" href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+          </a>
+          <a class="nav__cta" href="../contact.html">
+            Contact Us
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-float" id="navFloat" aria-hidden="true">
+      <a class="nav-float__cta" href="../contact.html">Contact</a>
+      <a href="../index.html" class="nav-float__logo" aria-label="Dutch Mike — home">
+        <img src="../assets/dm-logo-white.png" alt="">
+      </a>
+      <button class="nav-float__menu" id="navMenuBtn" type="button" aria-label="Open menu" aria-controls="navOverlay" aria-expanded="false">
+        <span>Menu</span>
+        <span class="nav-float__icon" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+    <div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
+      <div class="nav-overlay__panel">
+        <div class="nav-overlay__head">
+          <a class="nav-overlay__head-cta" href="../contact.html" data-nav-close>Contact</a>
+          <a href="../index.html" class="nav-overlay__head-logo" data-nav-close aria-label="Dutch Mike — home">
+            <img src="../assets/dm-logo-white.png" alt="">
+          </a>
+          <button class="nav-overlay__close" id="navMenuClose" type="button" aria-label="Close menu">
+            <span>Close</span><span aria-hidden="true">✕</span>
+          </button>
+        </div>
+        <nav class="nav-overlay__links" aria-label="Site">
+          <a href="../services.html" data-nav-close>Services</a>
+          <a href="../work.html" data-nav-close>Work</a>
+          <a href="../about.html" data-nav-close>About</a>
+          <a href="../contact.html" data-nav-close>Contact</a>
+        </nav>
+        <div class="nav-overlay__foot">
+          <span class="nav-overlay__label">Find me</span>
+          <div class="nav-overlay__socials">
+            <a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== CASE HERO ========== -->
+  <section class="case-hero">
+    <div class="container">
+      <a href="../work.html" class="case-hero__crumb reveal">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3 L4 8 L10 13"/></svg>
+        All work / 05 of 07 · AI engineering
+      </a>
+
+      <h1 class="display case-hero__title reveal">GHL Automation Scorecard.</h1>
+
+      <p class="lede case-hero__lede reveal" data-delay="1">
+        A self-service dashboard that shows the hours saved per month (and dollar value) by every automation running across four brands &mdash; embedded as a widget inside each brand&rsquo;s GoHighLevel sub-account, same pattern as the live TOFAC uptime widget.
+      </p>
+
+      <dl class="case-meta stagger">
+        <div><dt>Client</dt><dd>Internal (Remodeling Concepts, Ryann Reed, Wood Lane, TOFAC)</dd></div>
+        <div><dt>Role</dt><dd>Architect + solo engineer</dd></div>
+        <div><dt>Year</dt><dd>2026</dd></div>
+        <div><dt>Status</dt><dd>Architecture locked, RC adapter in build</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ========== HERO MOCKUP ========== -->
+  <section class="case-mockup">
+    <div class="container">
+      <figure class="mockup-hero reveal">
+        <img src="../assets/work/ghl-mockups/overview.jpg" alt="GHL Scorecard overview tab shown on a monitor — marketing mockup" loading="lazy" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========== CONTEXT ========== -->
+  <section>
+    <div class="container">
+
+      <article class="case-block">
+        <div class="case-block__label">01 · Context</div>
+        <div class="case-block__body reveal">
+          <h3>&ldquo;What is Mike actually doing for us this month?&rdquo;</h3>
+          <p>
+            As the automation footprint grew, &ldquo;what is Mike actually doing for us this month?&rdquo; became a real question. Hours-saved was the right answer; nobody had numbers.
+          </p>
+          <p>
+            The data is all in GHL &mdash; calendar events, conversation messages, contact creation, tag history &mdash; it just needed someone to count it and put a multiplier on each event type.
+          </p>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">02 · Problem</div>
+        <div class="case-block__body reveal">
+          <h3>One number, four shapes of data.</h3>
+          <ul>
+            <li>Each brand uses GHL differently (RC = native calendar; RR = custom-field appointments; WL = mixed).</li>
+            <li>A naive solution would be three one-off dashboards that drift apart.</li>
+            <li>The widget has to live inside GHL so the audience sees it without leaving their CRM.</li>
+            <li>Numbers also have to be portfolio-credible &mdash; &ldquo;I save my clients X hours/month&rdquo; is a sales line for me.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">03 · What I built</div>
+        <div class="case-block__body reveal">
+          <h3>One scorecard view, one adapter per brand.</h3>
+          <p>
+            A brand-adapter pattern in the existing TOFAC Next.js app: one shared scorecard view, one per-brand adapter class that knows how to query that brand&rsquo;s GHL data (calendar vs. custom field vs. mixed). Three headline cards &mdash; Hours Saved MTD, $ Value Saved, Top Driver &mdash; rendered behind a signed embed token so it can drop into any GHL dashboard via iframe.
+          </p>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Architecture</h4>
+          <div class="visual visual--diagram">
+   GHL: RC          GHL: RR (custom fields)      GHL: WL          TOFAC: Supabase
+       │                       │                     │                    │
+       ▼                       ▼                     ▼                    ▼
+   adapter:RC            adapter:RR            adapter:WL          adapter:TOFAC
+       │                       │                     │                    │
+       └────────────────────── normalized event stream ─────────────────────┘
+                                       │
+                                       ▼
+                          Σ (event_count × min/event)
+                                       │
+                                       ▼
+              [HOURS SAVED MTD] [$ VALUE SAVED] [TOP DRIVER]
+                                       │
+                                       ▼
+                 Signed embed → iframe inside each GHL dashboard
+          </div>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Stack</h4>
+          <div class="stack">
+            <span>Next.js 16</span>
+            <span>GHL API (Private Integration Tokens)</span>
+            <span>Supabase</span>
+            <span>Signed embed tokens (HMAC)</span>
+            <span>Per-brand adapter classes</span>
+            <span>Config-driven multipliers</span>
+            <span>Vercel</span>
+          </div>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Key decisions</h4>
+          <ul>
+            <li><strong>Brand-adapter pattern from day one.</strong> Considered RC-only first then refactor &mdash; rejected because the cost of writing one shared scorecard view is ~half a day and pays back the first time RR plugs in.</li>
+            <li><strong>RC ships first</strong>, RR second, WL third. RC uses native GHL Calendar (standard API path) and has the most data &mdash; biggest, most credible launch number. RR uses custom fields for appointments &mdash; bespoke adapter &mdash; better as brand #2 to validate the pattern works.</li>
+            <li><strong>Same embed pattern as TOFAC uptime widget</strong>, which is already in production at <code>golf.ryannreed.com/uptime/embed</code>. Reused signed-token + iframe approach. Independent secrets per surface.</li>
+            <li><strong>Multipliers live in a config file</strong>, not hard-coded. Self-booked appointment = 12 min, auto-reply = 3 min, form contact = 3 min, tag from workflow = 1 min. Easy to tune as the model gets more honest.</li>
+            <li><strong>Read-only GHL scopes only.</strong> This thing reports. It does not touch.</li>
+            <li><strong>Phase 2 = portfolio-level &ldquo;all-brands aggregate&rdquo;</strong> &mdash; the sales-material money shot (&ldquo;Saved $X across 4 clients last month&rdquo;). Same adapters, one extra view.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">04 · Selects</div>
+        <div class="case-block__body reveal">
+          <h3>One scorecard, five lenses on the brand.</h3>
+          <p>
+            Each tab answers a different operator question: am I selling enough, are leads moving through, is marketing converting, is social driving discovery, is email landing? Same widget pattern, swapped data adapter underneath. (Numbers and names below are scrubbed for portfolio display.)
+          </p>
+          <div class="mockup-grid">
+            <figure class="mockup"><img src="../assets/work/ghl-mockups/sales.jpg" alt="Sales tab" loading="lazy" /><figcaption>Sales · pipeline + funnel</figcaption></figure>
+            <figure class="mockup"><img src="../assets/work/ghl-mockups/marketing.jpg" alt="Marketing tab" loading="lazy" /><figcaption>Marketing · traffic + sources</figcaption></figure>
+            <figure class="mockup"><img src="../assets/work/ghl-mockups/social.jpg" alt="Social tab" loading="lazy" /><figcaption>Social · channel metrics</figcaption></figure>
+            <figure class="mockup"><img src="../assets/work/ghl-mockups/email.jpg" alt="Email tab" loading="lazy" /><figcaption>Email · engagement + deliverability</figcaption></figure>
+          </div>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">05 · Outcome</div>
+        <div class="case-block__body reveal">
+          <h3>Architecture locked, RC adapter in build.</h3>
+          <p>
+            Targets below are planning-stage estimates for the RC + RR launch window.
+          </p>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="stat__value">4</div>
+              <div class="stat__label">Brands on one shared scorecard</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">~127h</div>
+              <div class="stat__label">Estimated hours saved per month (target, RC + RR combined)</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">~$3,175</div>
+              <div class="stat__label">Estimated dollar value per month (target, at $25/hr)</div>
+            </div>
+          </div>
+
+          <p style="margin-top:32px;">
+            Architecture is locked, RC adapter is in build. The TOFAC uptime widget already proves the embed pattern works inside GHL; this just swaps the data source. The interesting design constraint turned out to be honesty &mdash; the multipliers have to under-promise or the number stops being credible to the people whose time it represents.
+          </p>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">06 · Lessons</div>
+        <div class="case-block__body reveal">
+          <h3>What I&rsquo;d do the same. What I&rsquo;d do differently.</h3>
+          <p><strong>Keep:</strong> Pick the boring multiplier. Better to be conservative and trusted than aggressive and questioned.</p>
+          <p><strong>Keep:</strong> Lift the embed token pattern from the prior surface instead of inventing a second one. Same security model, separate secrets.</p>
+          <p><strong>Change (planning):</strong> The standalone repo / shared-with-Marketing-Dashboard split took longer to decide than it should have. Worth ~30 minutes of architecture discussion up front next time.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========== NEXT / PREV ========== -->
+  <nav class="case-nav" aria-label="Project navigation">
+    <a href="../work.html" class="prev">
+      <span class="label">← Back</span>
+      <span class="title">All work</span>
+    </a>
+    <a href="inbound-sentinel.html" class="next">
+      <span class="label">Next case →</span>
+      <span class="title">Inbound Sentinel</span>
+    </a>
+  </nav>
+
+  <!-- ========== FOOTER — Hyper Effekt-style ========== -->
+  <footer class="he-footer">
+    <div class="he-footer__watermark" aria-hidden="true">dutchmike</div>
+    <div class="container">
+
+      <div class="he-footer__top">
+        <h2 class="he-footer__headline">
+          <a href="mailto:info@dutchmike.com">Let&rsquo;s build something</a>
+        </h2>
+        <div class="he-footer__contact">
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Hiring</span>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Project inquiry</span>
+            <a href="../contact.html">Start a brief</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="he-footer__mid">
+        <div class="he-footer__address">
+          <span class="he-footer__address-name">Mike Melchiot</span>
+          AI engineer · video producer · operator.<br>
+          Available worldwide, async-friendly.
+        </div>
+        <div class="he-footer__sitemap">
+          <div class="he-footer__sitemap-col">
+            <h4>Site</h4>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../services.html">Services</a></li>
+              <li><a href="../work.html">Work</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="he-footer__sitemap-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://github.com/dutchmike-lab" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="he-footer__sitemap-col">
+          <h4>For Clients</h4>
+          <ul>
+            <li><a href="../work-with-me.html">Work with me</a></li>
+            <li><a href="../contact.html">Project inquiry</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="he-footer__bottom">
+        <span>© <span data-year></span> Mike Melchiot · dutchmike.com</span>
+        <span>Built worldwide · running on coffee &amp; tropics</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>
