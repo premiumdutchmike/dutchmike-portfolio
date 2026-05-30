@@ -1,0 +1,713 @@
+/* ============================================================
+   TOFAC ANIMATIONS — Granola-style prompt → UI explainers
+   Used on:  work/tee-off-for-a-cause.html  and  index.html
+   Loads:    Oswald + Geist + Geist Mono via fonts.googleapis.com
+   ============================================================ */
+
+.tofac-anim {
+  --laranja: #E04A2A;
+  --laranja-soft: #FCE3DB;
+  --ink: #0A0A0A;
+  --ink-2: #1A1A1A;
+  --mute: #7A7A7A;
+  --neve: #F4F4F2;
+  --green-go: #A5E0AF;
+  --line: #E5E5E2;
+  --card: #FFFFFF;
+  --term-bg: #0A0A0A;
+  --term-text: #F4F4F2;
+  --term-dim: #8A8A85;
+  --shadow: 0 1px 0 rgba(10,10,10,.04), 0 30px 70px -30px rgba(10,10,10,.25);
+  font-family: 'Geist', system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+}
+
+.tofac-anim *,
+.tofac-anim *::before,
+.tofac-anim *::after { box-sizing: border-box; }
+
+.tofac-anim .ta-stage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.tofac-anim .ta-pane {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 540px;
+}
+
+.tofac-anim .ta-chrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(to bottom, rgba(0,0,0,.02), transparent);
+}
+.tofac-anim .ta-chrome .ta-dot { width: 11px; height: 11px; border-radius: 50%; background: #E5E0D2; }
+.tofac-anim .ta-chrome .ta-dot.r { background: #EB6A5A; }
+.tofac-anim .ta-chrome .ta-dot.y { background: #F5BF4F; }
+.tofac-anim .ta-chrome .ta-dot.g { background: #62C554; }
+.tofac-anim .ta-chrome .ta-label {
+  margin-left: auto;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+/* ===== Terminal (left pane) ===== */
+.tofac-anim .ta-term {
+  flex: 1;
+  background: var(--term-bg);
+  color: var(--term-text);
+  font-family: 'Geist Mono', ui-monospace, Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.8;
+  padding: 22px 22px 28px;
+  overflow: hidden;
+}
+.tofac-anim .ta-term .ta-row { white-space: pre-wrap; word-break: break-word; }
+.tofac-anim .ta-term .ta-prompt { color: var(--laranja); font-weight: 600; }
+.tofac-anim .ta-term .ta-dim { color: var(--term-dim); }
+.tofac-anim .ta-term .ta-ok { color: var(--green-go); }
+.tofac-anim .ta-term .ta-key { color: #F0CFA1; }
+.tofac-anim .ta-term .ta-str { color: var(--term-text); }
+.tofac-anim .ta-term .ta-warn { color: #F5BF4F; }
+.tofac-anim .ta-caret {
+  display: inline-block;
+  width: 7px;
+  height: 1em;
+  background: var(--term-text);
+  transform: translateY(2px);
+  margin-left: 2px;
+  animation: ta-blink 1s steps(1) infinite;
+}
+@keyframes ta-blink { 50% { background: transparent; } }
+
+/* ===== Builder UI (right pane) — shared bits ===== */
+.tofac-anim .ta-builder {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #fff;
+}
+.tofac-anim .ta-field {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.tofac-anim .ta-field.ta-show { opacity: 1; transform: none; }
+
+.tofac-anim .ta-eyebrow {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mute);
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* ===== Squad builder bits ===== */
+.tofac-anim .ta-input-display {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  padding: 6px 0 10px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  font-size: clamp(22px, 2.4vw, 30px);
+  color: var(--ink);
+}
+.tofac-anim .ta-tagline {
+  font-family: 'Geist', sans-serif;
+  font-size: 14.5px;
+  color: var(--ink-2);
+  font-style: italic;
+  min-height: 22px;
+}
+.tofac-anim .ta-slots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.tofac-anim .ta-slot {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  position: relative;
+  transition: border-color .25s, background .25s, box-shadow .25s;
+}
+.tofac-anim .ta-slot.captain { border-color: var(--laranja); background: linear-gradient(180deg, #fff, #FFF7F4); }
+.tofac-anim .ta-slot.filled { box-shadow: inset 0 0 0 1px var(--green-go); }
+.tofac-anim .ta-slot .ta-avatar {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2a2a2a, #4a4a4a);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  flex: 0 0 auto;
+}
+.tofac-anim .ta-slot.captain .ta-avatar { background: linear-gradient(135deg, var(--laranja), #B53C20); }
+.tofac-anim .ta-slot.empty .ta-avatar { background: #F4F4F2; color: var(--mute); border: 1px dashed var(--line); }
+.tofac-anim .ta-slot .ta-body { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.tofac-anim .ta-slot .ta-role {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 2px;
+}
+.tofac-anim .ta-slot.captain .ta-role { color: var(--laranja); font-weight: 600; }
+.tofac-anim .ta-slot .ta-name {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 17px;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tofac-anim .ta-slot.empty .ta-name { color: var(--mute); font-weight: 500; }
+.tofac-anim .ta-slot .ta-check {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--green-go);
+  color: #0A1628;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity .35s;
+}
+.tofac-anim .ta-slot.filled .ta-check { opacity: 1; }
+
+.tofac-anim .ta-summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px 16px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 12px;
+}
+.tofac-anim .ta-summary .ta-label {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+}
+.tofac-anim .ta-summary .ta-price {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: -0.01em;
+}
+.tofac-anim .ta-summary .ta-eb {
+  margin-left: 8px;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--green-go);
+  vertical-align: 6px;
+}
+.tofac-anim .ta-cta {
+  background: var(--laranja);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-family: 'Geist', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: default;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.tofac-anim .ta-cta svg { width: 12px; height: 12px; }
+
+/* ===== Leaderboard ===== */
+.tofac-anim .ta-board {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+.tofac-anim .ta-board-head {
+  display: grid;
+  grid-template-columns: 36px 1fr 60px 60px;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--neve);
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.tofac-anim .ta-board-list {
+  position: relative;
+  padding: 6px 0;
+}
+.tofac-anim .ta-board-row {
+  display: grid;
+  grid-template-columns: 36px 1fr 60px 60px;
+  gap: 10px;
+  padding: 12px 14px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  background: #fff;
+  transition: background .45s ease, transform .55s cubic-bezier(.2,.8,.2,1);
+}
+.tofac-anim .ta-board-row:first-child { border-top: 0; }
+.tofac-anim .ta-board-row.flash { background: var(--laranja-soft); }
+.tofac-anim .ta-board-row .ta-rank {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+.tofac-anim .ta-board-row .ta-rank-up,
+.tofac-anim .ta-board-row .ta-rank-down {
+  display: inline-block;
+  margin-left: 4px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  vertical-align: 4px;
+}
+.tofac-anim .ta-board-row .ta-rank-up { color: var(--green-go); }
+.tofac-anim .ta-board-row .ta-rank-down { color: #EB6A5A; }
+.tofac-anim .ta-board-row .ta-team {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+}
+.tofac-anim .ta-board-row .ta-strokes {
+  font-family: 'Geist Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: right;
+}
+.tofac-anim .ta-board-row .ta-thru {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  color: var(--mute);
+  text-align: right;
+}
+
+/* ===== Publish squad page (phone mockup) ===== */
+.tofac-anim .ta-phone {
+  margin: 0 auto;
+  width: min(280px, 100%);
+  background: #0A0A0A;
+  border-radius: 32px;
+  padding: 10px;
+  box-shadow: 0 30px 60px -25px rgba(10,10,10,.5);
+}
+.tofac-anim .ta-phone-screen {
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 460px;
+}
+.tofac-anim .ta-url-bar {
+  background: #F4F4F2;
+  padding: 8px 12px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  color: var(--mute);
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tofac-anim .ta-url-bar .ta-url-typed { color: var(--ink); }
+.tofac-anim .ta-phone-hero {
+  height: 100px;
+  background: linear-gradient(135deg, var(--ink), #2a2a2a);
+  position: relative;
+  display: flex;
+  align-items: end;
+  padding: 12px;
+}
+.tofac-anim .ta-phone-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 80% at 80% 20%, rgba(224,74,42,.45), transparent 60%);
+}
+.tofac-anim .ta-phone-hero .ta-phone-title {
+  position: relative;
+  z-index: 1;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: -0.005em;
+  line-height: 1;
+}
+.tofac-anim .ta-phone-section {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+}
+.tofac-anim .ta-phone-section:last-child { border-bottom: 0; }
+.tofac-anim .ta-phone-lineup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tofac-anim .ta-phone-player {
+  display: flex; align-items: center; gap: 10px;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+.tofac-anim .ta-phone-player.show { opacity: 1; transform: none; }
+.tofac-anim .ta-phone-player .ta-mini-avatar {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2a2a2a, #4a4a4a);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+}
+.tofac-anim .ta-phone-player.captain .ta-mini-avatar { background: linear-gradient(135deg, var(--laranja), #B53C20); }
+.tofac-anim .ta-phone-player .ta-mini-name {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.tofac-anim .ta-phone-player .ta-mini-role {
+  font-family: 'Geist Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.tofac-anim .ta-phone-section .ta-phone-eyebrow {
+  font-family: 'Geist Mono', monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 6px;
+  display: block;
+}
+.tofac-anim .ta-phone-share {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.tofac-anim .ta-phone-share .ta-chip {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 9px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.tofac-anim .ta-live-pos {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.tofac-anim .ta-live-pos .ta-pos {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--laranja);
+  letter-spacing: -0.02em;
+}
+.tofac-anim .ta-live-pos .ta-of {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  color: var(--mute);
+}
+.tofac-anim .ta-live-pos .ta-live-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: #62C554;
+  border-radius: 50%;
+  margin-left: 4px;
+  animation: ta-pulse 1.4s ease-in-out infinite;
+  vertical-align: 2px;
+}
+@keyframes ta-pulse { 50% { opacity: .35; } }
+
+/* ===== Check-in ===== */
+.tofac-anim .ta-checkin {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.tofac-anim .ta-welcome {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: clamp(28px, 3.2vw, 38px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.tofac-anim .ta-welcome em { color: var(--laranja); font-style: normal; }
+.tofac-anim .ta-tag {
+  border: 1px solid var(--ink);
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: #fff;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.tofac-anim .ta-tag::before {
+  content: "";
+  position: absolute;
+  left: 14px; right: 14px;
+  top: 50%;
+  border-top: 1px dashed var(--line);
+}
+.tofac-anim .ta-tag .ta-tag-meta {
+  background: #fff; position: relative; z-index: 1;
+  padding-right: 8px;
+}
+.tofac-anim .ta-tag .ta-tag-meta .ta-tag-label {
+  font-family: 'Geist Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.tofac-anim .ta-tag .ta-tag-meta .ta-tag-val {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.tofac-anim .ta-tag .ta-bib {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 34px;
+  color: var(--laranja);
+  letter-spacing: -0.02em;
+  background: #fff;
+  position: relative; z-index: 1;
+  padding-left: 10px;
+}
+.tofac-anim .ta-cart {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #fff;
+}
+.tofac-anim .ta-cart .ta-cart-qr {
+  width: 56px; height: 56px;
+  background:
+    repeating-linear-gradient(0deg, var(--ink) 0 3px, transparent 3px 6px),
+    repeating-linear-gradient(90deg, var(--ink) 0 3px, transparent 3px 6px);
+  background-blend-mode: multiply;
+  background-color: #fff;
+  border-radius: 6px;
+  border: 2px solid var(--ink);
+}
+.tofac-anim .ta-cart .ta-cart-meta { display: flex; flex-direction: column; gap: 2px; }
+.tofac-anim .ta-cart .ta-cart-label {
+  font-family: 'Geist Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.tofac-anim .ta-cart .ta-cart-num {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.tofac-anim .ta-cart .ta-cart-team {
+  font-family: 'Geist', sans-serif;
+  font-size: 12px;
+  color: var(--mute);
+}
+.tofac-anim .ta-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tofac-anim .ta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: #fff;
+}
+.tofac-anim .ta-badge.ok { background: rgba(165,224,175,.35); border-color: var(--green-go); }
+.tofac-anim .ta-badge .ta-badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green-go);
+}
+.tofac-anim .ta-badge.warn .ta-badge-dot { background: #F5BF4F; }
+.tofac-anim .ta-progress {
+  margin-top: auto;
+  background: var(--neve);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.tofac-anim .ta-progress .ta-progress-label {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.tofac-anim .ta-progress .ta-progress-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+.tofac-anim .ta-progress .ta-progress-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--laranja);
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 1.4s cubic-bezier(.2,.8,.2,1);
+}
+.tofac-anim .ta-progress .ta-progress-num {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+
+/* ===== Header + replay control (used on preview page; suppressed on portfolio embeds) ===== */
+.tofac-anim .ta-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(10,10,10,.1);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  gap: 24px;
+}
+.tofac-anim .ta-header .ta-header-eyebrow {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mute);
+  display: block;
+  margin-bottom: 6px;
+}
+.tofac-anim .ta-header h3 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: clamp(22px, 2.6vw, 36px);
+  line-height: 1.04;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.tofac-anim .ta-header h3 em { color: var(--laranja); font-style: normal; }
+.tofac-anim .ta-header .ta-meta {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mute);
+  text-align: right;
+  line-height: 1.6;
+}
+
+.tofac-anim .ta-replay {
+  margin-top: 12px;
+  align-self: center;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mute);
+  cursor: pointer;
+}
+.tofac-anim .ta-replay:hover { color: var(--ink); border-color: #c4c4c0; }
+
+@media (max-width: 760px) {
+  .tofac-anim .ta-stage { grid-template-columns: 1fr; }
+  .tofac-anim .ta-pane { min-height: 380px; }
+  .tofac-anim .ta-slots { grid-template-columns: 1fr; }
+  .tofac-anim .ta-summary { flex-direction: column; align-items: stretch; }
+  .tofac-anim .ta-summary .ta-cta { justify-content: center; }
+}

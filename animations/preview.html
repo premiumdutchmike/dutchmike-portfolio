@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TOFAC animations · Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tofac-animations.css">
+<style>
+  html, body { margin: 0; }
+  body {
+    font-family: 'Geist', system-ui, -apple-system, sans-serif;
+    background: #F4F4F2;
+    color: #0A0A0A;
+    padding: 56px 32px;
+  }
+  .wrap { max-width: 1320px; margin: 0 auto; }
+  .hd {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 24px;
+    margin-bottom: 36px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(10,10,10,.1);
+  }
+  .hd .eyebrow {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #7A7A7A;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .hd h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.005em;
+    font-size: clamp(28px, 3.6vw, 48px);
+    line-height: 1;
+    margin: 0;
+  }
+  .hd em { color: #E04A2A; font-style: normal; }
+  .hd .meta {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #7A7A7A;
+    text-align: right;
+    line-height: 1.6;
+  }
+  .block {
+    margin-bottom: 80px;
+  }
+  .block .lbl {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #7A7A7A;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .block .lbl strong { color: #0A0A0A; font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hd">
+      <div>
+        <span class="eyebrow">Preview · iterate freely</span>
+        <h1>TOFAC <em>animations</em></h1>
+      </div>
+      <div class="meta">4 of 10<br/>prompt → ui</div>
+    </header>
+
+    <!-- 01 BUILD THE SQUAD -->
+    <section class="block">
+      <div class="lbl"><strong>01 · Build the squad</strong> <span>foursome registration → cart</span></div>
+      <div class="tofac-anim" data-tofac-anim="squad">
+        <div class="ta-stage">
+          <div class="ta-pane">
+            <div class="ta-chrome">
+              <span class="ta-dot r"></span><span class="ta-dot y"></span><span class="ta-dot g"></span>
+              <span class="ta-label">prompt</span>
+            </div>
+            <div class="ta-term" data-ta-term></div>
+          </div>
+          <div class="ta-pane">
+            <div class="ta-chrome">
+              <span class="ta-dot r"></span><span class="ta-dot y"></span><span class="ta-dot g"></span>
+              <span class="ta-label">build squad</span>
+            </div>
+            <div class="ta-builder" data-ta-builder>
+              <div class="ta-field" data-step="team">
+                <span class="ta-eyebrow">Team name</span>
+                <div class="ta-input-display" data-ta-teamname>&nbsp;</div>
+              </div>
+              <div class="ta-field" data-step="tagline">
+                <span class="ta-eyebrow">Squad tagline</span>
+                <div class="ta-tagline" data-ta-tagline>&nbsp;</div>
+              </div>
+              <div class="ta-field" data-step="slots">
+                <span class="ta-eyebrow">Lineup</span>
+                <div class="ta-slots" data-ta-slots></div>
+              </div>
+              <div class="ta-field" data-step="summary">
+                <div class="ta-summary">
+                  <div>
+                    <span class="ta-label">Foursome · Early-bird</span>
+                    <div><span class="ta-price">$600</span><span class="ta-eb">save $50</span></div>
+                  </div>
+                  <button class="ta-cta">
+                    Add to cart
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="ta-replay" data-ta-replay>↻ Replay</button>
+      </div>
+    </section>
+
+    <!-- 02 LEADERBOARD -->
+    <section class="block">
+      <div class="lbl"><strong>02 · Light up the leaderboard</strong> <span>live scoring → ranks reshuffle</span></div>
+      <div class="tofac-anim" data-tofac-anim="leaderboard">
+        <div class="ta-stage">
+          <div class="ta-pane">
+            <div class="ta-chrome">
+              <span class="ta-dot r"></span><span class="ta-dot y"></span><span class="ta-dot g"></span>
+              <span class="ta-label">prompt</span>
+            </div>
+            <div class="ta-term" data-ta-term></div>
+          </div>
+          <div class="ta-pane">
+            <div class="ta-chrome">
+              <span class="ta-dot r"></span><span class="ta-dot y"></span><span class="ta-dot g"></span>
+              <span class="ta-label">live leaderboard</span>
+            </div>
+            <div class="ta-builder">
+              <div class="ta-field ta-show" data-step="board">
+                <span class="ta-eyebrow" data-ta-board-eyebrow>Vol 9 · Front 9 · Back 9</span>
+                <div class="ta-board">
+                  <div class="ta-board-head">
+                    <div>Pos</div><div>Team</div><div style="text-align:right;">Strk</div><div style="text-align:right;">Thru</div>
+                  </div>
+                  <div class="ta-board-list" data-ta-board-list></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="ta-replay" data-ta-replay>↻ Replay</button>
+      </div>
+    </section>
+
+    <!-- 03 PUBLISH SQUAD PAGE -->
+    <section class="block">
+      <div class="lbl"><strong>03 · Publish the squad page</strong> <span>generate shareable team page</span></div>
+      <div class="tofac-anim" data-tofac-anim="publish">
+        <div class="ta-stage">
+          <div class="ta-pane">
+            <div class="ta-chrome">
+              <span class="ta-dot r"></span><span class="ta-dot y"></span><span class="ta-dot g"></span>
+              <span class="ta-label">prompt</span>
+            </div>
+            <div class="ta-term" data-ta-term></div>
+          </div>
+          <div class="ta-pane">
+            <div class="ta-chrome">
+              <span class="ta-dot r"></span><span class="ta-dot y"></span><span class="ta-dot g"></span>
+              <span class="ta-label">squad page</span>
+            </div>
+            <div class="ta-builder" data-ta-builder style="padding:20px; align-items:center;">
+              <div class="ta-field" data-step="phone" style="width:100%;">
+                <div class="ta-phone">
+                  <div class="ta-phone-screen">
+                    <div class="ta-url-bar">
+                      <span style="color:#7A7A7A;">https://</span><span class="ta-url-typed" data-ta-url-typed></span>
+                    </div>
+                    <div class="ta-phone-hero">
+                      <div class="ta-phone-title" data-ta-phone-title></div>
+                    </div>
+                    <div class="ta-field" data-step="lineup-section">
+                      <div class="ta-phone-section">
+                        <span class="ta-phone-eyebrow">The lineup</span>
+                        <div class="ta-phone-lineup" data-ta-lineup></div>
+                      </div>
+                    </div>
+                    <div class="ta-field" data-step="live-section">
+                      <div class="ta-phone-section">
+                        <span class="ta-phone-eyebrow">Live position</span>
+                        <div class="ta-live-pos">
+                          <span class="ta-pos">4th</span>
+                          <span class="ta-of">of 56 · thru 13<span class="ta-live-dot"></span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ta-field" data-step="share-section">
+                      <div class="ta-phone-section">
+                        <span class="ta-phone-eyebrow">Share</span>
+                        <div class="ta-phone-share">
+                          <span class="ta-chip">iMessage</span>
+                          <span class="ta-chip">WhatsApp</span>
+                          <span class="ta-chip">Email</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="ta-replay" data-ta-replay>↻ Replay</button>
+      </div>
+    </section>
+
+    <!-- 04 CHECK IN -->
+    <section class="block">
+      <div class="lbl"><strong>04 · Check in the crew</strong> <span>day-of registration → bag tag + cart key</span></div>
+      <div class="tofac-anim" data-tofac-anim="checkin">
+        <div class="ta-stage">
+          <div class="ta-pane">
+            <div class="ta-chrome">
+              <span class="ta-dot r"></span><span class="ta-dot y"></span><span class="ta-dot g"></span>
+              <span class="ta-label">prompt</span>
+            </div>
+            <div class="ta-term" data-ta-term></div>
+          </div>
+          <div class="ta-pane">
+            <div class="ta-chrome">
+              <span class="ta-dot r"></span><span class="ta-dot y"></span><span class="ta-dot g"></span>
+              <span class="ta-label">check-in</span>
+            </div>
+            <div class="ta-builder ta-checkin" data-ta-builder>
+              <div class="ta-field" data-step="welcome">
+                <div class="ta-welcome" data-ta-welcome>Welcome,&nbsp;<em>—</em></div>
+              </div>
+              <div class="ta-field" data-step="tag">
+                <div class="ta-tag">
+                  <div class="ta-tag-meta">
+                    <span class="ta-tag-label">Player · Team</span>
+                    <span class="ta-tag-val">Bailey Cox · The Putter Kings</span>
+                  </div>
+                  <div class="ta-bib">042</div>
+                </div>
+              </div>
+              <div class="ta-field" data-step="cart">
+                <div class="ta-cart">
+                  <div class="ta-cart-qr"></div>
+                  <div class="ta-cart-meta">
+                    <span class="ta-cart-label">Cart · paired</span>
+                    <span class="ta-cart-num">Cart 14</span>
+                    <span class="ta-cart-team">10:00 shotgun · hole 7</span>
+                  </div>
+                </div>
+              </div>
+              <div class="ta-field" data-step="badges">
+                <div class="ta-badges">
+                  <span class="ta-badge ok"><span class="ta-badge-dot"></span>Range</span>
+                  <span class="ta-badge ok"><span class="ta-badge-dot"></span>Buffet</span>
+                  <span class="ta-badge ok"><span class="ta-badge-dot"></span>Raffle ×3</span>
+                </div>
+              </div>
+              <div class="ta-field" data-step="progress">
+                <div class="ta-progress">
+                  <span class="ta-progress-label">Checked in</span>
+                  <div class="ta-progress-bar"><div class="ta-progress-fill" data-ta-progress-fill></div></div>
+                  <span class="ta-progress-num" data-ta-progress-num>041 / 248</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="ta-replay" data-ta-replay>↻ Replay</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="../assets/tofac-animations.js" defer></script>
+</body>
+</html>

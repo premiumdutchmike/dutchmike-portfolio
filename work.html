@@ -3,24 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work — Mike Melchiot</title>
-  <meta name="description" content="Seventeen projects across two disciplines — production AI agents, internal tools, and RAG systems alongside fifteen years of video &amp; brand work that still ships." />
-  <link rel="canonical" href="https://dutchmike.com/work" />
-  <meta property="og:title" content="Work" />
-  <meta property="og:description" content="Seventeen projects across two disciplines — production AI agents, internal tools, and RAG systems alongside fifteen years of video &amp; brand work that still ships." />
+  <title>Work — Mike Melchiot | AI Engineering Projects</title>
+  <meta name="description" content="Portfolio of production AI systems, automations, and web applications built by Mike Melchiot — from Next.js platforms to Claude-orchestrated agents." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Mike Melchiot" />
+  <link rel="canonical" href="https://dutchmike.com/work.html" />
+  <meta property="og:title" content="Work — Mike Melchiot | AI Engineering Projects" />
+  <meta property="og:description" content="Portfolio of production AI systems, automations, and web applications built by Mike Melchiot — from Next.js platforms to Claude-orchestrated agents." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dutchmike.com/work" />
+  <meta property="og:url" content="https://dutchmike.com/work.html" />
   <meta property="og:image" content="https://dutchmike.com/assets/og/default.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Work" />
-  <meta name="twitter:description" content="Seventeen projects across two disciplines — production AI agents, internal tools, and RAG systems alongside fifteen years of video &amp; brand work that still ships." />
+  <meta name="twitter:title" content="Work — Mike Melchiot | AI Engineering Projects" />
+  <meta name="twitter:description" content="Portfolio of production AI systems, automations, and web applications built by Mike Melchiot — from Next.js platforms to Claude-orchestrated agents." />
   <meta name="twitter:image" content="https://dutchmike.com/assets/og/default.jpg" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Work — Mike Melchiot",
-    "description": "Seventeen projects across AI engineering and video & brand.",
+    "description": "Eighteen projects across AI engineering and video & brand.",
     "url": "https://dutchmike.com/work",
     "isPartOf": { "@id": "https://dutchmike.com/#website" },
     "about": {
@@ -46,38 +48,79 @@
     </div>
   </div>
 
+  <!-- ========== NAV ========== -->
   <header class="nav">
     <div class="nav__pad">
       <div class="nav__shell">
+        <a href="index.html" class="nav__brand" aria-label="Dutch Mike — home">
+          <img class="nav__logo" src="assets/dm-logo-white.png" alt="Dutch Mike logo" decoding="async">
+        </a>
         <nav class="nav__links" aria-label="Primary">
-          <a href="services.html">Services</a>
+          <div class="nav__menu" data-nav-menu>
+            <a href="services.html" class="nav__menu-trigger" aria-haspopup="true" aria-expanded="false">
+              Services
+              <svg class="nav__menu-caret" viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__menu-panel" role="menu" aria-label="Services menu">
+              <div class="nav__menu-list">
+                <a class="nav__menu-item" href="services.html#ai" role="menuitem">
+                  <span class="nav__menu-thumb nav__menu-thumb--ai" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="16" cy="16" r="4.5"/>
+                      <circle cx="6" cy="7" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="26" cy="7" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="6" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="26" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+                      <line x1="7.4" y1="8" x2="12.5" y2="13"/>
+                      <line x1="24.6" y1="8" x2="19.5" y2="13"/>
+                      <line x1="7.4" y1="24" x2="12.5" y2="19"/>
+                      <line x1="24.6" y1="24" x2="19.5" y2="19"/>
+                    </svg>
+                  </span>
+                  <span class="nav__menu-body">
+                    <span class="nav__menu-title">AI Engineering</span>
+                    <span class="nav__menu-desc">Agents, internal tools, and retrieval systems built for production.</span>
+                  </span>
+                </a>
+                <a class="nav__menu-item" href="services.html#video" role="menuitem">
+                  <span class="nav__menu-thumb nav__menu-thumb--video" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="5" y="8" width="22" height="16" rx="2"/>
+                      <polygon points="14,13 21,16 14,19" fill="currentColor" stroke="none"/>
+                    </svg>
+                  </span>
+                  <span class="nav__menu-body">
+                    <span class="nav__menu-title">Video &amp; Brand</span>
+                    <span class="nav__menu-desc">Brand films, campaigns, and content engines — concept through finish.</span>
+                  </span>
+                </a>
+              </div>
+              <a class="nav__menu-feature" href="work/tee-off-for-a-cause.html" role="menuitem">
+                <span class="nav__menu-feature-media">
+                  <picture>
+                    <source type="image/webp" srcset="assets/work/thumbs/01-tofac.webp" />
+                    <img src="assets/work/thumbs/01-tofac.jpg" alt="Tee Off For A Cause — Next.js event platform" loading="lazy" decoding="async" />
+                  </picture>
+                </span>
+                <span class="nav__menu-feature-meta">P—01 · Latest project</span>
+                <span class="nav__menu-feature-title">Tee Off For A Cause — Next.js event platform, built solo.</span>
+                <span class="nav__menu-feature-cta">Learn more <span aria-hidden="true">→</span></span>
+              </a>
+            </div>
+          </div>
           <a href="work.html" aria-current="page">Work</a>
           <a href="about.html">About</a>
         </nav>
-        <a href="index.html" class="nav__brand" aria-label="Dutch Mike — home">
-          <img class="nav__logo" src="assets/dm-logo-white.png" alt="">
+        <a class="nav__cta" href="contact.html">
+          Contact Us
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
-        <div class="nav__actions">
-          <a class="nav__icon" href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-          </a>
-          <a class="nav__icon" href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-          </a>
-          <a class="nav__icon" href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
-          </a>
-          <a class="nav__cta" href="contact.html">
-            Contact Us
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-        </div>
       </div>
     </div>
     <div class="nav-float" id="navFloat" aria-hidden="true">
       <a class="nav-float__cta" href="contact.html">Contact</a>
       <a href="index.html" class="nav-float__logo" aria-label="Dutch Mike — home">
-        <img src="assets/dm-logo-white.png" alt="">
+        <img src="assets/dm-logo-white.png" alt="Dutch Mike logo" decoding="async">
       </a>
       <button class="nav-float__menu" id="navMenuBtn" type="button" aria-label="Open menu" aria-controls="navOverlay" aria-expanded="false">
         <span>Menu</span>
@@ -89,7 +132,7 @@
         <div class="nav-overlay__head">
           <a class="nav-overlay__head-cta" href="contact.html" data-nav-close>Contact</a>
           <a href="index.html" class="nav-overlay__head-logo" data-nav-close aria-label="Dutch Mike — home">
-            <img src="assets/dm-logo-white.png" alt="">
+            <img src="assets/dm-logo-white.png" alt="Dutch Mike logo" decoding="async">
           </a>
           <button class="nav-overlay__close" id="navMenuClose" type="button" aria-label="Close menu">
             <span>Close</span><span aria-hidden="true">✕</span>
@@ -124,7 +167,7 @@
           <span>PORTFOLIO — INDEX</span>
         </div>
         <h1 class="work-index-header__title">
-          Seventeen projects.<br>Two disciplines.
+          Eighteen projects. Two disciplines.
         </h1>
         <p class="work-index-header__sub">
           AI engineering is what I lead with now &mdash; production agents, internal tools,
@@ -147,11 +190,32 @@
     <section class="container">
       <div class="portfolio-grid-3up">
 
+        <!-- 22 — Philly Property Scout -->
+        <a class="card-3up" href="work/home-finder-philly.html" data-cat="ai">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2026</span>
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/22-home-finder-philly.webp" />
+              <img src="assets/work/thumbs/22-home-finder-philly.jpg" alt="Philly Property Scout dashboard showing ranked investment properties with cap rate, house-hack savings, and financing scenarios" loading="lazy" decoding="async" />
+            </picture>
+          </div>
+          <div class="card-3up__meta">PERSONAL TOOL · WAT FRAMEWORK</div>
+          <h3 class="card-3up__title">Philly property investment scout</h3>
+          <p class="card-3up__desc">
+            Scrapes Zillow/Redfin weekly, filters 145 raw listings to 20 investment-grade picks,
+            scores on cap rate + house-hack savings &mdash; top triplex scores 96.8/100 with a 22.26% cap rate.
+          </p>
+          <span class="card-3up__cta">Case study <span class="arrow">↗</span></span>
+        </a>
+
         <!-- 00 — GrantBot (Grant Researcher) -->
         <a class="card-3up" href="work/grant-researcher.html" data-cat="ai">
           <div class="card-3up__visual">
             <span class="card-3up__year">2026</span>
-            <img src="assets/work/thumbs/21-grantbot.jpg" alt="GrantBot landing &mdash; &lsquo;Stop searching. Start winning grants.&rsquo; with live-scan terminal" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/21-grantbot.webp" />
+              <img src="assets/work/thumbs/21-grantbot.jpg" alt="GrantBot landing &mdash; &lsquo;Stop searching. Start winning grants.&rsquo; with live-scan terminal" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">EMPOWERING CUTS · PHILADELPHIA</div>
           <h3 class="card-3up__title">Multi-tenant grant research portal</h3>
@@ -167,7 +231,10 @@
         <a class="card-3up" href="work/tee-off-for-a-cause.html" data-cat="ai">
           <div class="card-3up__visual">
             <span class="card-3up__year">2025</span>
-            <img src="assets/work/thumbs/01-tofac.jpg" alt="Tee Off For A Cause public landing page shown on a laptop — &lsquo;Tee off for a cause&rsquo; with golf course hero and Build Your Squad CTA" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/01-tofac.webp" />
+              <img src="assets/work/thumbs/01-tofac.jpg" alt="Tee Off For A Cause public landing page shown on a laptop — &lsquo;Tee off for a cause&rsquo; with golf course hero and Build Your Squad CTA" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">RNR · FULL-STACK</div>
           <h3 class="card-3up__title">Multi-tenant golf event platform</h3>
@@ -182,7 +249,10 @@
         <a class="card-3up" href="work/rc-inbound-lead-tracking.html" data-cat="ai">
           <div class="card-3up__visual">
             <span class="card-3up__year">2026</span>
-            <img src="assets/work/thumbs/02-rc-leads.jpg" alt="Custom inbound tracking dashboard for Remodeling Concepts shown on a designer office monitor" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/02-rc-leads.webp" />
+              <img src="assets/work/thumbs/02-rc-leads.jpg" alt="Custom inbound tracking dashboard for Remodeling Concepts shown on a designer office monitor" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">REMODELING CONCEPTS</div>
           <h3 class="card-3up__title">Custom inbound tracking dashboard</h3>
@@ -197,7 +267,10 @@
         <a class="card-3up" href="work/ghl-scorecard.html" data-cat="ai">
           <div class="card-3up__visual">
             <span class="card-3up__year">2026</span>
-            <img src="assets/work/thumbs/05-ghl-audit.jpg" alt="GHL Automation Scorecard hours-saved dashboard" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/05-ghl-audit.webp" />
+              <img src="assets/work/thumbs/05-ghl-audit.jpg" alt="GHL Automation Scorecard hours-saved dashboard" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">4-BRAND PORTFOLIO</div>
           <h3 class="card-3up__title">GHL Automation Scorecard</h3>
@@ -208,11 +281,31 @@
           <span class="card-3up__cta">Case study <span class="arrow">↗</span></span>
         </a>
 
+        <!-- 04 — Edith Moen Coaching -->
+        <a class="card-3up" href="work/edith-moen-coaching.html" data-cat="ai">
+          <div class="card-3up__visual">
+            <span class="card-3up__year">2026</span>
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/22-edith-moen.webp" />
+              <img src="assets/work/thumbs/22-edith-moen.jpg" alt="Edith Moen Coaching website homepage — Dutch life coaching site with custom CMS" loading="lazy" decoding="async" />
+            </picture>
+          </div>
+          <div class="card-3up__meta">EDITH MOEN COACHING · NETHERLANDS</div>
+          <h3 class="card-3up__title">Full-stack coaching site + CMS, built in a day</h3>
+          <p class="card-3up__desc">
+            Next.js rebuild of a dated WordPress site &mdash; custom admin CMS, UTM tracking, Resend email, SQLite content layer, full SEO. Shipped in one day.
+          </p>
+          <span class="card-3up__cta">Case study <span class="arrow">↗</span></span>
+        </a>
+
         <!-- 08 — Distillery brand documentary (Boardroom) -->
         <a class="card-3up" href="work/boardroom-spirits.html" data-cat="video">
           <div class="card-3up__visual">
             <span class="card-3up__year">2022–24</span>
-            <img src="assets/work/thumbs/08-boardroom.jpg" alt="Boardroom Spirits distillery video content" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/08-boardroom.webp" />
+              <img src="assets/work/thumbs/08-boardroom.jpg" alt="Boardroom Spirits distillery video content" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">BOARDROOM SPIRITS</div>
           <h3 class="card-3up__title">Multi-year distillery content engine</h3>
@@ -226,7 +319,10 @@
         <a class="card-3up" href="work/the-hook.html" data-cat="video">
           <div class="card-3up__visual">
             <span class="card-3up__year">2023–25</span>
-            <img src="assets/work/thumbs/09-the-hook.jpg" alt="Spiegelworld The Hook build documentary" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/09-the-hook.webp" />
+              <img src="assets/work/thumbs/09-the-hook.jpg" alt="Spiegelworld The Hook build documentary" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">SPIEGELWORLD · THE HOOK</div>
           <h3 class="card-3up__title">Two-year theater build doc</h3>
@@ -240,7 +336,10 @@
         <a class="card-3up" href="work/remodeling-concepts.html" data-cat="video">
           <div class="card-3up__visual">
             <span class="card-3up__year">2023+</span>
-            <img src="assets/work/thumbs/10-rc-video.jpg" alt="Remodeling Concepts in-house video content engine" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/10-rc-video.webp" />
+              <img src="assets/work/thumbs/10-rc-video.jpg" alt="Remodeling Concepts in-house video content engine" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">REMODELING CONCEPTS</div>
           <h3 class="card-3up__title">Full content engine + podcast</h3>
@@ -254,7 +353,10 @@
         <a class="card-3up" href="work/sculpmd.html" data-cat="video">
           <div class="card-3up__visual">
             <span class="card-3up__year">2024</span>
-            <img src="assets/work/thumbs/11-sculpmd.jpg" alt="SculpMD med-aesthetics campaign film" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/11-sculpmd.webp" />
+              <img src="assets/work/thumbs/11-sculpmd.jpg" alt="SculpMD med-aesthetics campaign film" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">SCULPMD</div>
           <h3 class="card-3up__title">Med-aesthetics brand campaign</h3>
@@ -268,7 +370,10 @@
         <a class="card-3up" href="work/iron-hill-brewery.html" data-cat="video">
           <div class="card-3up__visual">
             <span class="card-3up__year">2023</span>
-            <img src="assets/work/thumbs/12-ironhill.jpg" alt="Iron Hill Brewery Dad's Got Jokes promo" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/12-ironhill.webp" />
+              <img src="assets/work/thumbs/12-ironhill.jpg" alt="Iron Hill Brewery Dad's Got Jokes promo" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">IRON HILL BREWERY</div>
           <h3 class="card-3up__title">Father&rsquo;s Day brew team promo</h3>
@@ -282,7 +387,10 @@
         <a class="card-3up" href="work/kremp-florist.html" data-cat="video">
           <div class="card-3up__visual">
             <span class="card-3up__year">2022</span>
-            <img src="assets/work/thumbs/13-kremp.jpg" alt="Kremp Florist three-generation craft film" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/13-kremp.webp" />
+              <img src="assets/work/thumbs/13-kremp.jpg" alt="Kremp Florist three-generation craft film" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">KREMP FLORIST</div>
           <h3 class="card-3up__title">Three-generation floral craft film</h3>
@@ -296,7 +404,10 @@
         <a class="card-3up" href="work/top-dog-cocktails.html" data-cat="video">
           <div class="card-3up__visual">
             <span class="card-3up__year">2023</span>
-            <img src="assets/work/thumbs/14-topdog.jpg" alt="Top Dog Cocktails mixed-format brand content" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/14-topdog.webp" />
+              <img src="assets/work/thumbs/14-topdog.jpg" alt="Top Dog Cocktails mixed-format brand content" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">TOP DOG COCKTAILS</div>
           <h3 class="card-3up__title">Mixed-format brand content</h3>
@@ -310,7 +421,10 @@
         <a class="card-3up" href="work/twenty-one-pips.html" data-cat="video">
           <div class="card-3up__visual">
             <span class="card-3up__year">2024</span>
-            <img src="assets/work/thumbs/15-twentyonepips.jpg" alt="Twenty One Pips coffee and event venue" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/15-twentyonepips.webp" />
+              <img src="assets/work/thumbs/15-twentyonepips.jpg" alt="Twenty One Pips coffee and event venue" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">TWENTY ONE PIPS</div>
           <h3 class="card-3up__title">Coffee &amp; event-venue marketing</h3>
@@ -324,7 +438,10 @@
         <a class="card-3up" href="work/toyota.html" data-cat="video">
           <div class="card-3up__visual">
             <span class="card-3up__year">2023</span>
-            <img src="assets/work/thumbs/16-toyota.jpg" alt="Toyota Small Biz Big Nudge x Empowering Cuts" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/16-toyota.webp" />
+              <img src="assets/work/thumbs/16-toyota.jpg" alt="Toyota Small Biz Big Nudge x Empowering Cuts" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">TOYOTA</div>
           <h3 class="card-3up__title">&ldquo;Small Biz Big Nudge&rdquo; campaign</h3>
@@ -338,7 +455,10 @@
         <a class="card-3up" href="work/thirsty-dice.html" data-cat="video">
           <div class="card-3up__visual">
             <span class="card-3up__year">2023</span>
-            <img src="assets/work/thumbs/17-thirstydice.jpg" alt="Thirsty Dice PAX Unplugged coverage" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/17-thirstydice.webp" />
+              <img src="assets/work/thumbs/17-thirstydice.jpg" alt="Thirsty Dice PAX Unplugged coverage" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">THIRSTY DICE</div>
           <h3 class="card-3up__title">PAX coverage + how-to-play series</h3>
@@ -352,7 +472,10 @@
         <a class="card-3up" href="work/bluecoat-gin.html" data-cat="video">
           <div class="card-3up__visual">
             <span class="card-3up__year">2022</span>
-            <img src="assets/work/thumbs/18-bluecoat.jpg" alt="Bluecoat American Dry Gin product photography" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/18-bluecoat.webp" />
+              <img src="assets/work/thumbs/18-bluecoat.jpg" alt="Bluecoat American Dry Gin product photography" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">BLUECOAT · AMERICAN DRY GIN</div>
           <h3 class="card-3up__title">Bottle &amp; distillery photography</h3>
@@ -366,7 +489,10 @@
         <a class="card-3up" href="work/empoweringcuts.html" data-cat="video">
           <div class="card-3up__visual">
             <span class="card-3up__year">2023</span>
-            <img src="assets/work/thumbs/19-empoweringcuts.jpg" alt="Empowering Cuts GoFundMe campaign film" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/19-empoweringcuts.webp" />
+              <img src="assets/work/thumbs/19-empoweringcuts.jpg" alt="Empowering Cuts GoFundMe campaign film" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">EMPOWERING CUTS</div>
           <h3 class="card-3up__title">GoFundMe campaign + social cuts</h3>
@@ -380,7 +506,10 @@
         <a class="card-3up" href="work/magerks.html" data-cat="video">
           <div class="card-3up__visual">
             <span class="card-3up__year">2023</span>
-            <img src="assets/work/thumbs/20-magerks.jpg" alt="Magerk's Pub hospitality recruitment film" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/20-magerks.webp" />
+              <img src="assets/work/thumbs/20-magerks.jpg" alt="Magerk's Pub hospitality recruitment film" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="card-3up__meta">MAGERK&rsquo;S PUB</div>
           <h3 class="card-3up__title">Hospitality recruitment film</h3>

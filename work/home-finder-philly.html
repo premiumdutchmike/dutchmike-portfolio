@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Philly Property Scout — Mike Melchiot</title>
+  <meta name="description" content="A WAT-framework investment property research agent for Philadelphia — scrapes Zillow/Redfin, scores every duplex and triplex on cap rate, cash-on-cash, and house-hack savings, and surfaces the top picks weekly." />
+  <link rel="canonical" href="https://dutchmike.com/work/home-finder-philly" />
+  <meta property="og:title" content="Philly Property Scout" />
+  <meta property="og:description" content="A WAT-framework investment property research agent for Philadelphia — scrapes Zillow/Redfin, scores every duplex and triplex on cap rate, cash-on-cash, and house-hack savings, and surfaces the top picks weekly." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dutchmike.com/work/home-finder-philly" />
+  <meta property="og:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Philly Property Scout" />
+  <meta name="twitter:description" content="A WAT-framework investment property research agent for Philadelphia — scrapes Zillow/Redfin, scores every duplex and triplex on cap rate, cash-on-cash, and house-hack savings." />
+  <meta name="twitter:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Philly Property Scout",
+    "description": "WAT-framework investment property research agent — scrapes, scores, and ranks Philadelphia duplexes/triplexes across cap rate, cash-on-cash, and house-hack savings scenarios.",
+    "url": "https://dutchmike.com/work/home-finder-philly",
+    "datePublished": "2026-04-01",
+    "keywords": ["AI engineering", "Python agent", "Real estate", "WAT framework"],
+    "creator": {
+      "@type": "Person",
+      "@id": "https://dutchmike.com/#person",
+      "name": "Mike Melchiot",
+      "url": "https://dutchmike.com/",
+      "jobTitle": "AI engineer",
+      "sameAs": [
+        "https://www.linkedin.com/in/mikemelchiot/",
+        "https://github.com/dutchmike-lab"
+      ]
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       Philly Property Scout — page-specific styles
+       ───────────────────────────────────────────────────────────── */
+
+    /* ── Shared screen chrome ── */
+    .ps-screen {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 22px 48px -32px rgba(0,0,0,0.22);
+      font-family: var(--sans);
+      color: #1a1a2e;
+    }
+    .ps-chrome {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px;
+      background: #f3f4f6;
+      border-bottom: 1px solid var(--line);
+    }
+    .ps-chrome__dots { display: flex; gap: 6px; }
+    .ps-chrome__dots span {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #d1d5db;
+    }
+    .ps-chrome__url {
+      flex: 1; text-align: center;
+      font-family: var(--mono); font-size: 11px;
+      color: #6b7280; letter-spacing: 0.02em;
+    }
+    .ps-chrome__pill {
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: #15803d; background: #dcfce7;
+      padding: 3px 9px; border-radius: 999px;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .ps-chrome__pill::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: #15803d;
+    }
+
+    /* ── Dashboard layout (sidebar + detail) ── */
+    .ps-app {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      min-height: 540px;
+      background: #f0f2f5;
+    }
+    @media (max-width: 800px) { .ps-app { grid-template-columns: 1fr; } .ps-detail { display: none; } }
+
+    /* Sidebar */
+    .ps-sidebar {
+      background: #fff;
+      border-right: 1px solid #e5e7eb;
+      display: flex; flex-direction: column;
+    }
+    .ps-sidebar__head {
+      padding: 14px 16px 10px;
+      background: #1a1a2e;
+      color: #fff;
+    }
+    .ps-sidebar__head h2 {
+      font-size: 14px; font-weight: 700; letter-spacing: -0.01em;
+    }
+    .ps-sidebar__head p {
+      font-size: 10px; color: #9ca3af; margin-top: 2px;
+      font-family: var(--mono);
+    }
+    .ps-sidebar__filters {
+      padding: 8px 10px;
+      background: #f8f9fa;
+      border-bottom: 1px solid #eee;
+      display: flex; gap: 6px; flex-wrap: wrap;
+    }
+    .ps-filter-chip {
+      font-family: var(--mono); font-size: 10px;
+      background: #fff; border: 1px solid #d1d5db;
+      border-radius: 12px; padding: 3px 8px; color: #374151;
+    }
+    .ps-filter-chip--active { background: #eff6ff; border-color: #93c5fd; color: #1d4ed8; }
+    .ps-sidebar__count {
+      padding: 5px 14px; font-size: 10px; color: #9ca3af;
+      background: #fafafa; border-bottom: 1px solid #f0f0f0;
+      font-family: var(--mono);
+    }
+    .ps-list { overflow-y: auto; flex: 1; }
+
+    /* Property cards in sidebar */
+    .ps-card {
+      padding: 11px 14px;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: default;
+    }
+    .ps-card.is-active { background: #eff6ff; border-left: 3px solid #3b82f6; padding-left: 11px; }
+    .ps-card__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    .ps-card__addr { font-size: 12px; font-weight: 600; color: #1a1a2e; line-height: 1.3; }
+    .ps-card__hood { font-size: 10px; color: #6b7280; margin-top: 1px; font-family: var(--mono); }
+    .ps-score {
+      background: #22c55e; color: #fff;
+      border-radius: 20px; padding: 2px 9px;
+      font-size: 12px; font-weight: 700;
+      min-width: 40px; text-align: center; flex-shrink: 0;
+    }
+    .ps-score.mid { background: #f59e0b; }
+    .ps-score.low { background: #ef4444; }
+    .ps-card__meta { display: flex; gap: 10px; margin-top: 5px; flex-wrap: wrap; }
+    .ps-card__meta span { font-size: 10px; color: #374151; font-family: var(--mono); }
+    .ps-card__meta strong { color: #1a1a2e; }
+    .ps-badges { margin-top: 5px; display: flex; gap: 4px; flex-wrap: wrap; }
+    .ps-pill {
+      display: inline-block; padding: 1px 7px; border-radius: 10px;
+      font-size: 9px; font-weight: 600; font-family: var(--mono);
+      letter-spacing: 0.02em;
+    }
+    .ps-pill--green { background: #dcfce7; color: #15803d; }
+    .ps-pill--blue  { background: #dbeafe; color: #1d4ed8; }
+    .ps-pill--amber { background: #fef3c7; color: #92400e; }
+    .ps-pill--grey  { background: #f3f4f6; color: #374151; }
+    .ps-pill--red   { background: #fee2e2; color: #b91c1c; }
+
+    /* Detail panel */
+    .ps-detail {
+      padding: 20px 24px;
+      overflow-y: auto;
+      background: #f0f2f5;
+    }
+    .ps-detail__head {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 16px; margin-bottom: 18px;
+    }
+    .ps-detail__head h2 {
+      font-size: 18px; font-weight: 700; color: #1a1a2e; line-height: 1.25;
+    }
+    .ps-detail__head .sub {
+      font-size: 12px; color: #6b7280; margin-top: 3px;
+      font-family: var(--mono);
+    }
+    .ps-detail__price {
+      font-size: 24px; font-weight: 800; color: #1a1a2e;
+      flex-shrink: 0; text-align: right;
+    }
+    .ps-detail__price small {
+      display: block; font-size: 10px; color: #9ca3af;
+      font-weight: 400; font-family: var(--mono);
+    }
+    .ps-stat-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 10px; margin-bottom: 14px;
+    }
+    .ps-stat {
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 8px;
+      padding: 11px 13px;
+    }
+    .ps-stat__label {
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #9ca3af; margin-bottom: 4px;
+    }
+    .ps-stat__val {
+      font-size: 20px; font-weight: 700; color: #1a1a2e;
+      letter-spacing: -0.015em;
+    }
+    .ps-stat__sub { font-size: 10px; color: #6b7280; margin-top: 2px; }
+    .ps-stat--green .ps-stat__val { color: #15803d; }
+    .ps-stat--blue .ps-stat__val  { color: #1d4ed8; }
+
+    .ps-scenarios {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .ps-scen {
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 8px;
+      padding: 11px 13px;
+    }
+    .ps-scen__head {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 8px;
+    }
+    .ps-scen__type {
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #6b7280;
+    }
+    .ps-scen__badge {
+      font-family: var(--mono); font-size: 9px;
+      padding: 2px 7px; border-radius: 10px; font-weight: 600;
+    }
+    .ps-scen__badge--go { background: #dcfce7; color: #15803d; }
+    .ps-scen__badge--no { background: #fee2e2; color: #b91c1c; }
+    .ps-scen__row {
+      display: flex; justify-content: space-between;
+      font-size: 11px; padding: 3px 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+    .ps-scen__row:last-child { border-bottom: none; }
+    .ps-scen__key { color: #6b7280; }
+    .ps-scen__num { font-family: var(--mono); font-weight: 600; color: #1a1a2e; }
+    .ps-scen__num--green { color: #15803d; }
+    .ps-scen__num--red   { color: #b91c1c; }
+
+    /* ── WAT Pipeline diagram ── */
+    .wat-diagram {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 28px 32px 24px;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 22px 48px -32px rgba(0,0,0,0.14);
+    }
+    .wat-diagram__title {
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 28px;
+    }
+    .wat-layers {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    @media (max-width: 680px) { .wat-layers { grid-template-columns: 1fr; } }
+    .wat-layer__label {
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 12px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .wat-layer__num {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #1a1a2e; color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 9px; font-weight: 700;
+    }
+    .wat-node {
+      background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px;
+      padding: 10px 12px; margin-bottom: 8px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .wat-node:last-child { margin-bottom: 0; }
+    .wat-node__icon {
+      width: 28px; height: 28px; border-radius: 6px;
+      display: grid; place-items: center; flex-shrink: 0;
+      font-family: var(--mono); font-size: 9px; font-weight: 700; color: #fff;
+    }
+    .wat-node__icon--w { background: #1a1a2e; }
+    .wat-node__icon--a { background: #3b82f6; }
+    .wat-node__icon--t { background: #059669; }
+    .wat-node__body {}
+    .wat-node__name {
+      font-size: 12px; font-weight: 600; color: #1a1a2e; line-height: 1.3;
+    }
+    .wat-node__sub {
+      font-size: 10px; color: #6b7280; font-family: var(--mono);
+      margin-top: 1px;
+    }
+    .wat-node--output {
+      background: #f0fdf4; border-color: #bbf7d0;
+    }
+    .wat-arrow {
+      text-align: center; font-family: var(--mono); font-size: 18px;
+      color: #d1d5db; line-height: 1; padding: 6px 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .wat-arrow--h {
+      grid-column: span 3;
+      display: flex; align-items: center; gap: 8px;
+      margin: 4px 0;
+    }
+    .wat-arrow--h::before, .wat-arrow--h::after {
+      content: ''; flex: 1; height: 1px; background: #e5e7eb;
+    }
+
+    /* ── Financing scenario full comparison ── */
+    .scen-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    @media (max-width: 780px) { .scen-grid { grid-template-columns: 1fr; } }
+    .scen-card {
+      background: #fff; border: 1px solid var(--line); border-radius: 12px;
+      padding: 20px 20px 16px; position: relative;
+    }
+    .scen-card--hero { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.10); }
+    .scen-card__badge {
+      position: absolute; top: -10px; left: 20px;
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 999px;
+      font-weight: 600;
+    }
+    .scen-card__badge--naca { background: #3b82f6; color: #fff; }
+    .scen-card__badge--fha  { background: #f59e0b; color: #fff; }
+    .scen-card__badge--inv  { background: #059669; color: #fff; }
+    .scen-card__title {
+      font-size: 16px; font-weight: 700; color: #1a1a2e;
+      margin-bottom: 4px; margin-top: 6px;
+    }
+    .scen-card__sub {
+      font-size: 11px; color: #6b7280; margin-bottom: 16px;
+      font-family: var(--mono);
+    }
+    .scen-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0; border-bottom: 1px solid #f3f4f6;
+      font-size: 12px;
+    }
+    .scen-row:last-child { border-bottom: none; }
+    .scen-row__key { color: #374151; }
+    .scen-row__val { font-family: var(--mono); font-weight: 600; color: #1a1a2e; }
+    .scen-row__val--green { color: #15803d; }
+    .scen-row__val--red   { color: #b91c1c; }
+    .scen-row__val--amber { color: #92400e; }
+    .scen-verdict {
+      margin-top: 14px; padding: 10px 12px; border-radius: 8px;
+      font-size: 12px; font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .scen-verdict--go { background: #dcfce7; color: #15803d; }
+    .scen-verdict--no { background: #fee2e2; color: #b91c1c; }
+    .scen-verdict--maybe { background: #fef3c7; color: #92400e; }
+
+    /* ── Terminal / script output ── */
+    .ps-term {
+      background: #0d1117; border-radius: 12px; padding: 20px 22px;
+      font-family: var(--mono); font-size: 12px; line-height: 1.7;
+      color: #c9d1d9;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 22px 48px -32px rgba(0,0,0,0.38);
+      border: 1px solid #21262d;
+    }
+    .ps-term__bar {
+      display: flex; gap: 6px; margin-bottom: 16px;
+    }
+    .ps-term__bar span {
+      width: 11px; height: 11px; border-radius: 50%;
+    }
+    .ps-term__bar span:nth-child(1) { background: #ff5f57; }
+    .ps-term__bar span:nth-child(2) { background: #febc2e; }
+    .ps-term__bar span:nth-child(3) { background: #28c840; }
+    .t-dim   { color: #484f58; }
+    .t-cmd   { color: #58a6ff; }
+    .t-green { color: #3fb950; }
+    .t-amber { color: #d29922; }
+    .t-white { color: #f0f6fc; font-weight: 500; }
+    .t-muted { color: #6e7681; }
+
+    /* ── Outcome stat cards ── */
+    .outcome-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    }
+    @media (max-width: 820px) { .outcome-grid { grid-template-columns: repeat(2, 1fr); } }
+    .outcome-card {
+      background: #fff; border: 1px solid var(--line); border-radius: 10px;
+      padding: 16px 18px;
+    }
+    .outcome-card__label {
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+    }
+    .outcome-card__val {
+      font-size: 26px; font-weight: 700; color: #1a1a2e;
+      letter-spacing: -0.02em; line-height: 1;
+    }
+    .outcome-card__sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+    /* Force the mockup section to single-col stacked */
+    .case-study--philly .mockup-grid { grid-template-columns: 1fr; gap: clamp(40px,4vw,64px); }
+    .case-study--philly .mockup { border: none; background: transparent; padding: 0; cursor: default; }
+    .case-study--philly .mockup:hover { transform: none; box-shadow: none; border-color: transparent; }
+    .case-study--philly .mockup figcaption {
+      border-top: none; padding: 14px 4px 0;
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+    }
+  </style>
+</head>
+<body class="case-study--philly">
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__name">DUTCH MIKE</span>
+      <span class="loader__role">AI Engineer</span>
+    </div>
+  </div>
+
+  <!-- ========== NAV ========== -->
+  <header class="nav">
+    <div class="nav__pad">
+      <div class="nav__shell">
+        <a href="../index.html" class="nav__brand" aria-label="Dutch Mike — home">
+          <img class="nav__logo" src="../assets/dm-logo-white.png" alt="">
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          <div class="nav__menu" data-nav-menu>
+            <a href="../services.html" class="nav__menu-trigger" aria-haspopup="true" aria-expanded="false">
+              Services
+              <svg class="nav__menu-caret" viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__menu-panel" role="menu" aria-label="Services menu">
+              <div class="nav__menu-list">
+                <a class="nav__menu-item" href="../services.html#ai" role="menuitem">
+                  <span class="nav__menu-thumb nav__menu-thumb--ai" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="16" cy="16" r="4.5"/>
+                      <circle cx="6" cy="7" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="26" cy="7" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="6" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="26" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+                      <line x1="7.4" y1="8" x2="12.5" y2="13"/>
+                      <line x1="24.6" y1="8" x2="19.5" y2="13"/>
+                      <line x1="7.4" y1="24" x2="12.5" y2="19"/>
+                      <line x1="24.6" y1="24" x2="19.5" y2="19"/>
+                    </svg>
+                  </span>
+                  <span class="nav__menu-body">
+                    <span class="nav__menu-title">AI Engineering</span>
+                    <span class="nav__menu-desc">Agents, internal tools, and retrieval systems built for production.</span>
+                  </span>
+                </a>
+                <a class="nav__menu-item" href="../services.html#video" role="menuitem">
+                  <span class="nav__menu-thumb nav__menu-thumb--video" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="5" y="8" width="22" height="16" rx="2"/>
+                      <polygon points="14,13 21,16 14,19" fill="currentColor" stroke="none"/>
+                    </svg>
+                  </span>
+                  <span class="nav__menu-body">
+                    <span class="nav__menu-title">Video &amp; Brand</span>
+                    <span class="nav__menu-desc">Brand films, campaigns, and content engines — concept through finish.</span>
+                  </span>
+                </a>
+              </div>
+              <a class="nav__menu-feature" href="../work/tee-off-for-a-cause.html" role="menuitem">
+                <span class="nav__menu-feature-media">
+                  <picture>
+                    <source type="image/webp" srcset="../assets/work/thumbs/01-tofac.webp" />
+                    <img src="../assets/work/thumbs/01-tofac.jpg" alt="" loading="lazy" />
+                  </picture>
+                </span>
+                <span class="nav__menu-feature-meta">P—01 · Latest project</span>
+                <span class="nav__menu-feature-title">Tee Off For A Cause — Next.js event platform, built solo.</span>
+                <span class="nav__menu-feature-cta">Learn more <span aria-hidden="true">→</span></span>
+              </a>
+            </div>
+          </div>
+          <a href="../work.html">Work</a>
+          <a href="../about.html">About</a>
+        </nav>
+        <a class="nav__cta" href="../contact.html">
+          Contact Us
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="nav-float" id="navFloat" aria-hidden="true">
+      <a class="nav-float__cta" href="../contact.html">Contact</a>
+      <a href="../index.html" class="nav-float__logo" aria-label="Dutch Mike — home">
+        <img src="../assets/dm-logo-white.png" alt="">
+      </a>
+      <button class="nav-float__menu" id="navMenuBtn" type="button" aria-label="Open menu" aria-controls="navOverlay" aria-expanded="false">
+        <span>Menu</span>
+        <span class="nav-float__icon" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+    <div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
+      <div class="nav-overlay__panel">
+        <div class="nav-overlay__head">
+          <a class="nav-overlay__head-cta" href="../contact.html" data-nav-close>Contact</a>
+          <a href="../index.html" class="nav-overlay__head-logo" data-nav-close aria-label="Dutch Mike — home">
+            <img src="../assets/dm-logo-white.png" alt="">
+          </a>
+          <button class="nav-overlay__close" id="navMenuClose" type="button" aria-label="Close menu">
+            <span>Close</span><span aria-hidden="true">✕</span>
+          </button>
+        </div>
+        <nav class="nav-overlay__links" aria-label="Site">
+          <a href="../services.html" data-nav-close>Services</a>
+          <a href="../work.html" data-nav-close>Work</a>
+          <a href="../about.html" data-nav-close>About</a>
+          <a href="../contact.html" data-nav-close>Contact</a>
+        </nav>
+        <div class="nav-overlay__foot">
+          <span class="nav-overlay__label">Find me</span>
+          <div class="nav-overlay__socials">
+            <a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== CASE HERO ========== -->
+  <section class="case-hero">
+    <div class="container">
+      <a href="../work.html" class="case-hero__crumb reveal">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3 L4 8 L10 13"/></svg>
+        All work / AI engineering · personal tool
+      </a>
+
+      <h1 class="display case-hero__title reveal">Philly Property Scout.</h1>
+
+      <p class="lede case-hero__lede reveal" data-delay="1">
+        A WAT-framework investment research agent that scrapes every active duplex and triplex
+        in Graduate Hospital, West Philly, and South Philly every Sunday &mdash; filters fixer-uppers,
+        scores each property on cap rate, cash-on-cash, and house-hack savings, and surfaces the
+        top picks ranked 0&ndash;100. Built for a $40k down payment, NACA path, three-year timeline.
+      </p>
+
+      <dl class="case-meta stagger">
+        <div><dt>Type</dt><dd>Personal AI tool · WAT framework</dd></div>
+        <div><dt>Role</dt><dd>Architect + sole builder</dd></div>
+        <div><dt>Stack</dt><dd>Python · HomeHarvest · pandas · Claude agent</dd></div>
+        <div><dt>Status</dt><dd>Running weekly, 20+ properties scored</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ========== HERO MOCKUP · PROPERTY SCOUT DASHBOARD ========== -->
+  <section class="case-mockup">
+    <div class="container">
+      <figure class="mockup-hero reveal" style="background:transparent; border:none;">
+        <div class="ps-screen" role="img" aria-label="Philly Property Scout dashboard showing ranked investment properties with scoring dashboard">
+          <div class="ps-chrome">
+            <div class="ps-chrome__dots"><span></span><span></span><span></span></div>
+            <div class="ps-chrome__url">philly-property-scout&nbsp;·&nbsp;.tmp/property_report.html</div>
+            <div class="ps-chrome__pill">live scan</div>
+          </div>
+          <div class="ps-app">
+            <!-- Sidebar -->
+            <div class="ps-sidebar">
+              <div class="ps-sidebar__head">
+                <h2>Philly Property Finder</h2>
+                <p>Scan run: Sun Apr 17, 2026 &middot; 20 properties scored</p>
+              </div>
+              <div class="ps-sidebar__filters">
+                <span class="ps-filter-chip ps-filter-chip--active">All</span>
+                <span class="ps-filter-chip">Saved (0)</span>
+                <span class="ps-filter-chip">Score &gt;80</span>
+                <span class="ps-filter-chip">NACA+</span>
+              </div>
+              <div class="ps-sidebar__count">20 properties &middot; sorted best → worst</div>
+              <div class="ps-list">
+
+                <!-- Card 1 (active) -->
+                <div class="ps-card is-active">
+                  <div class="ps-card__top">
+                    <div>
+                      <div class="ps-card__addr">3836 Cambridge St</div>
+                      <div class="ps-card__hood">West Philly · 19104</div>
+                    </div>
+                    <div class="ps-score">96.8</div>
+                  </div>
+                  <div class="ps-card__meta">
+                    <span><strong>$199,900</strong></span>
+                    <span><strong>22.26%</strong> cap</span>
+                    <span><strong>$4,500</strong>/mo</span>
+                  </div>
+                  <div class="ps-badges">
+                    <span class="ps-pill ps-pill--green">NACA saves $2,594</span>
+                    <span class="ps-pill ps-pill--blue">triplex</span>
+                    <span class="ps-pill ps-pill--green">INV feasible</span>
+                  </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="ps-card">
+                  <div class="ps-card__top">
+                    <div>
+                      <div class="ps-card__addr">4019 Spring Garden St</div>
+                      <div class="ps-card__hood">West Philly · 19104</div>
+                    </div>
+                    <div class="ps-score">95.6</div>
+                  </div>
+                  <div class="ps-card__meta">
+                    <span><strong>$549,000</strong></span>
+                    <span><strong>11.75%</strong> cap</span>
+                    <span><strong>$7,250</strong>/mo</span>
+                  </div>
+                  <div class="ps-badges">
+                    <span class="ps-pill ps-pill--green">NACA saves $1,049</span>
+                    <span class="ps-pill ps-pill--blue">triplex</span>
+                    <span class="ps-pill ps-pill--green">fully leased</span>
+                  </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="ps-card">
+                  <div class="ps-card__top">
+                    <div>
+                      <div class="ps-card__addr">2245 Greenwich St</div>
+                      <div class="ps-card__hood">South Philly · 19146</div>
+                    </div>
+                    <div class="ps-score">95.5</div>
+                  </div>
+                  <div class="ps-card__meta">
+                    <span><strong>$205,000</strong></span>
+                    <span><strong>19.44%</strong> cap</span>
+                    <span><strong>$4,100</strong>/mo</span>
+                  </div>
+                  <div class="ps-badges">
+                    <span class="ps-pill ps-pill--green">NACA saves $1,672</span>
+                    <span class="ps-pill ps-pill--blue">duplex</span>
+                    <span class="ps-pill ps-pill--amber">Sec. 8 tenant</span>
+                  </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="ps-card">
+                  <div class="ps-card__top">
+                    <div>
+                      <div class="ps-card__addr">3942 Wallace St</div>
+                      <div class="ps-card__hood">West Philly · 19104</div>
+                    </div>
+                    <div class="ps-score">93.5</div>
+                  </div>
+                  <div class="ps-card__meta">
+                    <span><strong>$324,999</strong></span>
+                    <span><strong>10.55%</strong> cap</span>
+                    <span><strong>$2,400</strong>/mo</span>
+                  </div>
+                  <div class="ps-badges">
+                    <span class="ps-pill ps-pill--green">NACA saves $601</span>
+                    <span class="ps-pill ps-pill--blue">duplex</span>
+                    <span class="ps-pill ps-pill--amber">need $25k more</span>
+                  </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="ps-card">
+                  <div class="ps-card__top">
+                    <div>
+                      <div class="ps-card__addr">907 Belmont Ave</div>
+                      <div class="ps-card__hood">West Philly · 19104</div>
+                    </div>
+                    <div class="ps-score">93.5</div>
+                  </div>
+                  <div class="ps-card__meta">
+                    <span><strong>$499,000</strong></span>
+                    <span><strong>13.83%</strong> cap</span>
+                    <span><strong>$7,500</strong>/mo</span>
+                  </div>
+                  <div class="ps-badges">
+                    <span class="ps-pill ps-pill--green">NACA saves $1,648</span>
+                    <span class="ps-pill ps-pill--blue">triplex</span>
+                    <span class="ps-pill ps-pill--amber">turnkey</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Detail panel -->
+            <div class="ps-detail">
+              <div class="ps-detail__head">
+                <div>
+                  <h2>3836 Cambridge St</h2>
+                  <div class="sub">West Philadelphia, PA 19104 &middot; Triplex &middot; 1,560 sq ft &middot; Built 1920</div>
+                </div>
+                <div class="ps-detail__price">
+                  $199,900
+                  <small>128 $/sqft</small>
+                </div>
+              </div>
+
+              <!-- Key metrics -->
+              <div class="ps-stat-grid">
+                <div class="ps-stat ps-stat--green">
+                  <div class="ps-stat__label">Cap Rate</div>
+                  <div class="ps-stat__val">22.26%</div>
+                  <div class="ps-stat__sub">Philly avg: 5–6%</div>
+                </div>
+                <div class="ps-stat ps-stat--green">
+                  <div class="ps-stat__label">Gross Rent</div>
+                  <div class="ps-stat__val">$4,500</div>
+                  <div class="ps-stat__sub">3 units · est. market</div>
+                </div>
+                <div class="ps-stat ps-stat--blue">
+                  <div class="ps-stat__label">NOI (Annual)</div>
+                  <div class="ps-stat__val">$44,501</div>
+                  <div class="ps-stat__sub">Before mortgage</div>
+                </div>
+              </div>
+
+              <!-- Scenario comparison -->
+              <div class="ps-scenarios">
+                <div class="ps-scen">
+                  <div class="ps-scen__head">
+                    <span class="ps-scen__type">NACA · 0% Down</span>
+                    <span class="ps-scen__badge ps-scen__badge--go">BEST</span>
+                  </div>
+                  <div class="ps-scen__row"><span class="ps-scen__key">P&amp;I / mo</span><span class="ps-scen__num">$1,263</span></div>
+                  <div class="ps-scen__row"><span class="ps-scen__key">Net cost</span><span class="ps-scen__num ps-scen__num--green">−$794</span></div>
+                  <div class="ps-scen__row"><span class="ps-scen__key">vs. rent $1,800</span><span class="ps-scen__num ps-scen__num--green">+$2,594 saved</span></div>
+                  <div class="ps-scen__row"><span class="ps-scen__key">5-yr wealth</span><span class="ps-scen__num ps-scen__num--green">$211,779</span></div>
+                </div>
+                <div class="ps-scen">
+                  <div class="ps-scen__head">
+                    <span class="ps-scen__type">FHA · 3.5% Down</span>
+                    <span class="ps-scen__badge ps-scen__badge--go">feasible</span>
+                  </div>
+                  <div class="ps-scen__row"><span class="ps-scen__key">Down needed</span><span class="ps-scen__num">$20,000</span></div>
+                  <div class="ps-scen__row"><span class="ps-scen__key">Net cost</span><span class="ps-scen__num ps-scen__num--green">−$831</span></div>
+                  <div class="ps-scen__row"><span class="ps-scen__key">vs. rent $1,800</span><span class="ps-scen__num ps-scen__num--green">+$2,631 saved</span></div>
+                  <div class="ps-scen__row"><span class="ps-scen__key">Rate</span><span class="ps-scen__num">7.25%</span></div>
+                </div>
+                <div class="ps-scen">
+                  <div class="ps-scen__head">
+                    <span class="ps-scen__type">Investment · 20%</span>
+                    <span class="ps-scen__badge ps-scen__badge--go">feasible</span>
+                  </div>
+                  <div class="ps-scen__row"><span class="ps-scen__key">Down needed</span><span class="ps-scen__num">$39,980</span></div>
+                  <div class="ps-scen__row"><span class="ps-scen__key">Cash flow/mo</span><span class="ps-scen__num ps-scen__num--green">+$1,960</span></div>
+                  <div class="ps-scen__row"><span class="ps-scen__key">Cash-on-cash</span><span class="ps-scen__num ps-scen__num--green">58.84%</span></div>
+                  <div class="ps-scen__row"><span class="ps-scen__key">Rate</span><span class="ps-scen__num">7.50%</span></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <figcaption>Mockup 01 — Scored property dashboard · top pick: 3836 Cambridge St (score 96.8 / 100)</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========== CONTEXT ========== -->
+  <section class="case-section container">
+    <div class="case-section__grid">
+      <div class="case-section__col-head">
+        <h2 class="h3">The problem</h2>
+      </div>
+      <div class="case-section__col-body">
+        <p>
+          Looking to buy a multi-family property in Philadelphia on a $40,000 down payment &mdash;
+          but the Philly market moves fast, listing quality varies wildly, and manually running
+          cap rate / house-hack math on every duplex would take hours.
+        </p>
+        <p>
+          Three financing paths needed to be modeled simultaneously for every listing:
+          NACA (0% down, owner-occupancy, 6.5%), FHA (3.5% down, available now, 7.25%),
+          and a conventional investment loan (20% down, 7.5%). A property that looks expensive
+          at list price might save $2,000/month on housing via house-hacking.
+        </p>
+        <p>
+          The agent needed to surface the signal, not the noise &mdash; filtering fixer-uppers,
+          sketchy zips, and impossible numbers before they ever reached the spreadsheet.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MOCKUP 02 · TERMINAL / SCAN RUN ========== -->
+  <section class="case-mockup">
+    <div class="container">
+      <div class="mockup-grid">
+        <figure class="mockup">
+          <div class="ps-term" role="img" aria-label="Terminal showing property scraper and scorer execution">
+            <div class="ps-term__bar"><span></span><span></span><span></span></div>
+            <div><span class="t-dim">$</span> <span class="t-cmd">python3 tools/scrape_listings.py</span></div>
+            <div class="t-muted">=== Philly Property Scraper — 2026-04-17 06:00 ===</div>
+            <br>
+            <div>  Scraping: <span class="t-white">Graduate Hospital, Philadelphia, PA</span>...</div>
+            <div class="t-muted">    -&gt; 18 raw listings</div>
+            <div>  Scraping: <span class="t-white">West Philadelphia, Philadelphia, PA</span>...</div>
+            <div class="t-muted">    -&gt; 44 raw listings</div>
+            <div>  Scraping: <span class="t-white">University City, Philadelphia, PA</span>...</div>
+            <div class="t-muted">    -&gt; 31 raw listings</div>
+            <div>  Scraping: <span class="t-white">South Philadelphia, Philadelphia, PA</span>...</div>
+            <div class="t-muted">    -&gt; 52 raw listings</div>
+            <br>
+            <div>  After active-only filter:   <span class="t-amber">112</span></div>
+            <div>  After zip code filter:      <span class="t-amber">89</span></div>
+            <div>  After price filter:         <span class="t-amber">61</span></div>
+            <div>  After per-zip price floor:  <span class="t-amber">54</span></div>
+            <div>  After fixer-upper filter:   <span class="t-amber">32</span></div>
+            <div>  After type filter:          <span class="t-amber">27</span></div>
+            <br>
+            <div>  Filtered 145 → <span class="t-green">27 quality listings</span></div>
+            <div class="t-muted">  Saved to .tmp/listings_raw.csv</div>
+            <br>
+            <div><span class="t-dim">$</span> <span class="t-cmd">python3 tools/score_properties.py</span></div>
+            <div>Scoring <span class="t-white">27</span> listings...</div>
+            <br>
+            <div class="t-green">Top 5 properties:</div>
+            <br>
+            <div><span class="t-white">96.8</span>  3836 Cambridge St      West Philly   MULTI_FAMILY  <span class="t-amber">$199,900</span>  <span class="t-green">22.26%</span>  +$2,594  NACA+FHA+INV</div>
+            <div><span class="t-white">95.6</span>  4019 Spring Garden St  West Philly   MULTI_FAMILY  <span class="t-amber">$549,000</span>  <span class="t-green">11.75%</span>  +$1,049  NACA+FHA</div>
+            <div><span class="t-white">95.5</span>  2245 Greenwich St      South Philly  MULTI_FAMILY  <span class="t-amber">$205,000</span>  <span class="t-green">19.44%</span>  +$1,672  NACA+FHA+INV</div>
+            <div><span class="t-white">93.6</span>  1410 S 9th St          South Philly  MULTI_FAMILY  <span class="t-amber">$535,000</span>   <span class="t-amber">10.34%</span>  +$0,680  NACA+FHA</div>
+            <div><span class="t-white">93.5</span>  3942 Wallace St        West Philly   MULTI_FAMILY  <span class="t-amber">$324,999</span>   <span class="t-amber">10.55%</span>  +$0,601  NACA+FHA</div>
+            <br>
+            <div class="t-muted">Full results saved to .tmp/listings_scored.csv</div>
+            <div class="t-green">Done — open .tmp/property_report.html to explore interactively</div>
+          </div>
+          <figcaption>Mockup 02 — Agent terminal output · Sunday scrape &amp; score run (27 quality listings, top 5 shown)</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ARCHITECTURE ========== -->
+  <section class="case-section container">
+    <div class="case-section__grid">
+      <div class="case-section__col-head">
+        <h2 class="h3">WAT architecture</h2>
+      </div>
+      <div class="case-section__col-body">
+        <p>
+          The system follows the WAT framework &mdash; Workflows define what to do, the Agent
+          decides when and how, Tools execute deterministically. This keeps AI reasoning
+          focused on orchestration while Python handles the math.
+        </p>
+        <p>
+          Separating probabilistic reasoning from deterministic execution means the scoring
+          model is testable, auditable, and stays accurate no matter how many steps chain together.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MOCKUP 03 · WAT PIPELINE DIAGRAM ========== -->
+  <section class="case-mockup">
+    <div class="container">
+      <div class="mockup-grid">
+        <figure class="mockup">
+          <div class="wat-diagram" role="img" aria-label="WAT framework architecture diagram for Philly Property Scout">
+            <div class="wat-diagram__title">System architecture &mdash; WAT framework</div>
+            <div class="wat-layers">
+
+              <!-- Layer 1: Workflows -->
+              <div>
+                <div class="wat-layer__label">
+                  <span class="wat-layer__num">1</span>
+                  Workflows — Instructions
+                </div>
+                <div class="wat-node">
+                  <div class="wat-node__icon wat-node__icon--w">WF</div>
+                  <div class="wat-node__body">
+                    <div class="wat-node__name">find_properties.md</div>
+                    <div class="wat-node__sub">SOP: objectives, filters, scoring logic</div>
+                  </div>
+                </div>
+                <div style="margin: 8px 0; font-family: var(--mono); font-size: 10px; color: var(--muted); padding: 8px 12px; background: #f9fafb; border-radius: 6px; border: 1px solid #e5e7eb;">
+                  Defines:<br>
+                  • Target neighborhoods &amp; zip codes<br>
+                  • Fixer-upper exclusion keywords (34 terms)<br>
+                  • 3 financing scenarios (NACA/FHA/INV)<br>
+                  • Score weights (CoC 30%, Cap 25%, Hack 20%…)
+                </div>
+              </div>
+
+              <!-- Layer 2: Agent -->
+              <div>
+                <div class="wat-layer__label">
+                  <span class="wat-layer__num">2</span>
+                  Agent — Orchestration
+                </div>
+                <div class="wat-node">
+                  <div class="wat-node__icon wat-node__icon--a">AG</div>
+                  <div class="wat-node__body">
+                    <div class="wat-node__name">Claude (AI reasoning)</div>
+                    <div class="wat-node__sub">Reads workflow, sequences tools</div>
+                  </div>
+                </div>
+                <div style="margin: 8px 0; font-family: var(--mono); font-size: 10px; color: var(--muted); padding: 8px 12px; background: #f9fafb; border-radius: 6px; border: 1px solid #e5e7eb;">
+                  Responsibilities:<br>
+                  • Reads workflow SOP<br>
+                  • Executes tools in correct sequence<br>
+                  • Handles errors &amp; retries gracefully<br>
+                  • Updates workflow on new learnings
+                </div>
+              </div>
+
+              <!-- Layer 3: Tools -->
+              <div>
+                <div class="wat-layer__label">
+                  <span class="wat-layer__num">3</span>
+                  Tools — Execution
+                </div>
+                <div class="wat-node">
+                  <div class="wat-node__icon wat-node__icon--t">SC</div>
+                  <div class="wat-node__body">
+                    <div class="wat-node__name">scrape_listings.py</div>
+                    <div class="wat-node__sub">HomeHarvest → listings_raw.csv</div>
+                  </div>
+                </div>
+                <div class="wat-node">
+                  <div class="wat-node__icon wat-node__icon--t">RN</div>
+                  <div class="wat-node__body">
+                    <div class="wat-node__name">scrape_rents.py</div>
+                    <div class="wat-node__sub">Market comps → rent_table.json</div>
+                  </div>
+                </div>
+                <div class="wat-node">
+                  <div class="wat-node__icon wat-node__icon--t">SC</div>
+                  <div class="wat-node__body">
+                    <div class="wat-node__name">score_properties.py</div>
+                    <div class="wat-node__sub">3-scenario model → listings_scored.csv</div>
+                  </div>
+                </div>
+                <div class="wat-node wat-node--output">
+                  <div class="wat-node__icon" style="background:#059669;">RP</div>
+                  <div class="wat-node__body">
+                    <div class="wat-node__name">export_report.py</div>
+                    <div class="wat-node__sub">Interactive HTML dashboard</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <figcaption>Mockup 03 — WAT framework pipeline · 4 deterministic tools, 1 AI orchestrator, 1 markdown SOP</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SCORING MODEL ========== -->
+  <section class="case-section container">
+    <div class="case-section__grid">
+      <div class="case-section__col-head">
+        <h2 class="h3">Scoring model</h2>
+      </div>
+      <div class="case-section__col-body">
+        <p>
+          Every property is scored 0&ndash;100 on five weighted factors, then ranked.
+          The weights are calibrated to a house-hack-first strategy &mdash; cash-on-cash return
+          and cap rate are the primary drivers, but house-hack savings matter more than
+          raw price-per-sqft.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MOCKUP 04 · FINANCING SCENARIOS ========== -->
+  <section class="case-mockup">
+    <div class="container">
+      <div class="mockup-grid">
+        <figure class="mockup">
+
+          <!-- Score weights header -->
+          <div style="background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px 24px; margin-bottom:20px;">
+            <div style="font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:14px;">Score composition (0–100)</div>
+            <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:8px;">
+              <div style="text-align:center; padding:12px 8px; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px;">
+                <div style="font-size:20px; font-weight:700; color:#15803d;">30%</div>
+                <div style="font-family:var(--mono); font-size:9px; color:#374151; margin-top:4px; line-height:1.4;">Cash-on-Cash Return</div>
+              </div>
+              <div style="text-align:center; padding:12px 8px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px;">
+                <div style="font-size:20px; font-weight:700; color:#1d4ed8;">25%</div>
+                <div style="font-family:var(--mono); font-size:9px; color:#374151; margin-top:4px; line-height:1.4;">Cap Rate</div>
+              </div>
+              <div style="text-align:center; padding:12px 8px; background:#fef3c7; border:1px solid #fde68a; border-radius:8px;">
+                <div style="font-size:20px; font-weight:700; color:#92400e;">20%</div>
+                <div style="font-family:var(--mono); font-size:9px; color:#374151; margin-top:4px; line-height:1.4;">House-Hack Savings</div>
+              </div>
+              <div style="text-align:center; padding:12px 8px; background:#f5f3ff; border:1px solid #ddd6fe; border-radius:8px;">
+                <div style="font-size:20px; font-weight:700; color:#6d28d9;">15%</div>
+                <div style="font-family:var(--mono); font-size:9px; color:#374151; margin-top:4px; line-height:1.4;">5-Yr Wealth Build</div>
+              </div>
+              <div style="text-align:center; padding:12px 8px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px;">
+                <div style="font-size:20px; font-weight:700; color:#374151;">10%</div>
+                <div style="font-family:var(--mono); font-size:9px; color:#374151; margin-top:4px; line-height:1.4;">Price / Sq Ft</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 financing scenario cards for top property -->
+          <div style="font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:12px;">
+            3836 Cambridge St · $199,900 triplex · three financing scenarios
+          </div>
+          <div class="scen-grid">
+
+            <div class="scen-card scen-card--hero">
+              <div class="scen-card__badge scen-card__badge--naca">NACA · Best path</div>
+              <div class="scen-card__title">0% Down NACA</div>
+              <div class="scen-card__sub">Owner-occupy · 6.5% rate · $40k as reserves</div>
+              <div class="scen-row"><span class="scen-row__key">Down payment</span><span class="scen-row__val">$0</span></div>
+              <div class="scen-row"><span class="scen-row__key">Loan amount</span><span class="scen-row__val">$199,900</span></div>
+              <div class="scen-row"><span class="scen-row__key">P&amp;I / month</span><span class="scen-row__val">$1,263</span></div>
+              <div class="scen-row"><span class="scen-row__key">Rental income</span><span class="scen-row__val scen-row__val--green">+$2,850</span></div>
+              <div class="scen-row"><span class="scen-row__key">Net cost / mo</span><span class="scen-row__val scen-row__val--green">−$794</span></div>
+              <div class="scen-row"><span class="scen-row__key">vs. paying rent</span><span class="scen-row__val scen-row__val--green">saves $2,594/mo</span></div>
+              <div class="scen-row"><span class="scen-row__key">5-yr wealth</span><span class="scen-row__val scen-row__val--green">$211,779</span></div>
+              <div class="scen-verdict scen-verdict--go">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8 L6 11 L13 4"/></svg>
+                Feasible now — apply when NACA-eligible
+              </div>
+            </div>
+
+            <div class="scen-card">
+              <div class="scen-card__badge scen-card__badge--fha">FHA · Today</div>
+              <div class="scen-card__title">3.5% Down FHA</div>
+              <div class="scen-card__sub">Available immediately · 7.25% rate</div>
+              <div class="scen-row"><span class="scen-row__key">Down payment</span><span class="scen-row__val">$20,000</span></div>
+              <div class="scen-row"><span class="scen-row__key">Loan amount</span><span class="scen-row__val">$179,900</span></div>
+              <div class="scen-row"><span class="scen-row__key">P&amp;I / month</span><span class="scen-row__val">$1,228</span></div>
+              <div class="scen-row"><span class="scen-row__key">Rental income</span><span class="scen-row__val scen-row__val--green">+$2,850</span></div>
+              <div class="scen-row"><span class="scen-row__key">Net cost / mo</span><span class="scen-row__val scen-row__val--green">−$831</span></div>
+              <div class="scen-row"><span class="scen-row__key">vs. paying rent</span><span class="scen-row__val scen-row__val--green">saves $2,631/mo</span></div>
+              <div class="scen-row"><span class="scen-row__key">FHA feasible?</span><span class="scen-row__val scen-row__val--green">YES</span></div>
+              <div class="scen-verdict scen-verdict--go">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8 L6 11 L13 4"/></svg>
+                Feasible with $20k down (half of available)
+              </div>
+            </div>
+
+            <div class="scen-card">
+              <div class="scen-card__badge scen-card__badge--inv">Investment</div>
+              <div class="scen-card__title">20% Down · Pure Rental</div>
+              <div class="scen-card__sub">Remote landlord path · 7.5% rate · PM included</div>
+              <div class="scen-row"><span class="scen-row__key">Down payment</span><span class="scen-row__val">$39,980</span></div>
+              <div class="scen-row"><span class="scen-row__key">Loan amount</span><span class="scen-row__val">$159,920</span></div>
+              <div class="scen-row"><span class="scen-row__key">P&amp;I / month</span><span class="scen-row__val">$1,119</span></div>
+              <div class="scen-row"><span class="scen-row__key">Cash flow / mo</span><span class="scen-row__val scen-row__val--green">+$1,960</span></div>
+              <div class="scen-row"><span class="scen-row__key">Cash-on-cash</span><span class="scen-row__val scen-row__val--green">58.84%</span></div>
+              <div class="scen-row"><span class="scen-row__key">PM fee (9%)</span><span class="scen-row__val scen-row__val--amber">included</span></div>
+              <div class="scen-row"><span class="scen-row__key">INV feasible?</span><span class="scen-row__val scen-row__val--green">YES</span></div>
+              <div class="scen-verdict scen-verdict--go">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8 L6 11 L13 4"/></svg>
+                Feasible · leave country with PM in place
+              </div>
+            </div>
+
+          </div>
+          <figcaption>Mockup 04 — Financing scenario comparison · 3836 Cambridge St · all 3 scenarios viable on $40k</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== OUTCOMES ========== -->
+  <section class="case-section container">
+    <div class="case-section__grid">
+      <div class="case-section__col-head">
+        <h2 class="h3">What it found</h2>
+      </div>
+      <div class="case-section__col-body">
+        <p>
+          First live scan processed 145 raw listings and surfaced 20 investment-grade
+          properties after filtering. The top result &mdash; a $199,900 triplex in West Philly &mdash;
+          scored a near-perfect 96.8/100 with a 22.26% cap rate and three viable financing paths
+          all within the $40k budget. All three scenarios were feasible simultaneously, which
+          almost never happens at this price point in a major city.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outcome stats -->
+  <section class="container" style="padding-bottom: clamp(48px, 6vw, 96px);">
+    <div class="outcome-grid">
+      <div class="outcome-card">
+        <div class="outcome-card__label">Properties scanned</div>
+        <div class="outcome-card__val">145</div>
+        <div class="outcome-card__sub">Raw listings, 4 neighborhoods</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-card__label">After filtering</div>
+        <div class="outcome-card__val">20</div>
+        <div class="outcome-card__sub">Investment-grade, no fixer-uppers</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-card__label">Top score</div>
+        <div class="outcome-card__val">96.8</div>
+        <div class="outcome-card__sub">$199,900 triplex · 22.26% cap</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-card__label">Best house-hack</div>
+        <div class="outcome-card__val">$2,631</div>
+        <div class="outcome-card__sub">Monthly savings vs. paying rent</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== REAL TOOL SCREENSHOT ========== -->
+  <section class="case-section container">
+    <div class="case-section__grid">
+      <div class="case-section__col-head">
+        <h2 class="h3">The real tool</h2>
+      </div>
+      <div class="case-section__col-body">
+        <p>
+          The interactive HTML report generated by <code>export_report.py</code> runs locally in the browser.
+          Sidebar shows all 20 scored properties sorted best&nbsp;&rarr;&nbsp;worst. Clicking any property
+          loads the full investment breakdown on the right. Below is the live output from the April 17, 2026 scan.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-mockup">
+    <div class="container">
+      <div class="mockup-grid">
+        <figure class="mockup">
+          <div class="ps-screen" role="img" aria-label="Actual property report tool screenshot from April 17, 2026 scan">
+            <div class="ps-chrome">
+              <div class="ps-chrome__dots"><span></span><span></span><span></span></div>
+              <div class="ps-chrome__url">file:///.tmp/property_report.html &nbsp;·&nbsp; Apr 17, 2026</div>
+              <div class="ps-chrome__pill">actual output</div>
+            </div>
+            <picture>
+              <source type="image/webp" srcset="../assets/work/screenshots/hfp-tool-live.webp" />
+              <img
+                src="../assets/work/screenshots/hfp-tool-live.jpg"
+                alt="Live property report tool showing 60 listings ranked by score with 3836 Cambridge St at 96.8 at the top"
+                style="width:100%; height:auto; display:block;"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+          <figcaption>System screenshot — actual property_report.html output · 60 listings scored · real Philly market data Apr 2026</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== KEY DECISIONS GRID ========== -->
+  <section class="container" style="padding-bottom: clamp(56px, 7vw, 112px);">
+    <div style="font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:24px;">Key design decisions</div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+
+      <!-- Decision 1 -->
+      <div style="background:#fff; border:1px solid var(--line); border-radius:12px; padding:24px 22px;">
+        <div style="width:36px; height:36px; border-radius:8px; background:#f0f9ff; border:1px solid #bae6fd; display:grid; place-items:center; margin-bottom:16px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </div>
+        <div style="font-size:14px; font-weight:600; color:#1a1a1a; margin-bottom:8px; letter-spacing:-0.012em;">7-step filter chain</div>
+        <div style="font-size:13px; line-height:1.6; color:#4a4a4a;">34 fixer-upper keywords, 6 vetted zip codes, per-zip price floors. Cuts 145 raw listings to ~20 investment-grade picks before a single calculation runs.</div>
+        <div style="margin-top:14px; font-family:var(--mono); font-size:10px; color:#6b7280; border-top:1px solid #f0f0f0; padding-top:12px;">145 raw → 20 quality</div>
+      </div>
+
+      <!-- Decision 2 -->
+      <div style="background:#fff; border:1px solid var(--line); border-radius:12px; padding:24px 22px;">
+        <div style="width:36px; height:36px; border-radius:8px; background:#f0fdf4; border:1px solid #bbf7d0; display:grid; place-items:center; margin-bottom:16px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <div style="font-size:14px; font-weight:600; color:#1a1a1a; margin-bottom:8px; letter-spacing:-0.012em;">Three scenarios, one pass</div>
+        <div style="font-size:13px; line-height:1.6; color:#4a4a4a;">NACA (0% / 6.5%), FHA (3.5% / 7.25%), and investment (20% / 7.5%) are modeled simultaneously. The scorer flags feasibility and house-hack savings for each in a single run.</div>
+        <div style="margin-top:14px; font-family:var(--mono); font-size:10px; color:#6b7280; border-top:1px solid #f0f0f0; padding-top:12px;">NACA saves $2,594/mo on top pick</div>
+      </div>
+
+      <!-- Decision 3 -->
+      <div style="background:#fff; border:1px solid var(--line); border-radius:12px; padding:24px 22px;">
+        <div style="width:36px; height:36px; border-radius:8px; background:#fefce8; border:1px solid #fde68a; display:grid; place-items:center; margin-bottom:16px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#92400e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div style="font-size:14px; font-weight:600; color:#1a1a1a; margin-bottom:8px; letter-spacing:-0.012em;">Weekly Sunday cadence</div>
+        <div style="font-size:13px; line-height:1.6; color:#4a4a4a;">Philly duplexes go under contract within days in spring. The agent runs every Sunday at 6am — surfacing new listings in their first active week, before buyer competition thins deal flow.</div>
+        <div style="margin-top:14px; font-family:var(--mono); font-size:10px; color:#6b7280; border-top:1px solid #f0f0f0; padding-top:12px;">Old .tmp/ overwritten automatically</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== NEXT / PREV ========== -->
+  <nav class="case-nav" aria-label="Project navigation">
+    <a href="../work.html" class="prev">
+      <span class="label">← Back</span>
+      <span class="title">All work</span>
+    </a>
+    <a href="grant-researcher.html" class="next">
+      <span class="label">Next case →</span>
+      <span class="title">GrantBot</span>
+    </a>
+  </nav>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="he-footer">
+    <div class="he-footer__watermark" aria-hidden="true">dutchmike</div>
+    <div class="container">
+
+      <div class="he-footer__top">
+        <h2 class="he-footer__headline">
+          <a href="mailto:info@dutchmike.com">Let&rsquo;s build something</a>
+        </h2>
+        <div class="he-footer__contact">
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Hiring</span>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Project inquiry</span>
+            <a href="../contact.html">Start a brief</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="he-footer__mid">
+        <div class="he-footer__address">
+          <span class="he-footer__address-name">Mike Melchiot</span>
+          AI engineer · video producer · operator.<br>
+          Available worldwide, async-friendly.
+        </div>
+        <div class="he-footer__sitemap">
+          <div class="he-footer__sitemap-col">
+            <h4>Site</h4>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../services.html">Services</a></li>
+              <li><a href="../work.html">Work</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="he-footer__sitemap-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://github.com/dutchmike-lab" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="he-footer__sitemap-col">
+          <h4>For Clients</h4>
+          <ul>
+            <li><a href="../work-with-me.html">Work with me</a></li>
+            <li><a href="../contact.html">Project inquiry</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="he-footer__bottom">
+        <span>© <span data-year></span> Mike Melchiot · dutchmike.com</span>
+        <span>Built worldwide · running on coffee &amp; tropics</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

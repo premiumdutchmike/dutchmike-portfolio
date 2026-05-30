@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mike Melchiot — AI Engineer</title>
-  <meta name="description" content="Mike Melchiot — AI engineer building agents, automations, and retrieval systems designed to behave in production, not just in demos. Available for full-time remote roles." />
+  <title>Mike Melchiot — AI Engineer &amp; Automation Builder</title>
+  <meta name="description" content="AI engineer building production-ready agents, automations, and retrieval systems. Available for full-time remote roles. Based async-friendly, UTC+8." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Mike Melchiot" />
   <link rel="canonical" href="https://dutchmike.com/" />
-  <meta property="og:title" content="Mike Melchiot — AI Engineer" />
-  <meta property="og:description" content="Mike Melchiot — AI engineer building agents, automations, and retrieval systems designed to behave in production, not just in demos. Available for full-time remote roles." />
+  <meta property="og:title" content="Mike Melchiot — AI Engineer &amp; Automation Builder" />
+  <meta property="og:description" content="AI engineer building production-ready agents, automations, and retrieval systems. Available for full-time remote roles. Based async-friendly, UTC+8." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dutchmike.com/" />
   <meta property="og:image" content="https://dutchmike.com/assets/og/default.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mike Melchiot — AI Engineer" />
-  <meta name="twitter:description" content="Mike Melchiot — AI engineer building agents, automations, and retrieval systems designed to behave in production, not just in demos. Available for full-time remote roles." />
+  <meta name="twitter:title" content="Mike Melchiot — AI Engineer &amp; Automation Builder" />
+  <meta name="twitter:description" content="AI engineer building production-ready agents, automations, and retrieval systems. Available for full-time remote roles. Based async-friendly, UTC+8." />
   <meta name="twitter:image" content="https://dutchmike.com/assets/og/default.jpg" />
   <script type="application/ld+json">
   {
@@ -40,7 +42,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="assets/tofac-animations.css" />
 </head>
 <body>
   <!-- Page loader (Hyper Effekt-style curtain) — injected -->
@@ -56,7 +60,7 @@
     <div class="nav__pad">
       <div class="nav__shell">
         <a href="index.html" class="nav__brand" aria-label="Dutch Mike — home">
-          <img class="nav__logo" src="assets/dm-logo-white.png" alt="">
+          <img class="nav__logo" src="assets/dm-logo-white.png" alt="Dutch Mike logo" decoding="async">
         </a>
         <nav class="nav__links" aria-label="Primary">
           <div class="nav__menu" data-nav-menu>
@@ -100,7 +104,10 @@
               </div>
               <a class="nav__menu-feature" href="work/tee-off-for-a-cause.html" role="menuitem">
                 <span class="nav__menu-feature-media">
-                  <img src="assets/work/thumbs/01-tofac.jpg" alt="" loading="lazy" />
+                  <picture>
+                    <source type="image/webp" srcset="assets/work/thumbs/01-tofac.webp" />
+                    <img src="assets/work/thumbs/01-tofac.jpg" alt="Tee Off For A Cause — Next.js event platform" loading="lazy" decoding="async" />
+                  </picture>
                 </span>
                 <span class="nav__menu-feature-meta">P—01 · Latest project</span>
                 <span class="nav__menu-feature-title">Tee Off For A Cause — Next.js event platform, built solo.</span>
@@ -120,7 +127,7 @@
     <div class="nav-float" id="navFloat" aria-hidden="true">
       <a class="nav-float__cta" href="contact.html">Contact</a>
       <a href="index.html" class="nav-float__logo" aria-label="Dutch Mike — home">
-        <img src="assets/dm-logo-white.png" alt="">
+        <img src="assets/dm-logo-white.png" alt="Dutch Mike logo" decoding="async">
       </a>
       <button class="nav-float__menu" id="navMenuBtn" type="button" aria-label="Open menu" aria-controls="navOverlay" aria-expanded="false">
         <span>Menu</span>
@@ -132,7 +139,7 @@
         <div class="nav-overlay__head">
           <a class="nav-overlay__head-cta" href="contact.html" data-nav-close>Contact</a>
           <a href="index.html" class="nav-overlay__head-logo" data-nav-close aria-label="Dutch Mike — home">
-            <img src="assets/dm-logo-white.png" alt="">
+            <img src="assets/dm-logo-white.png" alt="Dutch Mike logo" decoding="async">
           </a>
           <button class="nav-overlay__close" id="navMenuClose" type="button" aria-label="Close menu">
             <span>Close</span><span aria-hidden="true">✕</span>
@@ -455,99 +462,116 @@
   })();
   </script>
 
-  <!-- ========== SOLUTIONS — Hyper Effekt-style numbered list ========== -->
-  <section class="he-section" id="what-i-build">
+  <!-- ========== SOLUTIONS — card grid ========== -->
+  <section class="svc-section" id="what-i-build">
     <div class="container">
-      <div class="he-section__head">
-        <span class="he-eyebrow">Solutions</span>
-        <h2 class="he-display">Production AI systems, not demos.</h2>
-        <p class="he-sub">
-          Agents, internal tools, and evaluation infrastructure built to behave in production — measurable, recoverable, and ready for the operator who has to live with them.
+      <div class="svc-head reveal">
+        <div class="svc-head__left">
+          <div class="svc-head__eyebrow">
+            <span class="dot-sm"></span>
+            <span>WHAT I BUILD</span>
+          </div>
+          <h2 class="svc-head__title">Production AI systems, not demos.</h2>
+        </div>
+        <p class="svc-head__desc">
+          Agents, internal tools, and evaluation infrastructure built to behave in production &mdash; measurable, recoverable, and ready for the operator who has to live with them.
         </p>
       </div>
 
-      <div class="he-row">
-        <div class="he-row__left">
-          <span class="he-row__num">01</span>
-          <h3 class="he-row__title">Inbound</h3>
+      <div class="svc-grid stagger">
+
+        <div class="svc-card">
+          <svg class="svc-card__cross" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true">
+            <line x1="7" y1="0" x2="7" y2="14" stroke="currentColor" stroke-width="1.2"/>
+            <line x1="0" y1="7" x2="14" y2="7" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+          <h3 class="svc-card__title">Inbound</h3>
+          <p class="svc-card__desc">Agents that qualify leads, ask the next question, and book the meeting &mdash; 24/7, no salary, no time zone.</p>
         </div>
-        <div class="he-row__right">
-          <p class="he-row__desc">
-            Agents that read inbound forms, qualify, ask the next question, and book the meeting — with the same judgment as a setter, minus the salary and the time zone.
-          </p>
-          <ul class="he-row__items">
-            <li>24/7 lead qualification</li>
-            <li>JobTread ↔ GHL bi-directional sync</li>
-            <li>Voice AI follow-up agents</li>
-          </ul>
+
+        <div class="svc-card">
+          <svg class="svc-card__cross" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true">
+            <line x1="7" y1="0" x2="7" y2="14" stroke="currentColor" stroke-width="1.2"/>
+            <line x1="0" y1="7" x2="14" y2="7" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+          <h3 class="svc-card__title">Internal Tools</h3>
+          <p class="svc-card__desc">Multi-tenant apps that replace ten dashboards &mdash; unified into one source of truth your team actually opens.</p>
         </div>
+
+        <div class="svc-card svc-card--featured">
+          <svg class="svc-card__cross" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true">
+            <line x1="7" y1="0" x2="7" y2="14" stroke="currentColor" stroke-width="1.2"/>
+            <line x1="0" y1="7" x2="14" y2="7" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+          <h3 class="svc-card__title">Research Agents</h3>
+          <p class="svc-card__desc">Claude-orchestrated discovery, scoring, and outreach &mdash; scraped, evaluated, and logged to CRM automatically.</p>
+        </div>
+
+        <div class="svc-card">
+          <svg class="svc-card__cross" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true">
+            <line x1="7" y1="0" x2="7" y2="14" stroke="currentColor" stroke-width="1.2"/>
+            <line x1="0" y1="7" x2="14" y2="7" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+          <h3 class="svc-card__title">Content &amp; Video</h3>
+          <p class="svc-card__desc">Brand-voice RAG, ad variation at scale, and high-end video production &mdash; AI engineering meets brand craft.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LIVE PROJECT PREVIEW — TOFAC squad builder animation ========== -->
+  <section class="section" id="live-preview">
+    <div class="container">
+      <div class="s-head s-head--split reveal" style="margin-bottom:32px;">
+        <div>
+          <span class="eyebrow">§ 02 — In motion</span>
+          <h2 class="h1 s-head__display" style="margin-top:16px;">
+            Latest project, <em>narrated.</em>
+          </h2>
+        </div>
+        <a href="work/tee-off-for-a-cause.html" class="link-arrow reveal" data-delay="1">
+          Read the case <span class="arrow">↗</span>
+        </a>
       </div>
 
-      <div class="he-row">
-        <div class="he-row__left">
-          <span class="he-row__num">02</span>
-          <h3 class="he-row__title">Internal Tools</h3>
-        </div>
-        <div class="he-row__right">
-          <p class="he-row__desc">
-            Multi-tenant apps that replace ten dashboards. Ad platforms, CRM, jobs, forms, and analytics unified into one source of truth your team will actually open.
-          </p>
-          <ul class="he-row__items">
-            <li>Unified marketing &amp; ops dashboards</li>
-            <li>Hours-saved &amp; ROI tracking widgets</li>
-            <li>Embedded inside the tools your team already uses</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="he-row">
-        <div class="he-row__left">
-          <span class="he-row__num">03</span>
-          <h3 class="he-row__title">Research</h3>
-        </div>
-        <div class="he-row__right">
-          <p class="he-row__desc">
-            Discovery, scoring, and outreach you can hand to an agent. Scrape, score against an ICP rubric, draft, log to CRM, track replies — multi-step, evaluated, recoverable.
-          </p>
-          <ul class="he-row__items">
-            <li>Claude-orchestrated research agents</li>
-            <li>Scored against weighted ICP/fit models</li>
-            <li>Outreach drafts in your past-message voice</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="he-row">
-        <div class="he-row__left">
-          <span class="he-row__num">04</span>
-          <h3 class="he-row__title">Content &amp; Video</h3>
-        </div>
-        <div class="he-row__right">
-          <p class="he-row__desc">
-            RAG over your brand-voice corpus, ideation pipelines, ad-variation at scale, and long-form repurposed into short — plus end-to-end video production for the assets that ride on top. Where the AI engineering meets the brand craft.
-          </p>
-          <ul class="he-row__items">
-            <li>Brand-voice RAG &amp; content systems</li>
-            <li>Long-form → short-form video repurposing</li>
-            <li>High-end video production (testimonials, project stories, podcast-style)</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="he-row">
-        <div class="he-row__left">
-          <span class="he-row__num">05</span>
-          <h3 class="he-row__title">Evaluation</h3>
-        </div>
-        <div class="he-row__right">
-          <p class="he-row__desc">
-            Eval infrastructure, regression suites, and human-in-the-loop checkpoints. The boring part that keeps the clever part shipping.
-          </p>
-          <ul class="he-row__items">
-            <li>Structured evals, not vibes</li>
-            <li>Regression suites that gate deploys</li>
-            <li>HITL review where it actually pays off</li>
-          </ul>
+      <div class="reveal">
+        <div class="tofac-anim" data-tofac-anim="squad">
+          <div class="ta-stage">
+            <div class="ta-pane">
+              <div class="ta-chrome"><span class="ta-dot r"></span><span class="ta-dot y"></span><span class="ta-dot g"></span><span class="ta-label">prompt</span></div>
+              <div class="ta-term" data-ta-term></div>
+            </div>
+            <div class="ta-pane">
+              <div class="ta-chrome"><span class="ta-dot r"></span><span class="ta-dot y"></span><span class="ta-dot g"></span><span class="ta-label">build squad</span></div>
+              <div class="ta-builder" data-ta-builder>
+                <div class="ta-field" data-step="team">
+                  <span class="ta-eyebrow">Team name</span>
+                  <div class="ta-input-display" data-ta-teamname>&nbsp;</div>
+                </div>
+                <div class="ta-field" data-step="tagline">
+                  <span class="ta-eyebrow">Squad tagline</span>
+                  <div class="ta-tagline" data-ta-tagline>&nbsp;</div>
+                </div>
+                <div class="ta-field" data-step="slots">
+                  <span class="ta-eyebrow">Lineup</span>
+                  <div class="ta-slots" data-ta-slots></div>
+                </div>
+                <div class="ta-field" data-step="summary">
+                  <div class="ta-summary">
+                    <div>
+                      <span class="ta-label">Foursome · Early-bird</span>
+                      <div><span class="ta-price">$600</span><span class="ta-eb">save $50</span></div>
+                    </div>
+                    <button class="ta-cta">
+                      Add to cart
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -558,7 +582,7 @@
     <div class="container">
       <div class="s-head s-head--split reveal">
         <div>
-          <span class="eyebrow">§ 02 — Selected work</span>
+          <span class="eyebrow">§ 03 — Selected work</span>
           <h2 class="h1 s-head__display" style="margin-top:16px;">
             Selected projects, <em>2024 — present.</em>
           </h2>
@@ -573,7 +597,10 @@
 
         <a class="work-card" href="work/tee-off-for-a-cause.html">
           <div class="work-card__media">
-            <img src="assets/work/thumbs/01-tofac.jpg" alt="Tee Off For A Cause" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/01-tofac.webp" />
+              <img src="assets/work/thumbs/01-tofac.jpg" alt="Tee Off For A Cause" loading="lazy" decoding="async" />
+            </picture>
             <span class="work-card__cta">Explore</span>
           </div>
           <div class="work-card__meta">
@@ -584,7 +611,10 @@
 
         <a class="work-card" href="work/rc-inbound-lead-tracking.html">
           <div class="work-card__media">
-            <img src="assets/work/thumbs/02-rc-leads.jpg" alt="RC Inbound Lead Tracking" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/02-rc-leads.webp" />
+              <img src="assets/work/thumbs/02-rc-leads.jpg" alt="RC Inbound Lead Tracking" loading="lazy" decoding="async" />
+            </picture>
             <span class="work-card__cta">Explore</span>
           </div>
           <div class="work-card__meta">
@@ -595,7 +625,10 @@
 
         <a class="work-card" href="work/grant-researcher.html">
           <div class="work-card__media">
-            <img src="assets/work/thumbs/21-grantbot.jpg" alt="GrantBot — Grant Researcher" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/21-grantbot.webp" />
+              <img src="assets/work/thumbs/21-grantbot.jpg" alt="GrantBot — Grant Researcher" loading="lazy" decoding="async" />
+            </picture>
             <span class="work-card__cta">Explore</span>
           </div>
           <div class="work-card__meta">
@@ -606,12 +639,29 @@
 
         <a class="work-card" href="work/ghl-scorecard.html">
           <div class="work-card__media">
-            <img src="assets/work/thumbs/05-ghl-audit.jpg" alt="GHL Automation Scorecard" loading="lazy" />
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/05-ghl-audit.webp" />
+              <img src="assets/work/thumbs/05-ghl-audit.jpg" alt="GHL Automation Scorecard" loading="lazy" decoding="async" />
+            </picture>
             <span class="work-card__cta">Explore</span>
           </div>
           <div class="work-card__meta">
             <span class="work-card__num">P—04 · AI · Internal tool</span>
             <h3 class="work-card__title"><strong>GHL Automation Scorecard</strong> — per-brand hours-saved widget, embedded inside each sub-account.</h3>
+          </div>
+        </a>
+
+        <a class="work-card" href="work/edith-moen-coaching.html">
+          <div class="work-card__media">
+            <picture>
+              <source type="image/webp" srcset="assets/work/thumbs/22-edith-moen.webp" />
+              <img src="assets/work/thumbs/22-edith-moen.jpg" alt="Edith Moen Coaching — Dutch life coaching website" loading="lazy" decoding="async" />
+            </picture>
+            <span class="work-card__cta">Explore</span>
+          </div>
+          <div class="work-card__meta">
+            <span class="work-card__num">P—05 · Full-stack · 1-day build</span>
+            <h3 class="work-card__title"><strong>Edith Moen Coaching</strong> — Next.js rebuild with custom CMS, UTM tracking &amp; full SEO, shipped in one day.</h3>
           </div>
         </a>
 
@@ -709,5 +759,6 @@
   </footer>
 
   <script src="main.js"></script>
+  <script src="assets/tofac-animations.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edith Moen Coaching — Full-stack rebuild with custom CMS — Mike Melchiot</title>
+  <meta name="description" content="A Next.js coaching website built in one day to replace a dated WordPress site — custom CMS, UTM tracking, SEO-ready, Resend transactional email, and SQLite content layer." />
+  <link rel="canonical" href="https://dutchmike.com/work/edith-moen-coaching" />
+  <meta property="og:title" content="Edith Moen Coaching — Full-stack rebuild with custom CMS" />
+  <meta property="og:description" content="A Next.js coaching website built in one day to replace a dated WordPress site — custom CMS, UTM tracking, SEO-ready, Resend transactional email, and SQLite content layer." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dutchmike.com/work/edith-moen-coaching" />
+  <meta property="og:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Edith Moen Coaching — Full-stack rebuild with custom CMS" />
+  <meta name="twitter:description" content="A Next.js coaching website built in one day to replace a dated WordPress site — custom CMS, UTM tracking, SEO-ready, Resend transactional email, and SQLite content layer." />
+  <meta name="twitter:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Edith Moen Coaching",
+    "description": "Next.js coaching website rebuilt in one day — custom CMS, UTM tracking, SEO, Resend email, SQLite content layer.",
+    "url": "https://dutchmike.com/work/edith-moen-coaching",
+    "datePublished": "2026-05-01",
+    "keywords": ["Next.js", "Full-stack", "Custom CMS", "SQLite", "Drizzle", "Coaching website", "Netherlands"],
+    "creator": {
+      "@type": "Person",
+      "@id": "https://dutchmike.com/#person",
+      "name": "Mike Melchiot",
+      "url": "https://dutchmike.com/",
+      "jobTitle": "AI engineer",
+      "sameAs": [
+        "https://www.linkedin.com/in/mikemelchiot/",
+        "https://github.com/dutchmike-lab"
+      ]
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .cms-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    @media (max-width: 680px) {
+      .cms-grid { grid-template-columns: 1fr; }
+    }
+    .cms-caption {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: 'Geist Mono', monospace;
+      letter-spacing: 0.04em;
+    }
+    .screen-shot {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      border: 1px solid var(--line);
+    }
+    .screen-shot img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      object-position: top;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__name">DUTCH MIKE</span>
+      <span class="loader__role">AI Engineer</span>
+    </div>
+  </div>
+
+  <header class="nav">
+    <div class="nav__pad">
+      <div class="nav__shell">
+        <a href="../index.html" class="nav__brand" aria-label="Dutch Mike — home">
+          <img class="nav__logo" src="../assets/dm-logo-white.png" alt="">
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          <div class="nav__menu" data-nav-menu>
+            <a href="../services.html" class="nav__menu-trigger" aria-haspopup="true" aria-expanded="false">
+              Services
+              <svg class="nav__menu-caret" viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__menu-panel" role="menu" aria-label="Services menu">
+              <div class="nav__menu-list">
+                <a class="nav__menu-item" href="../services.html#ai" role="menuitem">
+                  <span class="nav__menu-thumb nav__menu-thumb--ai" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="16" cy="16" r="4.5"/>
+                      <circle cx="6" cy="7" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="26" cy="7" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="6" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="26" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+                      <line x1="7.4" y1="8" x2="12.5" y2="13"/>
+                      <line x1="24.6" y1="8" x2="19.5" y2="13"/>
+                      <line x1="7.4" y1="24" x2="12.5" y2="19"/>
+                      <line x1="24.6" y1="24" x2="19.5" y2="19"/>
+                    </svg>
+                  </span>
+                  <span class="nav__menu-body">
+                    <span class="nav__menu-title">AI Engineering</span>
+                    <span class="nav__menu-desc">Agents, internal tools, and retrieval systems built for production.</span>
+                  </span>
+                </a>
+                <a class="nav__menu-item" href="../services.html#video" role="menuitem">
+                  <span class="nav__menu-thumb nav__menu-thumb--video" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="5" y="8" width="22" height="16" rx="2"/>
+                      <polygon points="14,13 21,16 14,19" fill="currentColor" stroke="none"/>
+                    </svg>
+                  </span>
+                  <span class="nav__menu-body">
+                    <span class="nav__menu-title">Video &amp; Brand</span>
+                    <span class="nav__menu-desc">Brand films, campaigns, and content engines — concept through finish.</span>
+                  </span>
+                </a>
+              </div>
+              <a class="nav__menu-feature" href="../work/tee-off-for-a-cause.html" role="menuitem">
+                <span class="nav__menu-feature-media">
+                  <img src="../assets/work/thumbs/01-tofac.jpg" alt="" loading="lazy" />
+                </span>
+                <span class="nav__menu-feature-meta">P—01 · Latest project</span>
+                <span class="nav__menu-feature-title">Tee Off For A Cause — Next.js event platform, built solo.</span>
+                <span class="nav__menu-feature-cta">Learn more <span aria-hidden="true">→</span></span>
+              </a>
+            </div>
+          </div>
+          <a href="../work.html">Work</a>
+          <a href="../about.html">About</a>
+        </nav>
+        <a class="nav__cta" href="../contact.html">
+          Contact Us
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="nav-float" id="navFloat" aria-hidden="true">
+      <a class="nav-float__cta" href="../contact.html">Contact</a>
+      <a href="../index.html" class="nav-float__logo" aria-label="Dutch Mike — home">
+        <img src="../assets/dm-logo-white.png" alt="">
+      </a>
+      <button class="nav-float__menu" id="navMenuBtn" type="button" aria-label="Open menu" aria-controls="navOverlay" aria-expanded="false">
+        <span>Menu</span>
+        <span class="nav-float__icon" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+    <div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
+      <div class="nav-overlay__panel">
+        <div class="nav-overlay__head">
+          <a class="nav-overlay__head-cta" href="../contact.html" data-nav-close>Contact</a>
+          <a href="../index.html" class="nav-overlay__head-logo" data-nav-close aria-label="Dutch Mike — home">
+            <img src="../assets/dm-logo-white.png" alt="">
+          </a>
+          <button class="nav-overlay__close" id="navMenuClose" type="button" aria-label="Close menu">
+            <span>Close</span><span aria-hidden="true">✕</span>
+          </button>
+        </div>
+        <nav class="nav-overlay__links" aria-label="Site">
+          <a href="../services.html" data-nav-close>Services</a>
+          <a href="../work.html" data-nav-close>Work</a>
+          <a href="../about.html" data-nav-close>About</a>
+          <a href="../contact.html" data-nav-close>Contact</a>
+        </nav>
+        <div class="nav-overlay__foot">
+          <span class="nav-overlay__label">Find me</span>
+          <div class="nav-overlay__socials">
+            <a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== CASE HERO ========== -->
+  <section class="case-hero">
+    <div class="container">
+      <a href="../work.html" class="case-hero__crumb reveal">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3 L4 8 L10 13"/></svg>
+        All work / 05 of 07 · AI &amp; web
+      </a>
+
+      <h1 class="display case-hero__title reveal">Edith Moen Coaching.</h1>
+
+      <p class="lede case-hero__lede reveal" data-delay="1">
+        A Next.js coaching website rebuilt in one day to replace a dated WordPress install &mdash; custom backend CMS, full UTM tracking, SEO-ready metadata, Resend transactional email, and a SQLite content layer. Better than what she had, faster than anyone expected.
+      </p>
+
+      <dl class="case-meta stagger">
+        <div><dt>Client</dt><dd>Edith Moen — Christelijke life coach, Netherlands</dd></div>
+        <div><dt>Role</dt><dd>Solo full-stack engineer &amp; designer</dd></div>
+        <div><dt>Year</dt><dd>2026</dd></div>
+        <div><dt>Time to ship</dt><dd>One day</dd></div>
+        <div><dt>Live</dt><dd><a href="https://edithmoencoaching.nl" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">edithmoencoaching.nl</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ========== HERO MOCKUP ========== -->
+  <section class="case-mockup">
+    <div class="container">
+      <figure class="mockup-hero reveal">
+        <img src="../assets/work/edith-moen/mockup-home.jpg" alt="Edith Moen Coaching homepage on a MacBook — Dutch life coaching site" loading="lazy" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========== CONTENT ========== -->
+  <section>
+    <div class="container">
+
+      <article class="case-block">
+        <div class="case-block__label">01 · Context</div>
+        <div class="case-block__body reveal">
+          <h3>A WordPress site that had done its job &mdash; once.</h3>
+          <p>
+            Edith Moen is a Christian life coach based in the Netherlands offering one-on-one coaching and her signature TotalBalance program. Her existing WordPress site was functional but dated &mdash; slow, visually heavy, hard for her to edit, and not built to track where her visitors were coming from.
+          </p>
+          <p>
+            The ask was simple: build something cleaner, faster, and better &mdash; with a CMS she could actually use herself, without calling a developer every time she needed to change a paragraph. The unstated ask was: do it fast.
+          </p>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">02 · The constraint</div>
+        <div class="case-block__body reveal">
+          <h3>One day. Full rebuild. Production-ready.</h3>
+          <p>
+            This wasn&rsquo;t a sprint where &ldquo;production-ready&rdquo; means &ldquo;it loads without erroring.&rdquo; To call it done meant all of this had to work:
+          </p>
+          <ul>
+            <li>Full Dutch-language site with five pages (home, coaching, TotalBalance, blog, contact)</li>
+            <li>Custom admin CMS at <code>/admin</code> &mdash; login, dashboard, post editor, pricing editor, contact submissions inbox</li>
+            <li>Contact form with Resend transactional email (notification to Edith + auto-reply to visitor)</li>
+            <li>UTM parameter capture on every page load &mdash; source, medium, campaign, content, term</li>
+            <li>SEO: Open Graph, Twitter card, JSON-LD, canonical URLs, sitemap, <code>robots.txt</code></li>
+            <li>Deploy to Fly.io (Docker-containerized Next.js + SQLite)</li>
+            <li>Client handoff doc with every credential and day-to-day how-to</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">03 · The CMS</div>
+        <div class="case-block__body reveal">
+          <h3>A backend she can actually use &mdash; built from scratch in a few hours.</h3>
+          <p>
+            Instead of reaching for a headless CMS SaaS, I built a purpose-specific admin panel directly into the Next.js app. It has exactly the screens Edith needs and nothing she doesn&rsquo;t.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========== CMS MOCKUPS ========== -->
+  <section style="background: var(--bg-alt, #f5f5f0); padding: 64px 0;">
+    <div class="container">
+
+      <figure class="mockup-hero reveal" style="margin-bottom: 0;">
+        <img src="../assets/work/edith-moen/mockup-cms.jpg" alt="Edith Moen CMS admin dashboard on a widescreen monitor" loading="lazy" />
+      </figure>
+      <p class="cms-caption">Admin dashboard: quick stats, recent submissions, one-click nav to every editable section.</p>
+
+      <div class="cms-grid reveal" data-delay="1">
+        <div>
+          <div class="screen-shot">
+            <img src="../assets/work/edith-moen/cms-posts.png" alt="Blog post list — draft/published status, edit buttons" loading="lazy" />
+          </div>
+          <p class="cms-caption">Post list — draft / published status, instant edit.</p>
+        </div>
+        <div>
+          <div class="screen-shot">
+            <img src="../assets/work/edith-moen/cms-post-edit.png" alt="Blog post editor with title, slug, content body, publish toggle" loading="lazy" />
+          </div>
+          <p class="cms-caption">Post editor — title, slug, rich content, publish toggle.</p>
+        </div>
+      </div>
+
+      <div class="screen-shot reveal" data-delay="1" style="margin-top: 0;">
+        <img src="../assets/work/edith-moen/cms-submissions.png" alt="Contact form submissions inbox — name, email, message, UTM data" loading="lazy" />
+      </div>
+      <p class="cms-caption">Submissions inbox — every contact form entry with UTM attribution so Edith knows exactly which channel generated the lead.</p>
+
+    </div>
+  </section>
+
+  <!-- ========== TECH + DECISIONS ========== -->
+  <section>
+    <div class="container">
+
+      <article class="case-block">
+        <div class="case-block__label">04 · Architecture</div>
+        <div class="case-block__body reveal">
+          <h3>Next.js App Router + SQLite. Small footprint, zero vendor lock-in.</h3>
+
+          <div class="visual visual--diagram">
+  Visitor lands → UTM params captured in middleware → stored per-session
+         │
+         ▼
+  Next.js App Router (Server Components + API Routes)
+         │
+         ├── /         Home, coaching, TotalBalance, blog pages
+         ├── /admin    Custom CMS (auth-gated, cookie session)
+         └── /api      Contact form → Resend → notification + auto-reply
+         │
+         ▼
+  SQLite (via Drizzle ORM) — posts, pricing, content, submissions
+         │
+         ▼
+  Fly.io — Docker container, persistent volume for DB
+          </div>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Stack</h4>
+          <div class="stack">
+            <span>Next.js (App Router)</span>
+            <span>React 19</span>
+            <span>TypeScript</span>
+            <span>Tailwind CSS</span>
+            <span>SQLite + Drizzle ORM</span>
+            <span>Resend</span>
+            <span>Fly.io (Docker)</span>
+          </div>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Key decisions</h4>
+          <ul>
+            <li><strong>SQLite over Postgres.</strong> A single-author coaching site with low write volume. No connection pooling overhead, no cloud DB cost, ships inside the same Docker container. Drizzle migrations keep the schema clean.</li>
+            <li><strong>Custom CMS instead of a headless SaaS.</strong> Edith needed exactly four editable surfaces: blog posts, pricing, page content, and her contact inbox. A bespoke panel with those four screens is faster to build and faster to use than explaining Sanity or Contentful to a non-technical client.</li>
+            <li><strong>UTM middleware at the edge.</strong> Every page load captures UTM params server-side before any React hydration. They land in the submissions table alongside every contact form so attribution is never lost.</li>
+            <li><strong>Resend over SMTP.</strong> The hosting provider&rsquo;s SMTP was unreliable. Resend gives deliverability, API-key rotation without code changes, and a free tier that easily covers Edith&rsquo;s volume.</li>
+            <li><strong>One-day scope discipline.</strong> No animations, no image optimization pipeline, no analytics dashboard. Everything that mattered shipped; everything that could wait didn&rsquo;t make the cut.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">05 · SEO &amp; UTM setup</div>
+        <div class="case-block__body reveal">
+          <h3>Fully instrumented on day one.</h3>
+          <p>
+            Every page exports a <code>generateMetadata()</code> function &mdash; unique title, description, Open Graph tags, Twitter card, and JSON-LD structured data. A dynamic <code>sitemap.ts</code> includes all published blog posts automatically. <code>robots.txt</code> blocks the <code>/admin</code> subtree.
+          </p>
+          <p>
+            UTM tracking is captured in Next.js middleware so it runs before any client-side JavaScript. The values are stored with every contact form submission, giving Edith a clear picture of which campaigns drive leads &mdash; even if she never opens Google Analytics.
+          </p>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">06 · Outcome</div>
+        <div class="case-block__body reveal">
+          <h3>A production site and a handoff doc, delivered in a day.</h3>
+          <p>
+            The rebuild went live at <a href="https://edithmoencoaching.nl" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">edithmoencoaching.nl</a>. Edith received a full client handoff document covering every credential, every day-to-day task (how to add a post, how to read her contact inbox, how to reset her password), and escalation contacts for hosting and email issues.
+          </p>
+          <p>
+            The old WordPress site had no UTM tracking, no submission inbox, and no way for Edith to update content without FTP access. The new one does all three from a browser tab &mdash; and it loads faster.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========== FRONTEND SCREENS ========== -->
+  <section style="background: var(--bg-alt, #f5f5f0); padding: 64px 0;">
+    <div class="container">
+      <figure class="mockup-hero reveal" style="margin-bottom: 0;">
+        <img src="../assets/work/edith-moen/mockup-coaching.jpg" alt="Edith Moen coaching page on a MacBook — services and process" loading="lazy" />
+      </figure>
+      <p class="cms-caption">Coaching page — services, process, and a clear path to the contact form.</p>
+    </div>
+  </section>
+
+  <!-- ========== CASE NAV ========== -->
+  <nav class="case-nav" aria-label="Project navigation">
+    <a href="ghl-scorecard.html" class="prev">
+      <span class="label">← Previous</span>
+      <span class="title">GHL Automation Scorecard</span>
+    </a>
+    <a href="grant-researcher.html" class="next">
+      <span class="label">Next case →</span>
+      <span class="title">GrantBot — Grant Researcher</span>
+    </a>
+  </nav>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="he-footer">
+    <div class="he-footer__watermark" aria-hidden="true">dutchmike</div>
+    <div class="container">
+
+      <div class="he-footer__top">
+        <h2 class="he-footer__headline">
+          <a href="mailto:info@dutchmike.com">Let&rsquo;s build something</a>
+        </h2>
+        <div class="he-footer__contact">
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Hiring</span>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Project inquiry</span>
+            <a href="../contact.html">Start a brief</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="he-footer__mid">
+        <div class="he-footer__address">
+          <span class="he-footer__address-name">Mike Melchiot</span>
+          AI engineer · video producer · operator.<br>
+          Available worldwide, async-friendly.
+        </div>
+        <div class="he-footer__sitemap">
+          <div class="he-footer__sitemap-col">
+            <h4>Site</h4>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../services.html">Services</a></li>
+              <li><a href="../work.html">Work</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="he-footer__sitemap-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://github.com/dutchmike-lab" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="he-footer__sitemap-col">
+          <h4>For Clients</h4>
+          <ul>
+            <li><a href="../work-with-me.html">Work with me</a></li>
+            <li><a href="../contact.html">Project inquiry</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="he-footer__bottom">
+        <span>© <span data-year></span> Mike Melchiot · dutchmike.com</span>
+        <span>Built worldwide · running on coffee &amp; tropics</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>
