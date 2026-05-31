@@ -8,13 +8,13 @@
  * Required env vars on Vercel (and in .env.local for `vercel dev`):
  *   RESEND_API_KEY     — get from https://resend.com/api-keys
  *   CONTACT_TO_EMAIL   — defaults to info@dutchmike.com
- *   CONTACT_FROM_EMAIL — defaults to "Portfolio <contact@dutchmike.com>" (domain must be verified in Resend)
+ *   CONTACT_FROM_EMAIL — defaults to "Dutch Mike <contact@dutchmike.com>" (domain must be verified in Resend)
  */
 
 import { Resend } from 'resend';
 
 const TO = process.env.CONTACT_TO_EMAIL || 'info@dutchmike.com';
-const FROM = process.env.CONTACT_FROM_EMAIL || 'Portfolio <contact@dutchmike.com>';
+const FROM = process.env.CONTACT_FROM_EMAIL || 'Dutch Mike <contact@dutchmike.com>';
 
 function bad(res, code, message) {
   res.status(code).json({ ok: false, error: message });
@@ -64,21 +64,102 @@ export default async function handler(req, res) {
 
   const text = `New contact-form note\n\nFrom: ${name} <${email}>\nSubject: ${subject}\n\n${message}\n\n— sent from dutchmike.com/contact`;
 
-  try {
-    const result = await resend.emails.send({
-      from: FROM,
-      to: [TO],
-      replyTo: email,
-      subject: `[dutchmike.com] ${subject}`,
-      text,
-      html,
-    });
+  const firstName = esc(name.trim().split(/\s+/)[0]);
 
-    if (result.error) {
-      console.error('Resend error:', result.error);
+  const replyHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Got your message — Dutch Mike</title>
+<!--
+  Subject A: Got your message — Dutch Mike
+  Subject B: Your message landed — Dutch Mike
+  Preview: I'll get back to you within 1–2 business days.
+-->
+</head>
+<body style="margin:0;padding:0;background:#ffffff;">
+<!-- preheader -->
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">I'll get back to you within 1–2 business days.&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;</div>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#ffffff;">
+  <tr>
+    <td align="center" style="padding:48px 16px 48px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:560px;">
+
+        <!-- wordmark -->
+        <tr>
+          <td style="padding-bottom:40px;">
+            <a href="https://dutchmike.com" style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:0.06em;color:#0a0a0a;text-decoration:none;text-transform:uppercase;">dutchmike</a>
+          </td>
+        </tr>
+
+        <!-- body -->
+        <tr>
+          <td style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:17px;line-height:1.6;color:#0a0a0a;">
+            <p style="margin:0 0 20px;">Hi ${firstName},</p>
+            <p style="margin:0 0 20px;">Thanks for reaching out — got your message and I'll get back to you within 1–2 business days.</p>
+            <p style="margin:0 0 20px;">If it's time-sensitive, feel free to reply directly to this email.</p>
+            <p style="margin:0;">Talk soon,<br>Mike</p>
+          </td>
+        </tr>
+
+        <!-- divider -->
+        <tr>
+          <td style="padding:40px 0 0;">
+            <div style="height:1px;background:#e8e6e0;"></div>
+          </td>
+        </tr>
+
+        <!-- footer -->
+        <tr>
+          <td style="padding:24px 0 0;font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:13px;color:#6b6b66;line-height:1.5;">
+            <a href="https://dutchmike.com" style="color:#6b6b66;text-decoration:none;">dutchmike.com</a>
+            &nbsp;&middot;&nbsp;
+            <a href="https://linkedin.com/in/dutchmike" style="color:#6b6b66;text-decoration:none;">LinkedIn</a>
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/dutchmike" style="color:#6b6b66;text-decoration:none;">GitHub</a>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>`;
+
+  const replyText = `Hi ${firstName},\n\nThanks for reaching out — got your message and I'll get back to you within 1–2 business days.\n\nIf it's time-sensitive, feel free to reply directly to this email.\n\nTalk soon,\nMike\n\n—\ndutchmike.com`;
+
+  try {
+    const [notifyResult, replyResult] = await Promise.all([
+      resend.emails.send({
+        from: FROM,
+        to: [TO],
+        replyTo: email,
+        subject: `[dutchmike.com] ${subject}`,
+        text,
+        html,
+      }),
+      resend.emails.send({
+        from: FROM,
+        to: [email],
+        replyTo: TO,
+        subject: `Got your message — Dutch Mike`,
+        text: replyText,
+        html: replyHtml,
+      }),
+    ]);
+
+    if (notifyResult.error) {
+      console.error('Resend notify error:', notifyResult.error);
       return bad(res, 502, 'Email service rejected the send.');
     }
-    return res.status(200).json({ ok: true, id: result.data?.id });
+    if (replyResult.error) {
+      // Non-fatal — the main notification went through; log but don't fail the request
+      console.error('Resend auto-reply error:', replyResult.error);
+    }
+
+    return res.status(200).json({ ok: true, id: notifyResult.data?.id });
   } catch (err) {
     console.error('contact handler error:', err);
     return bad(res, 500, 'Unexpected server error.');
