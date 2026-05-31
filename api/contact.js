@@ -70,7 +70,8 @@ export default async function handler(req, res) {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
 <title>Got your message — Dutch Mike</title>
 <!--
   Subject A: Got your message — Dutch Mike
@@ -78,50 +79,65 @@ export default async function handler(req, res) {
   Preview: I'll get back to you within 1–2 business days.
 -->
 </head>
-<body style="margin:0;padding:0;background:#ffffff;">
+<body style="margin:0;padding:0;background:#f0eeea;-webkit-text-size-adjust:100%;mso-line-height-rule:exactly;">
 <!-- preheader -->
-<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">I'll get back to you within 1–2 business days.&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;</div>
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#ffffff;">
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">I'll get back to you within 1–2 business days.&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;&nbsp;&#8203;&zwnj;</div>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f0eeea;">
   <tr>
-    <td align="center" style="padding:48px 16px 48px;">
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:560px;">
+    <td align="center" style="padding:48px 20px;">
 
-        <!-- wordmark -->
+      <!-- card wrapper: max 600px -->
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;">
+
+        <!-- ── DARK HEADER ── -->
         <tr>
-          <td style="padding-bottom:40px;">
-            <a href="https://dutchmike.com" style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:15px;font-weight:400;letter-spacing:-0.01em;color:#0a0a0a;text-decoration:none;">dutchmike.com</a>
+          <td style="background:#0a0a0a;border-radius:16px 16px 0 0;padding:40px 48px 36px;">
+            <!-- wordmark -->
+            <a href="https://dutchmike.com" style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;color:#6b6b66;text-decoration:none;text-transform:uppercase;display:block;margin-bottom:28px;">dutchmike</a>
+            <!-- headline -->
+            <div style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:38px;font-weight:500;color:#ffffff;letter-spacing:-0.025em;line-height:1.1;">Got your<br>message.</div>
           </td>
         </tr>
 
-        <!-- body -->
+        <!-- ── WHITE BODY ── -->
         <tr>
-          <td style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:17px;line-height:1.6;color:#0a0a0a;">
-            <p style="margin:0 0 20px;">Hi ${firstName},</p>
-            <p style="margin:0 0 20px;">Thanks for reaching out — got your message and I'll get back to you within 1–2 business days.</p>
-            <p style="margin:0 0 20px;">If it's time-sensitive, feel free to reply directly to this email.</p>
-            <p style="margin:0;">Talk soon,<br>Mike</p>
+          <td style="background:#ffffff;padding:40px 48px 36px;">
+            <p style="margin:0 0 18px;font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:17px;line-height:1.65;color:#0a0a0a;">Hi ${firstName},</p>
+            <p style="margin:0 0 18px;font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:17px;line-height:1.65;color:#0a0a0a;">Thanks for reaching out &#8212; I got your message and I&#8217;ll be in touch within&nbsp;<span style="font-weight:500;">1&#8211;2 business days</span>.</p>
+            <p style="margin:0 0 36px;font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:17px;line-height:1.65;color:#0a0a0a;">If it&#8217;s time-sensitive, just reply to this email.</p>
+            <!-- signature -->
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="border-left:2px solid #0a0a0a;padding-left:16px;">
+                  <div style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:16px;font-weight:500;color:#0a0a0a;line-height:1.4;">Mike</div>
+                  <div style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:13px;color:#6b6b66;margin-top:2px;">dutchmike.com</div>
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
 
-        <!-- divider -->
+        <!-- ── FOOTER ── -->
         <tr>
-          <td style="padding:40px 0 0;">
-            <div style="height:1px;background:#e8e6e0;"></div>
-          </td>
-        </tr>
-
-        <!-- footer -->
-        <tr>
-          <td style="padding:24px 0 0;font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:13px;color:#6b6b66;line-height:1.5;">
-            <a href="https://dutchmike.com" style="color:#6b6b66;text-decoration:none;">dutchmike.com</a>
-            &nbsp;&middot;&nbsp;
-            <a href="https://linkedin.com/in/dutchmike" style="color:#6b6b66;text-decoration:none;">LinkedIn</a>
-            &nbsp;&middot;&nbsp;
-            <a href="https://github.com/dutchmike" style="color:#6b6b66;text-decoration:none;">GitHub</a>
+          <td style="background:#f7f5f0;border-radius:0 0 16px 16px;padding:20px 48px;border-top:1px solid #e8e6e0;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:12px;color:#97968f;">
+                  <a href="https://dutchmike.com" style="color:#6b6b66;text-decoration:none;">dutchmike.com</a>
+                  <span style="color:#d0cec8;margin:0 8px;">&middot;</span>
+                  <a href="https://linkedin.com/in/dutchmike" style="color:#6b6b66;text-decoration:none;">LinkedIn</a>
+                  <span style="color:#d0cec8;margin:0 8px;">&middot;</span>
+                  <a href="https://github.com/dutchmike" style="color:#6b6b66;text-decoration:none;">GitHub</a>
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
 
       </table>
+      <!-- /card -->
+
     </td>
   </tr>
 </table>
