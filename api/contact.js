@@ -93,8 +93,8 @@ export default async function handler(req, res) {
         <!-- ── DARK HEADER ── -->
         <tr>
           <td style="background:#0a0a0a;border-radius:16px 16px 0 0;padding:40px 48px 36px;">
-            <!-- wordmark -->
-            <a href="https://dutchmike.com" style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;color:#6b6b66;text-decoration:none;text-transform:uppercase;display:block;margin-bottom:28px;">dutchmike</a>
+            <!-- logo -->
+            <a href="https://dutchmike.com" style="display:block;margin-bottom:28px;"><img src="https://dutchmike.com/assets/dm-logo-white.png" width="140" height="18" alt="dutchmike" style="display:block;border:0;"></a>
             <!-- headline -->
             <div style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:38px;font-weight:500;color:#ffffff;letter-spacing:-0.025em;line-height:1.1;">Got your<br>message.</div>
           </td>
