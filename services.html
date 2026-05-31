@@ -176,57 +176,128 @@
       </div>
     </section>
 
-    <section class="container" style="padding-bottom: clamp(80px, 10vw, 140px);">
-      <div class="portfolio-grid-3up" style="grid-template-columns: repeat(2, 1fr);">
-
-        <div class="card-3up" style="cursor:default;">
-          <div class="card-3up__visual">
-            <span class="card-3up__year">AI</span>
-            <svg viewBox="0 0 280 175" preserveAspectRatio="xMidYMid meet">
-              <g fill="none" stroke="#0a0a0a" stroke-width="1">
-                <circle cx="140" cy="88" r="38"/>
-                <circle cx="60" cy="60" r="6" fill="#0a0a0a"/>
-                <circle cx="220" cy="60" r="6" fill="#0a0a0a"/>
-                <circle cx="60" cy="120" r="6" fill="#0a0a0a"/>
-                <circle cx="220" cy="120" r="6" fill="#0a0a0a"/>
-                <line x1="66" y1="60" x2="108" y2="76"/>
-                <line x1="214" y1="60" x2="172" y2="76"/>
-                <line x1="66" y1="120" x2="108" y2="100"/>
-                <line x1="214" y1="120" x2="172" y2="100"/>
-              </g>
-            </svg>
+    <!-- ===== AI ENGINEERING ===== -->
+    <section class="svc-section" id="ai">
+      <div class="container">
+        <div class="svc-head">
+          <div class="svc-head__left">
+            <div class="svc-head__eyebrow"><span class="dot-sm"></span>AI ENGINEERING</div>
+            <h2 class="svc-head__title">Production systems,<br>not demos.</h2>
           </div>
-          <div class="card-3up__meta">AI ENGINEERING</div>
-          <h3 class="card-3up__title">Agents, internal tools, and retrieval systems</h3>
-          <p class="card-3up__desc">
-            Production agents that handle inbound work 24/7. Internal tools that replace
-            ten dashboards. RAG pipelines with evals, not vibes. Multi-tenant Python +
-            TypeScript shipping into real customer-facing surfaces.
-          </p>
-          <span class="card-3up__cta">See AI work <span class="arrow">↗</span></span>
+          <p class="svc-head__desc">Agents, retrieval pipelines, and internal tools built to run in production — with evals, monitoring, and real error handling, not just a working notebook.</p>
         </div>
+        <div class="svc-grid svc-grid--3">
 
-        <div class="card-3up" style="cursor:default;">
-          <div class="card-3up__visual card-3up__visual--dark">
-            <span class="card-3up__year">VIDEO</span>
-            <svg viewBox="0 0 280 175" preserveAspectRatio="xMidYMid meet">
-              <g fill="#f6f5f1" opacity="0.88">
-                <rect x="50" y="50" width="180" height="100" rx="6"/>
-                <polygon points="120,80 160,100 120,120" fill="#0a0a0a"/>
-              </g>
-            </svg>
-            <div class="v3-caption">Concept · production · post</div>
+          <div class="svc-card svc-card--v2">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title">Inbound Automation</h3>
+            <p class="svc-card__desc">AI that works the funnel 24/7. Lead capture, qualification, and CRM routing — no missed opportunities, no manual triage.</p>
           </div>
-          <div class="card-3up__meta">VIDEO &amp; BRAND</div>
-          <h3 class="card-3up__title">Brand films, campaigns, and content engines</h3>
-          <p class="card-3up__desc">
-            Fifteen years of video and brand work &mdash; brand films, campaigns,
-            recurring content programs, launch films. Concept through finish. Built
-            for YouTube, social, and web distribution.
-          </p>
-          <span class="card-3up__cta">See video work <span class="arrow">↗</span></span>
-        </div>
 
+          <div class="svc-card svc-card--v2">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title">Internal Tools</h3>
+            <p class="svc-card__desc">One custom tool that replaces ten SaaS subscriptions. Admin panels, dashboards, and ops tooling built for how your team actually works.</p>
+          </div>
+
+          <div class="svc-card svc-card--v2">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title">RAG &amp; Retrieval</h3>
+            <p class="svc-card__desc">Knowledge bases that surface the right answer, not a hallucination. Document ingestion, structured search, and evals baked in from day one.</p>
+          </div>
+
+          <div class="svc-card svc-card--v2">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title">Research Agents</h3>
+            <p class="svc-card__desc">Multi-step agents that gather, synthesize, and deliver structured intelligence on a schedule. Built for teams who can't afford to miss a signal.</p>
+          </div>
+
+          <div class="svc-card svc-card--v2">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title">Full-Stack AI Products</h3>
+            <p class="svc-card__desc">End-to-end product development with AI at the core — schema through deployment, Python + TypeScript, multi-tenant where it needs to be.</p>
+          </div>
+
+          <div class="svc-card svc-card--v2 svc-card--featured">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title">Not sure where to start?</h3>
+            <p class="svc-card__desc">20-minute diagnostic call. I'll tell you exactly what to build, what to skip, and what it'll cost.</p>
+            <a href="contact.html" class="svc-card__cta">Book a call &rarr;</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VIDEO & BRAND ===== -->
+    <section class="svc-section svc-section--alt" id="video">
+      <div class="container">
+        <div class="svc-head">
+          <div class="svc-head__left">
+            <div class="svc-head__eyebrow"><span class="dot-sm"></span>VIDEO &amp; BRAND</div>
+            <h2 class="svc-head__title">Story first,<br>format second.</h2>
+          </div>
+          <p class="svc-head__desc">Fifteen years of video and brand work — brand films, recurring content, and campaign assets. Concept through finish, built to ship.</p>
+        </div>
+        <div class="svc-grid svc-grid--3">
+
+          <div class="svc-card svc-card--v2">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title">Brand Films</h3>
+            <p class="svc-card__desc">Narrative films that launch or reframe a brand. Concept, production, and post. Fifteen years of making things people actually watch.</p>
+          </div>
+
+          <div class="svc-card svc-card--v2">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+                <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title">Content Engines</h3>
+            <p class="svc-card__desc">Recurring programs that fill a channel without draining your team. YouTube, social, and web — built for volume and consistency.</p>
+          </div>
+
+          <div class="svc-card svc-card--v2">
+            <div class="svc-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+              </svg>
+            </div>
+            <h3 class="svc-card__title">Campaign Work</h3>
+            <p class="svc-card__desc">Multi-asset campaigns from brief to delivery. Product launches, awareness plays, and stories that convert — built for YouTube, social, and web.</p>
+          </div>
+
+        </div>
       </div>
     </section>
 
