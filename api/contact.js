@@ -89,7 +89,7 @@ export default async function handler(req, res) {
         <!-- wordmark -->
         <tr>
           <td style="padding-bottom:40px;">
-            <a href="https://dutchmike.com" style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:0.06em;color:#0a0a0a;text-decoration:none;text-transform:uppercase;">dutchmike</a>
+            <a href="https://dutchmike.com" style="font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:15px;font-weight:400;letter-spacing:-0.01em;color:#0a0a0a;text-decoration:none;">dutchmike.com</a>
           </td>
         </tr>
 
