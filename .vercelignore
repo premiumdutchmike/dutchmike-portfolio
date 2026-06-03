@@ -1,0 +1,5 @@
+node_modules/
+assets/robot-frames/*.webp
+animations/
+notes/
+*.rows-backup.html

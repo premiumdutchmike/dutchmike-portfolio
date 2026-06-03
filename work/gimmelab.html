@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gimmelab — Mike Melchiot | AI Engineer</title>
+  <meta name="description" content="A credit-based golf tee time SaaS — brand system, multi-page app, business plan, and 22 live partner courses in Greater Philadelphia. Live at gimmelab.com." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Mike Melchiot" />
+  <link rel="canonical" href="https://dutchmike.com/work/gimmelab.html" />
+  <meta property="og:title" content="Gimmelab — Mike Melchiot | AI Engineer" />
+  <meta property="og:description" content="A credit-based golf tee time SaaS — full brand system, 5-screen UX, business plan, and partner pitch deck built as a design demo." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dutchmike.com/work/gimmelab.html" />
+  <meta property="og:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Gimmelab — Mike Melchiot | AI Engineer" />
+  <meta name="twitter:description" content="A credit-based golf tee time SaaS — full brand system, 5-screen UX, business plan, and partner pitch deck built as a design demo." />
+  <meta name="twitter:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Gimmelab",
+    "description": "Credit-based golf tee time SaaS — brand system, 5-screen UX, business plan, and partner pitch deck.",
+    "url": "https://dutchmike.com/work/gimmelab",
+    "datePublished": "2026-03-01",
+    "keywords": ["Product design", "SaaS", "Golf", "Brand system", "UX"],
+    "creator": {
+      "@type": "Person",
+      "@id": "https://dutchmike.com/#person",
+      "name": "Mike Melchiot",
+      "url": "https://dutchmike.com/",
+      "jobTitle": "AI engineer",
+      "sameAs": [
+        "https://www.linkedin.com/in/mikemelchiot/",
+        "https://github.com/dutchmike-lab"
+      ]
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+
+  <style>
+    /* Brand palette swatch — inline only for this case study */
+    .swatch-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .swatch { display: flex; flex-direction: column; gap: 8px; }
+    .swatch__block { width: 80px; height: 80px; border-radius: 2px; border: 1px solid rgba(0,0,0,0.08); }
+    .swatch__name { font-size: 11px; font-weight: 600; color: var(--mute); letter-spacing: 0.04em; text-transform: uppercase; }
+    .swatch__hex  { font-size: 11px; color: var(--mute); font-family: 'JetBrains Mono', monospace; }
+
+    /* Tier table */
+    .tier-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+    .tier-table th, .tier-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--rule); font-size: 15px; }
+    .tier-table th { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mute); }
+    .tier-table tr:last-child td { border-bottom: none; }
+    .tier-name { font-weight: 600; color: var(--ink); }
+    .tier-amber { color: #BF7B2E; font-weight: 600; }
+
+    /* Status badge */
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 2px;
+      background: rgba(191,123,46,0.12); color: #BF7B2E;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .status-badge::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: #BF7B2E; opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <!-- Page loader -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__name">DUTCH MIKE</span>
+      <span class="loader__role">AI Engineer</span>
+    </div>
+  </div>
+
+  <!-- ========== NAV ========== -->
+  <header class="nav">
+    <div class="nav__pad">
+      <div class="nav__shell">
+        <a href="../index.html" class="nav__brand" aria-label="Dutch Mike — home">
+          <img class="nav__logo" src="../assets/dm-logo-white.png" alt="">
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          <div class="nav__menu" data-nav-menu>
+            <a href="../services.html" class="nav__menu-trigger" aria-haspopup="true" aria-expanded="false">
+              Services
+              <svg class="nav__menu-caret" viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__menu-panel" role="menu" aria-label="Services menu">
+              <div class="nav__menu-list">
+                <a class="nav__menu-item" href="../services.html#ai" role="menuitem">
+                  <span class="nav__menu-thumb nav__menu-thumb--ai" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="16" cy="16" r="4.5"/>
+                      <circle cx="6" cy="7" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="26" cy="7" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="6" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="26" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+                      <line x1="7.4" y1="8" x2="12.5" y2="13"/>
+                      <line x1="24.6" y1="8" x2="19.5" y2="13"/>
+                      <line x1="7.4" y1="24" x2="12.5" y2="19"/>
+                      <line x1="24.6" y1="24" x2="19.5" y2="19"/>
+                    </svg>
+                  </span>
+                  <span class="nav__menu-body">
+                    <span class="nav__menu-title">AI Engineering</span>
+                    <span class="nav__menu-desc">Agents, internal tools, and retrieval systems built for production.</span>
+                  </span>
+                </a>
+                <a class="nav__menu-item" href="../services.html#video" role="menuitem">
+                  <span class="nav__menu-thumb nav__menu-thumb--video" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="5" y="8" width="22" height="16" rx="2"/>
+                      <polygon points="14,13 21,16 14,19" fill="currentColor" stroke="none"/>
+                    </svg>
+                  </span>
+                  <span class="nav__menu-body">
+                    <span class="nav__menu-title">Video &amp; Brand</span>
+                    <span class="nav__menu-desc">Brand films, campaigns, and content engines — concept through finish.</span>
+                  </span>
+                </a>
+              </div>
+              <a class="nav__menu-feature" href="tee-off-for-a-cause.html" role="menuitem">
+                <span class="nav__menu-feature-media">
+                  <picture>
+                    <source type="image/webp" srcset="../assets/work/thumbs/01-tofac.webp" />
+                    <img src="../assets/work/thumbs/01-tofac.jpg" alt="" loading="lazy" />
+                  </picture>
+                </span>
+                <span class="nav__menu-feature-meta">P—01 · Latest project</span>
+                <span class="nav__menu-feature-title">Tee Off For A Cause — Next.js event platform, built solo.</span>
+                <span class="nav__menu-feature-cta">Learn more <span aria-hidden="true">→</span></span>
+              </a>
+            </div>
+          </div>
+          <a href="../work.html">Work</a>
+          <a href="../about.html">About</a>
+        </nav>
+        <div class="nav__actions">
+          <a href="../contact.html" class="btn btn--sm">Let&rsquo;s talk</a>
+          <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navOverlay">
+            <span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
+      <nav class="nav-overlay__links">
+        <a href="../index.html">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../work.html">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== CASE HERO ========== -->
+  <section class="case-hero">
+    <div class="container">
+      <a href="../work.html" class="case-hero__crumb reveal">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3 L4 8 L10 13"/></svg>
+        All work · Product design
+      </a>
+
+      <h1 class="display case-hero__title reveal">Gimmelab.</h1>
+
+      <p class="lede case-hero__lede reveal" data-delay="1">
+        A credit-based golf tee time SaaS — members buy a monthly plan, use credits to book tee times at 22 partner courses in Greater Philadelphia. No booking fees, no phone calls, no country club required. Built solo from zero: brand system, full Next.js app, business plan, and live at gimmelab.com.
+      </p>
+
+      <dl class="case-meta stagger">
+        <div><dt>Project</dt><dd>Personal — founder</dd></div>
+        <div><dt>Role</dt><dd>Founder · product design · full-stack</dd></div>
+        <div><dt>Year</dt><dd>2026</dd></div>
+        <div><dt>Status</dt><dd><a href="https://www.gimmelab.com" target="_blank" rel="noopener" style="color:inherit;">gimmelab.com →</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ========== HERO MOCKUP ========== -->
+  <section class="case-mockup">
+    <div class="container">
+      <figure class="mockup-hero reveal">
+        <img src="../assets/work/gimmelab-mockups/gl-home-viewport.jpg" alt="Gimmelab homepage — &lsquo;its time to reprice golf&rsquo; hero with dark editorial design and pricing engine UI" loading="lazy" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========== CONTENT ========== -->
+  <section>
+    <div class="container">
+
+      <article class="case-block">
+        <div class="case-block__label">01 · Context</div>
+        <div class="case-block__body reveal">
+          <h3>Golf tee times are stuck in 2005.</h3>
+          <p>
+            Booking a round of golf still means calling a pro shop, navigating a clunky third-party booking site, or paying a $10–$15 convenience fee to a middleman who adds nothing to the experience. Public courses are under-utilised outside peak times. Casual golfers — the majority of the market — have no subscription option that treats them like members without requiring a $10,000 initiation.
+          </p>
+          <p>
+            The name comes from the game: a <em>gimme</em> is a conceded putt — a moment of generosity between players. Reframed as a lab for the game, a place built for real players at every level.
+          </p>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">02 · The idea</div>
+        <div class="case-block__body reveal">
+          <h3>Repricing Golf.</h3>
+          <p>
+            A SaaS membership that gives golfers a fixed monthly credit allowance and lets them book tee times at any course in the Gimmelab partner network — no per-booking fees, no phone calls, credits reset monthly. Partner courses fill dead inventory; Gimmelab keeps a margin on the credit spread.
+          </p>
+
+          <h4 style="margin-top:32px; margin-bottom:16px; font-size:18px; color:var(--ink);">Membership tiers</h4>
+          <table class="tier-table">
+            <thead>
+              <tr>
+                <th>Plan</th>
+                <th>Price / mo</th>
+                <th>Credits / mo</th>
+                <th>Avg cost per round</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="tier-name">Casual</span></td>
+                <td class="tier-amber">$99</td>
+                <td>100 credits</td>
+                <td>~$50–$99 / round</td>
+              </tr>
+              <tr>
+                <td><span class="tier-name">Core</span></td>
+                <td class="tier-amber">$149</td>
+                <td>150 credits</td>
+                <td>~$37–$75 / round</td>
+              </tr>
+              <tr>
+                <td><span class="tier-name">Heavy</span></td>
+                <td class="tier-amber">$199</td>
+                <td>210 credits</td>
+                <td>~$28–$55 / round</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="margin-top:16px; color:var(--mute); font-size:14px;">Credits reset monthly on the billing date. No rollovers. Each tee time costs 1–2 credits depending on course and demand window.</p>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">03 · What I built</div>
+        <div class="case-block__body reveal">
+          <h3>Solo from zero — brand, app, and business in one build.</h3>
+          <p>
+            No outside designer, no agency, no co-founder. Everything produced from scratch: the brand system, the full Next.js app, the business plan, the financials model, and the partner pitch deck. Launched live at <a href="https://www.gimmelab.com" target="_blank" rel="noopener">gimmelab.com</a> with 22 partner courses across Greater Philadelphia.
+          </p>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Deliverables</h4>
+          <ul>
+            <li><strong>Brand system</strong> — full design brief: palette, type scale, spacing, imagery rules, CSS token set</li>
+            <li><strong>Full Next.js app</strong> — homepage, course browser, course detail + tee time grid, pricing/membership, partner portal, member dashboard</li>
+            <li><strong>22 live partner courses</strong> — Greater Philadelphia network, member-bookable with no green fees or booking fees</li>
+            <li><strong>Business plan</strong> — market sizing, revenue model, unit economics, go-to-market strategy</li>
+            <li><strong>Financials model</strong> — MRR projections, credit spread scenarios, partner revenue share</li>
+            <li><strong>Partner pitch deck</strong> — used in live course partner onboarding conversations</li>
+          </ul>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Stack</h4>
+          <div class="stack">
+            <span>Next.js</span>
+            <span>React Server Components</span>
+            <span>Supabase (auth + Postgres)</span>
+            <span>Stripe Subscriptions</span>
+            <span>Resend</span>
+            <span>Vercel</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">04 · Brand system</div>
+        <div class="case-block__body reveal">
+          <h3>Serious. Not stuffy. Bold. Not loud.</h3>
+          <p>
+            The brief had one rule: <em>no green anywhere</em>. Green is the course — it belongs to the game, not the brand. The palette is warm, editorial, and deliberately restrained.
+          </p>
+
+          <div class="swatch-row">
+            <div class="swatch">
+              <div class="swatch__block" style="background:#0C0C0B;"></div>
+              <span class="swatch__name">Midnight</span>
+              <span class="swatch__hex">#0C0C0B</span>
+            </div>
+            <div class="swatch">
+              <div class="swatch__block" style="background:#BF7B2E;"></div>
+              <span class="swatch__name">Amber</span>
+              <span class="swatch__hex">#BF7B2E</span>
+            </div>
+            <div class="swatch">
+              <div class="swatch__block" style="background:#F4EEE3; border:1px solid #e0d8cd;"></div>
+              <span class="swatch__name">Linen</span>
+              <span class="swatch__hex">#F4EEE3</span>
+            </div>
+            <div class="swatch">
+              <div class="swatch__block" style="background:#1E1D1B;"></div>
+              <span class="swatch__name">Graphite</span>
+              <span class="swatch__hex">#1E1D1B</span>
+            </div>
+            <div class="swatch">
+              <div class="swatch__block" style="background:#847C72;"></div>
+              <span class="swatch__name">Stone</span>
+              <span class="swatch__hex">#847C72</span>
+            </div>
+            <div class="swatch">
+              <div class="swatch__block" style="background:#E5DDD3; border:1px solid #d4ccc3;"></div>
+              <span class="swatch__name">Smoke</span>
+              <span class="swatch__hex">#E5DDD3</span>
+            </div>
+          </div>
+
+          <p style="margin-top:32px;">
+            Two fonts, two jobs: <strong>Nunito 900</strong> for the wordmark and all headlines — tight tracking, editorial weight. <strong>Inter</strong> for everything else. No exceptions, no third font. The type system is encoded into two reusable CSS classes (<code>.wm</code> and <code>.hl</code>) that carry all the decisions.
+          </p>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Key brand rules</h4>
+          <ul>
+            <li>No green — amber is the only accent, used sparingly</li>
+            <li>No rounded corners — <code>border-radius: 2px</code> max, no pill buttons</li>
+            <li>No card shadows — contrast and borders carry depth</li>
+            <li>Wordmark is always live text, never an image</li>
+            <li>No emoji anywhere in the UI</li>
+            <li>Photo overlays: Midnight at 45% opacity max — never a colour overlay</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">05 · The product</div>
+        <div class="case-block__body reveal">
+          <h3>Live at gimmelab.com.</h3>
+          <p>
+            22 courses, three membership tiers, a full booking flow, and a partner portal — all running in production. Every screen built solo.
+          </p>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Homepage</h4>
+          <div class="mockup-grid">
+            <figure class="mockup mockup--wide">
+              <img src="../assets/work/gimmelab-mockups/gl-home-viewport.jpg" alt="Gimmelab homepage — &lsquo;its time to reprice golf&rsquo; with dark hero, course cards, and pricing engine" loading="lazy" />
+              <figcaption>Homepage — "its time to reprice golf"</figcaption>
+            </figure>
+          </div>
+
+          <h4 style="margin-top:40px; margin-bottom:12px; font-size:18px; color:var(--ink);">Course browser</h4>
+          <div class="mockup-grid">
+            <figure class="mockup mockup--wide">
+              <img src="../assets/work/gimmelab-mockups/gl-courses-viewport.jpg" alt="Gimmelab course browser — Play anywhere. Pay nothing extra. 22 courses with search and distance filter" loading="lazy" />
+              <figcaption>22-course member network with search + distance filter</figcaption>
+            </figure>
+          </div>
+
+          <h4 style="margin-top:40px; margin-bottom:12px; font-size:18px; color:var(--ink);">Course detail</h4>
+          <div class="mockup-grid">
+            <figure class="mockup mockup--wide">
+              <img src="../assets/work/gimmelab-mockups/gl-course-detail-viewport.jpg" alt="Gimmelab course detail — Walnut Lane Golf Club with credit cost, tee time grid, and member booking CTA" loading="lazy" />
+              <figcaption>Course detail — credit cost, booking fee $0, tee time grid</figcaption>
+            </figure>
+          </div>
+
+          <h4 style="margin-top:40px; margin-bottom:12px; font-size:18px; color:var(--ink);">Pricing</h4>
+          <div class="mockup-grid">
+            <figure class="mockup mockup--wide">
+              <img src="../assets/work/gimmelab-mockups/gl-pricing-viewport.jpg" alt="Gimmelab pricing page — Casual $99, Core $149, Heavy $199 with monthly/annual toggle" loading="lazy" />
+              <figcaption>Three tiers · monthly/annual toggle · "Save 15%"</figcaption>
+            </figure>
+          </div>
+
+          <h4 style="margin-top:40px; margin-bottom:12px; font-size:18px; color:var(--ink);">Partner portal</h4>
+          <div class="mockup-grid">
+            <figure class="mockup mockup--wide">
+              <img src="../assets/work/gimmelab-mockups/gl-partners-viewport.jpg" alt="Gimmelab partner page — Stop giving away your tee times. Gimmelab pays per booking." loading="lazy" />
+              <figcaption>Partner landing — "Stop giving away your tee times"</figcaption>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">06 · Outcome</div>
+        <div class="case-block__body reveal">
+          <h3>Live. Growing the network.</h3>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="stat__value">22</div>
+              <div class="stat__label">Partner courses live in Greater Philadelphia</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">3</div>
+              <div class="stat__label">Membership tiers — Casual, Core, Heavy</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">$0</div>
+              <div class="stat__label">Booking fees, ever</div>
+            </div>
+          </div>
+
+          <p style="margin-top:32px;">
+            Built entirely solo — brand, product, business development, and launch. The waitlist is open, the partner network is live, and the next phase is scaling the course count and launching paid memberships.
+          </p>
+
+          <p>
+            If you play golf in Philly: <a href="https://www.gimmelab.com/waitlist" target="_blank" rel="noopener">join the waitlist</a>.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========== NEXT / PREV ========== -->
+  <nav class="case-nav" aria-label="Project navigation">
+    <a href="../work.html" class="prev">
+      <span class="label">← Back</span>
+      <span class="title">All work</span>
+    </a>
+    <a href="tee-off-for-a-cause.html" class="next">
+      <span class="label">Next case →</span>
+      <span class="title">Tee Off For A Cause</span>
+    </a>
+  </nav>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="he-footer">
+    <div class="he-footer__watermark" aria-hidden="true">dutchmike</div>
+    <div class="container">
+      <div class="he-footer__top">
+        <h2 class="he-footer__headline">
+          <a href="mailto:info@dutchmike.com">Let&rsquo;s build something</a>
+        </h2>
+        <div class="he-footer__contact">
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Hiring</span>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Project inquiry</span>
+            <a href="../contact.html">Start a brief</a>
+          </div>
+        </div>
+      </div>
+      <div class="he-footer__mid">
+        <div class="he-footer__address">
+          <span class="he-footer__address-name">Mike Melchiot</span>
+          AI engineer · video producer · operator.<br>
+          Available worldwide, async-friendly.
+        </div>
+        <div class="he-footer__sitemap">
+          <div class="he-footer__sitemap-col">
+            <h4>Site</h4>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../services.html">Services</a></li>
+              <li><a href="../work.html">Work</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+              <li><a href="/resume">R&eacute;sum&eacute;</a></li>
+            </ul>
+          </div>
+          <div class="he-footer__sitemap-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://github.com/dutchmike-lab" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="he-footer__sitemap-col">
+          <h4>For Clients</h4>
+          <ul>
+            <li><a href="../work-with-me.html">Work with me</a></li>
+            <li><a href="../contact.html">Project inquiry</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="he-footer__bottom">
+        <span>© <span data-year></span> Mike Melchiot · dutchmike.com</span>
+        <span>Built worldwide · running on coffee &amp; tropics</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>
