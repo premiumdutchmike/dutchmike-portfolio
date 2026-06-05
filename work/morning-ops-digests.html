@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Morning Ops, in Telegram · Mike Melchiot</title>
+  <meta name="description" content="A 6 AM Telegram recap of yesterday's numbers for the businesses I help run. Deterministic, fires exactly once, degrades gracefully. Live for Remodeling Concepts." />
+  <link rel="canonical" href="https://dutchmike.com/work/morning-ops-digests" />
+  <meta property="og:title" content="Morning Ops, in Telegram" />
+  <meta property="og:description" content="A 6 AM Telegram recap of yesterday's numbers for the businesses I help run. Deterministic, fires once, degrades gracefully." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dutchmike.com/work/morning-ops-digests" />
+  <meta property="og:image" content="https://dutchmike.com/assets/work/screenshots/morning-ops-hero.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Morning Ops, in Telegram" />
+  <meta name="twitter:description" content="A 6 AM Telegram recap of yesterday's numbers for the businesses I help run." />
+  <meta name="twitter:image" content="https://dutchmike.com/assets/work/screenshots/morning-ops-hero.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Morning Ops, in Telegram",
+    "description": "A 6 AM Telegram recap of yesterday's business numbers. Deterministic, fires once, degrades gracefully.",
+    "url": "https://dutchmike.com/work/morning-ops-digests",
+    "datePublished": "2026-06-05",
+    "keywords": ["Automation", "Ops tooling", "Telegram bot", "Cron"],
+    "creator": {
+      "@type": "Person",
+      "@id": "https://dutchmike.com/#person",
+      "name": "Mike Melchiot",
+      "url": "https://dutchmike.com/",
+      "jobTitle": "AI engineer",
+      "sameAs": [
+        "https://www.linkedin.com/in/mikemelchiot/",
+        "https://github.com/dutchmike-lab"
+      ]
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <!-- Page loader (Hyper Effekt-style curtain) — injected -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__name">DUTCH MIKE</span>
+      <span class="loader__role">AI Engineer</span>
+    </div>
+  </div>
+
+  <!-- ========== NAV ========== -->
+  <header class="nav">
+    <div class="nav__pad">
+      <div class="nav__shell">
+        <a href="../index.html" class="nav__brand" aria-label="Dutch Mike — home">
+          <img class="nav__logo" src="../assets/dm-logo-white.png" alt="">
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          <div class="nav__menu" data-nav-menu>
+            <a href="../services.html" class="nav__menu-trigger" aria-haspopup="true" aria-expanded="false">
+              Services
+              <svg class="nav__menu-caret" viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__menu-panel" role="menu" aria-label="Services menu">
+              <div class="nav__menu-list">
+                <a class="nav__menu-item" href="../services.html#ai" role="menuitem">
+                  <span class="nav__menu-thumb nav__menu-thumb--ai" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="16" cy="16" r="4.5"/>
+                      <circle cx="6" cy="7" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="26" cy="7" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="6" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="26" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+                      <line x1="7.4" y1="8" x2="12.5" y2="13"/>
+                      <line x1="24.6" y1="8" x2="19.5" y2="13"/>
+                      <line x1="7.4" y1="24" x2="12.5" y2="19"/>
+                      <line x1="24.6" y1="24" x2="19.5" y2="19"/>
+                    </svg>
+                  </span>
+                  <span class="nav__menu-body">
+                    <span class="nav__menu-title">AI Engineering</span>
+                    <span class="nav__menu-desc">Agents, internal tools, and retrieval systems built for production.</span>
+                  </span>
+                </a>
+                <a class="nav__menu-item" href="../services.html#video" role="menuitem">
+                  <span class="nav__menu-thumb nav__menu-thumb--video" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="5" y="8" width="22" height="16" rx="2"/>
+                      <polygon points="14,13 21,16 14,19" fill="currentColor" stroke="none"/>
+                    </svg>
+                  </span>
+                  <span class="nav__menu-body">
+                    <span class="nav__menu-title">Video &amp; Brand</span>
+                    <span class="nav__menu-desc">Brand films, campaigns, and content engines — concept through finish.</span>
+                  </span>
+                </a>
+              </div>
+              <a class="nav__menu-feature" href="../work/tee-off-for-a-cause.html" role="menuitem">
+                <span class="nav__menu-feature-media">
+                  <img src="../assets/work/thumbs/01-tofac.jpg" alt="" loading="lazy" />
+                </span>
+                <span class="nav__menu-feature-meta">P—01 · Latest project</span>
+                <span class="nav__menu-feature-title">Tee Off For A Cause — Next.js event platform, built solo.</span>
+                <span class="nav__menu-feature-cta">Learn more <span aria-hidden="true">→</span></span>
+              </a>
+            </div>
+          </div>
+          <a href="../work.html">Work</a>
+          <a href="../about.html">About</a>
+        </nav>
+        <a class="nav__cta" href="../contact.html">
+          Contact Us
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="nav-float" id="navFloat" aria-hidden="true">
+      <a class="nav-float__cta" href="../contact.html">Contact</a>
+      <a href="../index.html" class="nav-float__logo" aria-label="Dutch Mike — home">
+        <img src="../assets/dm-logo-white.png" alt="">
+      </a>
+      <button class="nav-float__menu" id="navMenuBtn" type="button" aria-label="Open menu" aria-controls="navOverlay" aria-expanded="false">
+        <span>Menu</span>
+        <span class="nav-float__icon" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+    <div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
+      <div class="nav-overlay__panel">
+        <div class="nav-overlay__head">
+          <a class="nav-overlay__head-cta" href="../contact.html" data-nav-close>Contact</a>
+          <a href="../index.html" class="nav-overlay__head-logo" data-nav-close aria-label="Dutch Mike — home">
+            <img src="../assets/dm-logo-white.png" alt="">
+          </a>
+          <button class="nav-overlay__close" id="navMenuClose" type="button" aria-label="Close menu">
+            <span>Close</span><span aria-hidden="true">✕</span>
+          </button>
+        </div>
+        <nav class="nav-overlay__links" aria-label="Site">
+          <a href="../services.html" data-nav-close>Services</a>
+          <a href="../work.html" data-nav-close>Work</a>
+          <a href="../about.html" data-nav-close>About</a>
+          <a href="../contact.html" data-nav-close>Contact</a>
+        </nav>
+        <div class="nav-overlay__foot">
+          <span class="nav-overlay__label">Find me</span>
+          <div class="nav-overlay__socials">
+            <a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== CASE HERO ========== -->
+  <section class="case-hero">
+    <div class="container">
+      <a href="../work.html" class="case-hero__crumb reveal">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3 L4 8 L10 13"/></svg>
+        All work
+      </a>
+
+      <h1 class="display case-hero__title reveal">Morning Ops, in Telegram.</h1>
+
+      <p class="lede case-hero__lede reveal" data-delay="1">
+        The numbers that decide your day usually live behind a login nobody opens before coffee. So I send them instead. A short recap of yesterday lands on the owner's phone at 6 in the morning, before anyone asks.
+      </p>
+
+      <dl class="case-meta stagger">
+        <div><dt>Client</dt><dd>Remodeling Concepts (live) + Tee Off For A Cause</dd></div>
+        <div><dt>Role</dt><dd>Solo build, design to cron</dd></div>
+        <div><dt>Stack</dt><dd>Bash, host cron, Telegram Bot API</dd></div>
+        <div><dt>Status</dt><dd>RC live in production</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ========== CONTEXT ========== -->
+  <section>
+    <div class="container">
+
+      <article class="case-block">
+        <div class="case-block__label">01 · Context</div>
+        <div class="case-block__body reveal">
+          <h3>Owners do not open dashboards. The numbers should come to them.</h3>
+          <p>
+            Remodeling Concepts is a home remodeling company with real money moving every day: deals closing, appointments getting set, social posts pulling in leads. All of it was visible if you went and looked. Nobody went and looked at six in the morning.
+          </p>
+          <p>
+            The owner wanted to start the day already knowing whether yesterday was good. Not by opening a dashboard, then a CRM, then two more tabs. Just knowing.
+          </p>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">02 · Problem</div>
+        <div class="case-block__body reveal">
+          <h3>A digest only works if it is boring and never wrong.</h3>
+          <p>
+            This sounds trivial right up until you build it. A morning recap has to fire exactly once, at 6 AM local time, every day, forever. It has to pull real numbers and get them right. And when a data source is down, it cannot go silent and it cannot spam. It has to say so and move on.
+          </p>
+          <p>Get any of that wrong and people stop trusting the number, which is worse than never sending it. The rules I set:</p>
+          <ul>
+            <li>Fires once per day, at 6 AM Eastern, all year, daylight saving included.</li>
+            <li>Deterministic. No model in the loop, no "roughly." The number is the number.</li>
+            <li>Degrades gracefully. If the dashboard is unreachable, it sends a plain "couldn't pull this morning, will retry tomorrow" instead of nothing or noise.</li>
+            <li>Readable in two seconds on a lock screen.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">03 · What I built</div>
+        <div class="case-block__body reveal">
+          <h3>A tiny cron job and a Telegram bot. That is the whole thing.</h3>
+          <p>
+            No app, no new dashboard, no queue. One shell script runs on the VPS that already hosts the company's other automations. It hits a single token-gated endpoint on the marketing dashboard, reads yesterday's totals, formats four lines, and posts them to a Telegram chat through the Bot API.
+          </p>
+          <p>
+            The interesting part is the 6 AM part. Plain cron cannot say "6 AM Eastern, but shift for daylight saving." So the job wakes up twice each morning, checks the current Eastern hour itself, and only fires when it reads 06. A per-day lock file makes sure it sends exactly once even though it woke up twice. That little dance is what keeps it correct year round without me touching it in spring and fall.
+          </p>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">What lands at 6 AM</h4>
+          <div class="visual">
+&#9728;&#65039; RC Daily Recap &middot; Wed, Jun 4
+&#128176; Sales: 3 won &middot; $48,200
+&#128197; Appointments set: 7
+&#10084;&#65039; Social likes: 142
+          </div>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">Stack</h4>
+          <div class="stack">
+            <span>Bash</span>
+            <span>Host cron</span>
+            <span>Telegram Bot API</span>
+            <span>Token-gated JSON endpoint</span>
+            <span>jq</span>
+            <span>Hostinger VPS</span>
+          </div>
+
+          <h4 style="margin-top:32px; margin-bottom:12px; font-size:18px; color:var(--ink);">The same idea, a second business</h4>
+          <p>
+            Once it worked for Remodeling Concepts, the format obviously traveled. Tee Off For A Cause is a 1,000-golfer charity event with its own morning question: are registrations and foursomes filling, and how close is the date. Same four-line shape, different numbers. I mocked it up to show the pattern; the Remodeling Concepts version is the one running live.
+          </p>
+          <div class="visual">
+&#9971; TOFAC Daily Recap &middot; Wed, Jun 4
+&#127915; Registrations: 6 new &middot; $4,150
+&#128101; Foursomes: 38 / 50 filled
+&#9203; 41 days to tee-off
+          </div>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">04 · The screenshots</div>
+        <div class="case-block__body reveal">
+          <h3>It shows up where they already are.</h3>
+          <p>
+            Nobody installed anything. It arrives in the same app they already check, which is the whole reason it actually gets read.
+          </p>
+          <figure class="visual visual--image" style="margin:24px 0 0;">
+            <img src="../assets/work/screenshots/morning-ops-hero.png" alt="Two phone lock screens at 6:00 AM, each showing a Telegram push: an RC daily recap and a TOFAC daily recap" loading="lazy" style="width:100%;height:auto;border-radius:14px;" />
+          </figure>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">05 · Why it works</div>
+        <div class="case-block__body reveal">
+          <h3>Deterministic beats clever. Exactly-once is the hard part.</h3>
+          <p><strong>Keep: no AI.</strong> People trust a number that is always the number. The moment a recap says "approximately," it becomes a thing to double check, and then nobody reads it.</p>
+          <p><strong>Keep: the graceful fallback.</strong> The "couldn't pull this morning" message has fired only a couple of times, and both times the owner knew I would already be on it. Silence would have quietly eroded trust in every other morning.</p>
+          <p><strong>Learned: the timezone-and-lockfile dance is the actual product.</strong> The formatting took ten minutes. Making it fire once, at the right local hour, every day, with nobody watching, is the part worth getting right.</p>
+          <p><strong>Learned: ship it where people already are.</strong> Nobody adopts the tool you tell them to go check. They read the one that shows up in the app they are already in.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========== NEXT / PREV ========== -->
+  <nav class="case-nav" aria-label="Project navigation">
+    <a href="../work.html" class="prev">
+      <span class="label">&#8592; Back</span>
+      <span class="title">All work</span>
+    </a>
+    <a href="ghl-scorecard.html" class="next">
+      <span class="label">Next case &#8594;</span>
+      <span class="title">GHL Automation Scorecard</span>
+    </a>
+  </nav>
+
+  <!-- ========== FOOTER — Hyper Effekt-style ========== -->
+  <footer class="he-footer">
+    <div class="he-footer__watermark" aria-hidden="true">dutchmike</div>
+    <div class="container">
+
+      <div class="he-footer__top">
+        <h2 class="he-footer__headline">
+          <a href="mailto:info@dutchmike.com">Let&rsquo;s build something</a>
+        </h2>
+        <div class="he-footer__contact">
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Hiring</span>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Project inquiry</span>
+            <a href="../contact.html">Start a brief</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="he-footer__mid">
+        <div class="he-footer__address">
+          <span class="he-footer__address-name">Mike Melchiot</span>
+          AI engineer · video producer · operator.<br>
+          Available worldwide, async-friendly.
+        </div>
+        <div class="he-footer__sitemap">
+          <div class="he-footer__sitemap-col">
+            <h4>Site</h4>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../services.html">Services</a></li>
+              <li><a href="../work.html">Work</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+              <li><a href="/resume">R&eacute;sum&eacute;</a></li>
+            </ul>
+          </div>
+          <div class="he-footer__sitemap-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://github.com/dutchmike-lab" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="he-footer__sitemap-col">
+          <h4>For Clients</h4>
+          <ul>
+            <li><a href="../work-with-me.html">Work with me</a></li>
+            <li><a href="../contact.html">Project inquiry</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="he-footer__bottom">
+        <span>© <span data-year></span> Mike Melchiot · dutchmike.com</span>
+        <span>Built worldwide · running on coffee &amp; tropics</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>
