@@ -63,7 +63,6 @@
     if (!href) return;
     const last = href.split('/').pop();
     if (last === path) a.classList.add('is-active');
-    if (path.startsWith('') && href.includes('work.html') && path.startsWith('inbound-sentinel')) a.classList.add('is-active');
   });
 
   // ---------- Scroll reveals ----------
