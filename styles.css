@@ -2468,6 +2468,7 @@ html.is-loading body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 14px;
+  border-top: none;
 }
 .svc-card {
   position: relative;
