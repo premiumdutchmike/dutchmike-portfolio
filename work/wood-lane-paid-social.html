@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wood Lane paid-social demand engine | Mike Melchiot</title>
+  <meta name="description" content="A Meta paid-social engine for a hospitality and events venue: creative, targeting, landing pages, and CRM capture. 500+ leads in 30 days at roughly $3 each, with a 3.1% click-through rate." />
+  <link rel="canonical" href="https://dutchmike.com/work/wood-lane-paid-social" />
+  <meta property="og:title" content="Wood Lane paid-social demand engine | Mike Melchiot" />
+  <meta property="og:description" content="A Meta paid-social engine for a hospitality and events venue: creative, targeting, landing pages, and CRM capture. 500+ leads in 30 days at roughly $3 each." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dutchmike.com/work/wood-lane-paid-social" />
+  <meta property="og:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Wood Lane paid-social demand engine | Mike Melchiot" />
+  <meta name="twitter:description" content="A Meta paid-social engine for a hospitality and events venue: 500+ leads in 30 days at roughly $3 each." />
+  <meta name="twitter:image" content="https://dutchmike.com/assets/og/default.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Wood Lane paid-social demand engine",
+    "description": "A Meta paid-social engine for a hospitality and events venue: creative, targeting, landing pages, and CRM capture. 500+ leads in 30 days at roughly $3 each.",
+    "url": "https://dutchmike.com/work/wood-lane-paid-social",
+    "datePublished": "2026-01-01",
+    "keywords": ["Paid social", "Demand generation", "Meta Ads", "Wood Lane"],
+    "creator": {
+      "@type": "Person",
+      "@id": "https://dutchmike.com/#person",
+      "name": "Mike Melchiot",
+      "url": "https://dutchmike.com/",
+      "jobTitle": "AI engineer",
+      "sameAs": [
+        "https://www.linkedin.com/in/mikemelchiot/",
+        "https://github.com/dutchmike-lab"
+      ]
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .wl-results{ padding: clamp(8px,2vw,24px) 0; }
+    .wl-stats{
+      display:grid; grid-template-columns:repeat(6,1fr); gap:1px;
+      background:var(--line); border:1px solid var(--line);
+      border-radius:12px; overflow:hidden;
+    }
+    @media (max-width:880px){ .wl-stats{ grid-template-columns:repeat(3,1fr); } }
+    @media (max-width:520px){ .wl-stats{ grid-template-columns:repeat(2,1fr); } }
+    .wl-stat{ background:var(--bg); padding:22px 18px; display:flex; flex-direction:column; gap:6px; }
+    .wl-stat__n{ font-size:clamp(26px,3vw,40px); font-weight:600; letter-spacing:-0.02em; color:var(--fg); line-height:1; }
+    .wl-stat__l{ font-family:var(--mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); line-height:1.3; }
+    .wl-results__note{ font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:14px; letter-spacing:0.02em; }
+    .wl-list{ margin:14px 0 0; padding:0; list-style:none; }
+    .wl-list li{ position:relative; padding:7px 0 7px 22px; color:var(--muted); }
+    .wl-list li::before{ content:''; position:absolute; left:2px; top:14px; width:8px; height:8px; border-radius:2px; background:var(--accent, #d97757); }
+  </style>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <!-- Page loader (Hyper Effekt-style curtain) — injected -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__name">DUTCH MIKE</span>
+      <span class="loader__role">AI Engineer</span>
+    </div>
+  </div>
+
+  <!-- ========== NAV ========== -->
+  <header class="nav">
+    <div class="nav__pad">
+      <div class="nav__shell">
+        <a href="../index.html" class="nav__brand" aria-label="Dutch Mike — home">
+          <img class="nav__logo" src="../assets/dm-logo-white.png" alt="">
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          <div class="nav__menu" data-nav-menu>
+            <a href="../services.html" class="nav__menu-trigger" aria-haspopup="true" aria-expanded="false">
+              Services
+              <svg class="nav__menu-caret" viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__menu-panel" role="menu" aria-label="Services menu">
+              <div class="nav__menu-list">
+                <a class="nav__menu-item" href="../services.html#ai" role="menuitem">
+                  <span class="nav__menu-thumb nav__menu-thumb--ai" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="16" cy="16" r="4.5"/>
+                      <circle cx="6" cy="7" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="26" cy="7" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="6" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="26" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+                      <line x1="7.4" y1="8" x2="12.5" y2="13"/>
+                      <line x1="24.6" y1="8" x2="19.5" y2="13"/>
+                      <line x1="7.4" y1="24" x2="12.5" y2="19"/>
+                      <line x1="24.6" y1="24" x2="19.5" y2="19"/>
+                    </svg>
+                  </span>
+                  <span class="nav__menu-body">
+                    <span class="nav__menu-title">AI Engineering</span>
+                    <span class="nav__menu-desc">Agents, internal tools, and retrieval systems built for production.</span>
+                  </span>
+                </a>
+                <a class="nav__menu-item" href="../services.html#video" role="menuitem">
+                  <span class="nav__menu-thumb nav__menu-thumb--video" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="5" y="8" width="22" height="16" rx="2"/>
+                      <polygon points="14,13 21,16 14,19" fill="currentColor" stroke="none"/>
+                    </svg>
+                  </span>
+                  <span class="nav__menu-body">
+                    <span class="nav__menu-title">Video &amp; Brand</span>
+                    <span class="nav__menu-desc">Brand films, campaigns, and content engines — concept through finish.</span>
+                  </span>
+                </a>
+              </div>
+              <a class="nav__menu-feature" href="../work/tee-off-for-a-cause.html" role="menuitem">
+                <span class="nav__menu-feature-media">
+                  <img src="../assets/work/thumbs/01-tofac.jpg" alt="" loading="lazy" />
+                </span>
+                <span class="nav__menu-feature-meta">P—01 · Latest project</span>
+                <span class="nav__menu-feature-title">Tee Off For A Cause — Next.js event platform, built solo.</span>
+                <span class="nav__menu-feature-cta">Learn more <span aria-hidden="true">→</span></span>
+              </a>
+            </div>
+          </div>
+          <a href="../work.html">Work</a>
+          <a href="../about.html">About</a>
+        </nav>
+        <a class="nav__cta" href="../contact.html">
+          Contact Us
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="nav-float" id="navFloat" aria-hidden="true">
+      <a class="nav-float__cta" href="../contact.html">Contact</a>
+      <a href="../index.html" class="nav-float__logo" aria-label="Dutch Mike — home">
+        <img src="../assets/dm-logo-white.png" alt="">
+      </a>
+      <button class="nav-float__menu" id="navMenuBtn" type="button" aria-label="Open menu" aria-controls="navOverlay" aria-expanded="false">
+        <span>Menu</span>
+        <span class="nav-float__icon" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+    <div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
+      <div class="nav-overlay__panel">
+        <div class="nav-overlay__head">
+          <a class="nav-overlay__head-cta" href="../contact.html" data-nav-close>Contact</a>
+          <a href="../index.html" class="nav-overlay__head-logo" data-nav-close aria-label="Dutch Mike — home">
+            <img src="../assets/dm-logo-white.png" alt="">
+          </a>
+          <button class="nav-overlay__close" id="navMenuClose" type="button" aria-label="Close menu">
+            <span>Close</span><span aria-hidden="true">✕</span>
+          </button>
+        </div>
+        <nav class="nav-overlay__links" aria-label="Site">
+          <a href="../services.html" data-nav-close>Services</a>
+          <a href="../work.html" data-nav-close>Work</a>
+          <a href="../about.html" data-nav-close>About</a>
+          <a href="../contact.html" data-nav-close>Contact</a>
+        </nav>
+        <div class="nav-overlay__foot">
+          <span class="nav-overlay__label">Find me</span>
+          <div class="nav-overlay__socials">
+            <a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="case-hero">
+    <div class="container">
+      <a href="../work.html" class="case-hero__crumb reveal">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3 L4 8 L10 13"/></svg>
+        All work · Paid social &amp; growth
+      </a>
+
+      <h1 class="display case-hero__title reveal">Wood Lane paid social.</h1>
+
+      <p class="lede case-hero__lede reveal" data-delay="1">
+        A Meta paid-social engine for a hospitality and events venue. I own the whole loop: creative, targeting, landing pages, and the CRM capture behind every lead. Built to turn ad spend into booked, trackable leads, not just impressions.
+      </p>
+
+      <dl class="case-meta stagger">
+        <div><dt>Client</dt><dd>Wood Lane Golf &amp; Social</dd></div>
+        <div><dt>Role</dt><dd>Paid social · Demand gen · CRM</dd></div>
+        <div><dt>Year</dt><dd>2026</dd></div>
+        <div><dt>Format</dt><dd>Meta Ads · Lead gen</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="wl-results">
+    <div class="container">
+      <div class="wl-stats">
+        <div class="wl-stat"><span class="wl-stat__n">500+</span><span class="wl-stat__l">Leads / 30 days</span></div>
+        <div class="wl-stat"><span class="wl-stat__n">$3.07</span><span class="wl-stat__l">Cost per lead</span></div>
+        <div class="wl-stat"><span class="wl-stat__n">3.1%</span><span class="wl-stat__l">Click-through rate</span></div>
+        <div class="wl-stat"><span class="wl-stat__n">$0.19</span><span class="wl-stat__l">Cost per click</span></div>
+        <div class="wl-stat"><span class="wl-stat__n">260K+</span><span class="wl-stat__l">Impressions</span></div>
+        <div class="wl-stat"><span class="wl-stat__n">~$1.5K</span><span class="wl-stat__l">Ad spend</span></div>
+      </div>
+      <p class="wl-results__note">Meta Ads, single 30-day window, 2026. Click-through rate ran roughly 3x the typical Meta benchmark.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <article class="case-block">
+        <div class="case-block__label">01 · The work</div>
+        <div class="case-block__body reveal">
+          <h3>A paid-social engine built to produce booked leads, not just impressions.</h3>
+          <p>Wood Lane is a hospitality and events venue. The brief was simple: turn a modest Meta budget into a steady, trackable flow of real leads. I own the whole loop end to end, the creative and the offers, the audience targeting, the lead forms and landing pages, and the CRM capture and routing that catches every lead the second it comes in.</p>
+          <p>Nothing gets handed to an agency. I write and cut the ads, build and test the audiences, wire the lead capture straight into GoHighLevel, and read the numbers daily so spend follows what is actually converting.</p>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">02 · The approach</div>
+        <div class="case-block__body reveal">
+          <h3>Test fast, cut what does not work, scale what does.</h3>
+          <p>The engine runs on constant creative testing. I produce variations quickly, AI-assisted with 15 years of brand and video craft behind the work, ship them, read the data, and reallocate. Cheap clicks are easy. The goal is cheap qualified leads, so I optimize against cost per lead and lead quality, not vanity metrics.</p>
+          <ul class="wl-list">
+            <li>Creative and offers written and produced in-house, tested in small batches.</li>
+            <li>Audience and placement testing to push click-through well above platform norms.</li>
+            <li>Lead capture wired straight into the CRM, scored and routed on arrival.</li>
+            <li>Daily read on cost per lead, with budget following the winners.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case-block">
+        <div class="case-block__label">03 · The result</div>
+        <div class="case-block__body reveal">
+          <h3>Roughly $3 a lead at about triple the typical click-through rate.</h3>
+          <p>Over a single 30-day window the engine produced 500+ leads at about a $3 cost per lead, on a click-through rate near 3.1%, roughly three times the usual Meta benchmark, and a $0.19 cost per click. Because the capture is wired into the CRM, those leads do not sit stranded in an ad platform. They land in the pipeline ready for follow-up, which is the whole point: ad spend in, qualified leads out, every one of them tracked.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <nav class="case-nav" aria-label="Project navigation">
+    <a href="tee-off-for-a-cause.html" class="prev">
+      <span class="label">← Previous</span>
+      <span class="title">Tee Off For A Cause</span>
+    </a>
+    <a href="rc-inbound-lead-tracking.html" class="next">
+      <span class="label">Next case →</span>
+      <span class="title">RC Inbound Lead Tracking</span>
+    </a>
+  </nav>
+
+  <!-- ========== FOOTER — Hyper Effekt-style ========== -->
+  <footer class="he-footer">
+    <div class="he-footer__watermark" aria-hidden="true">dutchmike</div>
+    <div class="container">
+
+      <div class="he-footer__top">
+        <h2 class="he-footer__headline">
+          <a href="mailto:info@dutchmike.com">Let&rsquo;s build something</a>
+        </h2>
+        <div class="he-footer__contact">
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Hiring</span>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Project inquiry</span>
+            <a href="../contact.html">Start a brief</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="he-footer__mid">
+        <div class="he-footer__address">
+          <span class="he-footer__address-name">Mike Melchiot</span>
+          AI engineer · video producer · operator.<br>
+          Available worldwide, async-friendly.
+        </div>
+        <div class="he-footer__sitemap">
+          <div class="he-footer__sitemap-col">
+            <h4>Site</h4>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../services.html">Services</a></li>
+              <li><a href="../work.html">Work</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+              <li><a href="/resume">R&eacute;sum&eacute;</a></li>
+            </ul>
+          </div>
+          <div class="he-footer__sitemap-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://github.com/dutchmike-lab" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="he-footer__sitemap-col">
+          <h4>For Clients</h4>
+          <ul>
+            <li><a href="../work-with-me.html">Work with me</a></li>
+            <li><a href="../contact.html">Project inquiry</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="he-footer__bottom">
+        <span>© <span data-year></span> Mike Melchiot · dutchmike.com</span>
+        <span>Built worldwide · running on coffee &amp; tropics</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>
