@@ -573,8 +573,8 @@
         <h2 class="pr-word pr-word--left" aria-hidden="true">Play</h2>
 
         <button class="pr-trigger" id="prTrigger" type="button" aria-label="Play showreel">
-          <video class="pr-trigger__video" id="prPreview" autoplay muted loop playsinline preload="metadata">
-            <source src="https://dutchmike.com/wp-content/uploads/2024/02/Dutch-Mike-Showreel-web-hero.mov" type="video/mp4">
+          <video class="pr-trigger__video" id="prPreview" autoplay muted loop playsinline preload="metadata" poster="assets/showreel-poster.jpg">
+            <source src="assets/showreel.mp4" type="video/mp4">
           </video>
           <span class="pr-trigger__pill" aria-hidden="true">Play</span>
         </button>
@@ -589,8 +589,8 @@
   <div class="pr-lightbox" id="prLightbox" role="dialog" aria-modal="true" aria-label="Showreel player">
     <div class="pr-lightbox__inner">
       <button class="pr-lightbox__close" id="prLightboxClose" type="button">Close</button>
-      <video class="pr-lightbox__video" id="prFullVideo" controls playsinline preload="none">
-        <source src="https://dutchmike.com/wp-content/uploads/2024/02/Dutch-Mike-Showreel-web-hero.mov" type="video/mp4">
+      <video class="pr-lightbox__video" id="prFullVideo" controls playsinline preload="none" poster="assets/showreel-poster.jpg">
+        <source src="assets/showreel.mp4" type="video/mp4">
       </video>
     </div>
   </div>
