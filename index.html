@@ -45,13 +45,124 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="assets/tofac-animations.css" />
+
+  <!-- ===== Home page loader (segmented bar, light theme, site fonts) ===== -->
+  <style id="pl-styles">
+    #pageLoader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--bg, #ffffff);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(28px, 5vw, 72px);
+      overflow: hidden;
+      transition: transform 0.85s cubic-bezier(0.7, 0, 0.2, 1), opacity 0.6s ease;
+      will-change: transform, opacity;
+    }
+    #pageLoader.pl-done {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .pl-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      color: var(--muted, #6b6b66);
+      font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: clamp(11px, 1.1vw, 13px);
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .pl-top .pl-blink {
+      color: var(--ink, #0a0a0a);
+      animation: pl-blink 1s steps(2, start) infinite;
+    }
+    @keyframes pl-blink { 50% { opacity: 0.2; } }
+
+    .pl-bars {
+      display: grid;
+      grid-template-columns: repeat(20, 1fr);
+      gap: clamp(4px, 0.7vw, 10px);
+      height: clamp(160px, 34vh, 360px);
+      margin: auto 0;
+    }
+    .pl-seg {
+      background: var(--line, #e8e6e0);
+      border-radius: 2px;
+      transform: scaleY(0.92);
+      transform-origin: bottom;
+      transition: background 0.12s linear, box-shadow 0.12s linear, transform 0.18s ease;
+    }
+    .pl-seg.pl-on {
+      background: var(--ink, #0a0a0a);
+      transform: scaleY(1);
+      box-shadow: 0 6px 22px -6px rgba(10, 10, 10, 0.45);
+    }
+
+    .pl-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .pl-label {
+      color: var(--muted, #6b6b66);
+      max-width: 46ch;
+      font-family: var(--sans, 'Geist', ui-sans-serif, system-ui, sans-serif);
+      font-size: clamp(13px, 1.3vw, 16px);
+      line-height: 1.5;
+      font-weight: 400;
+    }
+    .pl-label b { color: var(--ink, #0a0a0a); font-weight: 600; }
+
+    .pl-pct {
+      font-family: 'Oswald', var(--sans, ui-sans-serif), system-ui, sans-serif;
+      font-weight: 700;
+      color: var(--ink, #0a0a0a);
+      font-size: clamp(72px, 16vw, 240px);
+      line-height: 0.82;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+      display: flex;
+      align-items: baseline;
+    }
+    .pl-pct .pl-sign {
+      font-size: 0.42em;
+      color: var(--muted-2, #97968f);
+      margin-left: 0.08em;
+      transform: translateY(-0.04em);
+    }
+
+    @media (max-width: 640px) {
+      .pl-bars { grid-template-columns: repeat(12, 1fr); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #pageLoader { transition: opacity 0.3s ease; }
+      .pl-seg { transition: background 0.05s linear; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Page loader (Hyper Effekt-style curtain) — injected -->
-  <div class="loader" id="loader" aria-hidden="true">
-    <div class="loader__inner">
-      <span class="loader__name">DUTCH MIKE</span>
-      <span class="loader__role">AI Engineer</span>
+  <!-- Page loader (segmented bar, light theme) -->
+  <div id="pageLoader" aria-hidden="true">
+    <div class="pl-top">
+      <span>Dutch&nbsp;Mike&nbsp;/&nbsp;2026</span>
+      <span class="pl-blink">● Loading</span>
+    </div>
+
+    <div class="pl-bars" id="plBars"></div>
+
+    <div class="pl-bottom">
+      <div class="pl-label">
+        Spinning up agents, wiring the pipelines, and warming up the<br>
+        <b>good stuff</b>. Hang tight.
+      </div>
+      <div class="pl-pct"><span id="plNum">0</span><span class="pl-sign">%</span></div>
     </div>
   </div>
 
@@ -848,6 +959,86 @@
 
     </div>
   </footer>
+
+  <!-- ===== Home page loader (segmented bar) ===== -->
+  <script>
+  (function () {
+    'use strict';
+    var SEGMENTS = 20;
+    var loader = document.getElementById('pageLoader');
+    var barsEl = document.getElementById('plBars');
+    var numEl = document.getElementById('plNum');
+    if (!loader || !barsEl || !numEl) return;
+
+    var html = document.documentElement;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var segs = [];
+
+    html.classList.add('is-loading'); // locks scroll (styled in styles.css)
+
+    for (var i = 0; i < SEGMENTS; i++) {
+      var s = document.createElement('div');
+      s.className = 'pl-seg';
+      barsEl.appendChild(s);
+      segs.push(s);
+    }
+
+    var timer = null;
+    var safety = null;
+    var started = false;
+
+    function reveal() {
+      if (timer) { clearInterval(timer); timer = null; }
+      if (safety) { clearTimeout(safety); safety = null; }
+      numEl.textContent = '100';
+      for (var k = 0; k < SEGMENTS; k++) { segs[k].classList.add('pl-on'); }
+      setTimeout(function () {
+        loader.classList.add('pl-done');
+        html.classList.remove('is-loading');
+      }, reduce ? 220 : 520);
+    }
+
+    function easeWithHitches(t) {
+      var base = 1 - Math.pow(1 - t, 2.2);
+      var hitch = Math.sin(t * Math.PI * 2.0) * 0.012;
+      return Math.max(0, Math.min(1, base + hitch));
+    }
+
+    function run() {
+      if (started) return;
+      started = true;
+      var pct = 0;
+      var start = Date.now();
+      var duration = reduce ? 800 : 2600;
+
+      // Time-based driver so it advances even when rAF is throttled.
+      timer = setInterval(function () {
+        var t = Math.min((Date.now() - start) / duration, 1);
+        var target = Math.round(easeWithHitches(t) * 100);
+        if (target > pct) {
+          pct = target;
+          var lit = Math.round((pct / 100) * SEGMENTS);
+          for (var k = 0; k < SEGMENTS; k++) {
+            segs[k].classList.toggle('pl-on', k < lit);
+          }
+          numEl.textContent = pct;
+        }
+        if (t >= 1) { reveal(); }
+      }, 1000 / 60);
+
+      // Hard guarantee the page is always revealed.
+      safety = setTimeout(reveal, duration + 1200);
+    }
+
+    if (document.readyState === 'complete') {
+      run();
+    } else {
+      window.addEventListener('load', run, { once: true });
+      // Fallback if 'load' is slow to fire.
+      setTimeout(run, 1200);
+    }
+  })();
+  </script>
 
   <script src="main.js"></script>
   <script src="assets/tofac-animations.js" defer></script>
