@@ -2059,6 +2059,46 @@ html.js .stagger.is-in > *:nth-child(n+6) { transition-delay: 480ms; }
 
 .card-3up[data-hidden] { display: none; }
 
+/* Live / active project badge ------------------------------------------- */
+:root { --live: #1f9d57; }
+.live-badge {
+  position: absolute;
+  top: 12px; left: 12px;
+  z-index: 3;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 10px 4px 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+}
+.live-badge .live-dot {
+  width: 7px; height: 7px;
+  border-radius: 999px;
+  background: var(--live);
+  box-shadow: 0 0 0 0 rgba(31, 157, 87, 0.5);
+  animation: live-pulse 2.2s var(--ease) infinite;
+}
+@keyframes live-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(31, 157, 87, 0.45); }
+  70%  { box-shadow: 0 0 0 6px rgba(31, 157, 87, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(31, 157, 87, 0); }
+}
+/* Larger media on the home featured grid wears a slightly bigger badge */
+.work-card__media .live-badge {
+  top: 14px; left: 14px;
+  font-size: 11px;
+  padding: 5px 12px 5px 9px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-badge .live-dot { animation: none; }
+}
+
 /* Dark "Want the depth" CTA --------------------------------------------- */
 .depth-cta {
   padding: 0 0 clamp(80px, 10vw, 140px);
