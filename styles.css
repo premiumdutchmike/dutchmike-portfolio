@@ -517,6 +517,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 @media (max-width: 560px) {
   .nav__shell { display: none; }
   .nav-float {
+    display: flex !important; /* beat the desktop !important hide */
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
