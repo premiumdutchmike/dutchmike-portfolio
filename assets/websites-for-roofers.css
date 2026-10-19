@@ -181,3 +181,6 @@
   .rf-close__text { font-size: 11pt; }
   a { color: inherit; text-decoration: none; }
 }
+
+/* The extra Websites item in this page's Services menu (styles.css is untouched). */
+.nav__menu-thumb--web { background: #e9e4d8; color: #111111; }
