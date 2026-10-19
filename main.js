@@ -12,18 +12,27 @@
   const navFloat = document.getElementById('navFloat');
   if (nav) {
     const COLLAPSE_AT = 80;
+    const isPhone = () => window.matchMedia('(max-width: 560px)').matches;
     const onScroll = () => {
       const y = window.scrollY;
       nav.classList.toggle('is-scrolled', y > 8);
       const collapsed = y > COLLAPSE_AT;
       nav.classList.toggle('is-hidden', collapsed);
       if (navFloat) {
-        navFloat.classList.toggle('is-visible', collapsed);
-        navFloat.setAttribute('aria-hidden', String(!collapsed));
+        // On phones the float pill is always visible — don't aria-hide it on scroll.
+        if (isPhone()) {
+          navFloat.classList.add('is-visible');
+          navFloat.setAttribute('aria-hidden', 'false');
+        } else {
+          navFloat.classList.toggle('is-visible', collapsed);
+          navFloat.setAttribute('aria-hidden', String(!collapsed));
+        }
       }
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+    // Re-evaluate when crossing the phone breakpoint (e.g. orientation change).
+    window.matchMedia('(max-width: 560px)').addEventListener('change', onScroll);
   }
 
   // ---------- Overlay menu open/close ----------
