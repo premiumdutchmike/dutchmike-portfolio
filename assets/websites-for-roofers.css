@@ -1,0 +1,183 @@
+/* Websites for roofers: page-specific styles (unlisted page) */
+
+.rf-hero { padding-bottom: clamp(48px, 6vw, 88px); }
+.rf-hero__title { margin-top: 20px; max-width: 14ch; }
+.rf-hero__lede { margin-top: 24px; }
+.rf-hero__actions {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  margin-top: 36px;
+}
+.rf-hero__note {
+  margin: 20px 0 0; font-size: 13px; color: var(--muted);
+  letter-spacing: 0.02em;
+  display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline;
+}
+.rf-pdf-link {
+  color: var(--fg); border-bottom: 1px solid var(--fg);
+  padding-bottom: 1px;
+}
+.rf-pdf-link:hover { color: var(--muted); border-color: var(--muted); }
+
+/* Steps */
+.rf-steps {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--fg);
+}
+.rf-step {
+  padding: clamp(24px, 2.6vw, 40px) clamp(20px, 2.2vw, 32px) clamp(24px, 2.6vw, 40px) 0;
+  border-right: 1px solid var(--line);
+}
+.rf-step + .rf-step { padding-left: clamp(20px, 2.2vw, 32px); }
+.rf-step:last-child { border-right: none; }
+.rf-step .eyebrow { display: block; margin-bottom: 20px; }
+.rf-step h3 { margin-bottom: 12px; }
+.rf-step p { color: var(--fg-2); font-size: 15px; line-height: 1.55; margin: 0; }
+@media (max-width: 960px) {
+  .rf-steps { grid-template-columns: 1fr 1fr; }
+  .rf-step, .rf-step + .rf-step { padding: 28px 24px 28px 0; border-bottom: 1px solid var(--line); }
+  .rf-step:nth-child(2n) { border-right: none; padding-left: 24px; }
+}
+@media (max-width: 600px) {
+  .rf-steps { grid-template-columns: 1fr; }
+  .rf-step, .rf-step + .rf-step, .rf-step:nth-child(2n) { padding: 24px 0; border-right: none; }
+}
+
+/* Offer */
+.rf-offer {
+  display: grid; grid-template-columns: 0.8fr 1.2fr;
+  border-top: 1px solid var(--fg);
+  border-bottom: 1px solid var(--line);
+}
+.rf-offer__price {
+  padding: clamp(28px, 4vw, 56px) clamp(20px, 3vw, 40px) clamp(28px, 4vw, 56px) 0;
+  border-right: 1px solid var(--line);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+}
+.rf-offer__amount {
+  font-family: var(--display); font-weight: 500;
+  font-size: clamp(64px, 8vw, 120px); letter-spacing: -0.04em; line-height: 0.9;
+}
+.rf-offer__per { font-size: 18px; color: var(--fg-2); }
+.rf-offer__badge {
+  margin-top: 18px; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid var(--fg); border-radius: 999px; padding: 6px 12px;
+}
+.rf-offer__terms { padding: clamp(20px, 3vw, 40px) 0 clamp(20px, 3vw, 40px) clamp(20px, 3vw, 40px); margin: 0; }
+@media (max-width: 720px) {
+  .rf-offer { grid-template-columns: 1fr; }
+  .rf-offer__price { border-right: none; border-bottom: 1px solid var(--line); padding-right: 0; }
+  .rf-offer__terms { padding-left: 0; }
+}
+.rf-terms-note { margin: 20px 0 0; font-size: 13px; color: var(--muted); letter-spacing: 0.02em; }
+
+/* Generic arrow list */
+.rf-list { list-style: none; padding: 0; margin: 0; }
+.rf-list li {
+  position: relative; padding: 14px 0 14px 24px;
+  border-top: 1px solid var(--line);
+  font-size: 16px; line-height: 1.55; color: var(--fg-2);
+}
+.rf-list li:first-child { border-top: none; }
+.rf-list li::before {
+  content: '→'; position: absolute; left: 0; top: 15px;
+  color: var(--muted); font-family: var(--mono); font-size: 12px;
+}
+.rf-list strong { font-weight: 500; color: var(--fg); }
+
+.rf-callout {
+  margin: 24px 0 0 !important;
+  font-weight: 500; color: var(--fg) !important;
+  font-size: 18px !important;
+}
+.rf-subhead { font-size: clamp(28px, 3.2vw, 40px); letter-spacing: -0.022em; line-height: 1.05; }
+
+/* FAQ */
+.rf-faq {
+  margin: 0; display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--fg);
+}
+.rf-faq__item {
+  padding: 24px clamp(20px, 3vw, 40px) 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.rf-faq__item:nth-child(2n) { padding-left: clamp(20px, 3vw, 40px); padding-right: 0; border-left: 1px solid var(--line); }
+.rf-faq dt { font-weight: 500; font-size: 18px; letter-spacing: -0.01em; margin-bottom: 8px; }
+.rf-faq dd { margin: 0; color: var(--fg-2); font-size: 15px; line-height: 1.6; max-width: 60ch; }
+@media (max-width: 720px) {
+  .rf-faq { grid-template-columns: 1fr; }
+  .rf-faq__item, .rf-faq__item:nth-child(2n) { padding: 20px 0; border-left: none; }
+}
+
+.rf-close__text { margin: 16px 0 0; font-size: 17px; line-height: 1.6; color: var(--fg-2); }
+.rf-close__text a { border-bottom: 1px solid currentColor; }
+
+.rf-print-head { display: none; }
+
+/* ---------------- Print ---------------- */
+@media print {
+  @page { size: Letter; margin: 0.6in 0.65in; }
+  html, body { background: #fff !important; }
+  body { font-size: 11pt; color: #0a0a0a; }
+  .loader, .nav, .nav-float, .nav-overlay, .he-footer,
+  .rf-hero__actions, .cta-strip__actions, .rf-pdf-link { display: none !important; }
+  .reveal, .stagger > * { opacity: 1 !important; transform: none !important; transition: none !important; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .container { max-width: none; padding: 0; }
+  .section, .section--tight, .rf-hero { padding: 0 !important; }
+  .rf-section { padding-top: 16pt !important; }
+  .divider { display: none; }
+
+  .rf-print-head {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 8.5pt; letter-spacing: 0.06em; text-transform: uppercase;
+    color: #6b6b66; border-bottom: 1px solid #0a0a0a; padding-bottom: 8pt; margin-bottom: 20pt;
+  }
+  .rf-hero__title { font-size: 36pt; margin-top: 8pt; }
+  .rf-hero__lede { font-size: 15pt; margin-top: 12pt; }
+  .rf-hero__note { margin-top: 10pt; font-size: 9.5pt; }
+
+  .s-head { grid-template-columns: 1fr; gap: 4pt; margin-bottom: 12pt; }
+  .s-head__title, .rf-subhead { font-size: 20pt; }
+  .s-head__meta { font-size: 9pt; }
+  .h3, h3 { font-size: 13pt; }
+
+  .rf-steps { grid-template-columns: repeat(4, 1fr); }
+  .rf-step, .rf-step + .rf-step { padding: 12pt 10pt; border-bottom: none; border-right: 1px solid #e8e6e0; }
+  .rf-step:first-child { padding-left: 0; }
+  .rf-step:last-child { border-right: none; }
+  .rf-step .eyebrow { margin-bottom: 8pt; font-size: 8pt; }
+  .rf-step p { font-size: 9.5pt; }
+
+  .rf-offer { grid-template-columns: 0.8fr 1.2fr; break-inside: avoid; }
+  .rf-offer__price { padding: 14pt 14pt 14pt 0; border-right: 1px solid #e8e6e0; border-bottom: none; }
+  .rf-offer__amount { font-size: 48pt; }
+  .rf-offer__terms { padding: 8pt 0 8pt 14pt; }
+  .rf-list li { font-size: 10pt; padding: 7pt 0 7pt 18pt; }
+  .rf-list li::before { top: 8pt; }
+
+  #included { break-before: page; }
+  .wwm-tiers { grid-template-columns: 1fr 1fr; break-inside: avoid; }
+  .wwm-tier { padding: 14pt 14pt 14pt 0; border-right: 1px solid #e8e6e0; }
+  .wwm-tier:nth-child(2n) { padding-left: 14pt; padding-right: 0; border-right: none; }
+  .wwm-tier .eyebrow { margin-bottom: 8pt; }
+  .wwm-tier h3 { font-size: 16pt; margin-bottom: 6pt; }
+  .wwm-tier ul { margin-top: 8pt; }
+  .wwm-tier ul li { font-size: 10pt; padding: 6pt 0 6pt 18pt; }
+  .wwm-tier ul li::before { top: 6pt; }
+  .rf-callout { font-size: 12pt !important; margin-top: 12pt !important; }
+
+  .bio-grid { grid-template-columns: 0.6fr 1.4fr; gap: 20pt; break-inside: avoid; }
+
+  #faq { break-before: page; }
+  .rf-faq { grid-template-columns: 1fr 1fr; }
+  .rf-faq__item { padding: 10pt 12pt 10pt 0; break-inside: avoid; }
+  .rf-faq__item:nth-child(2n) { padding: 10pt 0 10pt 12pt; border-left: 1px solid #e8e6e0; }
+  .rf-faq dt { font-size: 11.5pt; margin-bottom: 4pt; }
+  .rf-faq dd { font-size: 9.5pt; }
+
+  .cta-strip { grid-template-columns: 1fr; padding: 16pt 0; break-inside: avoid; }
+  .cta-strip__title { font-size: 20pt; }
+  .rf-close__text { font-size: 11pt; }
+  a { color: inherit; text-decoration: none; }
+}
