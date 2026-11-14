@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mean Girls 2026 | Dutch Mike</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="author" content="Dutch Mike" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <style>
+    .mg { min-height: 60vh; display: flex; align-items: center; padding-top: 140px; }
+    .mg .h1 { margin: 12px 0 20px; }
+    .mg__card { max-width: 560px; }
+    .mg__form { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+    .mg__input { flex: 1 1 260px; font: inherit; font-size: 16px; padding: 14px 16px; border: 1px solid var(--line-2); border-radius: 999px; background: var(--bg); color: var(--fg); }
+    .mg__input:focus { outline: none; border-color: var(--fg); }
+    .mg__msg { margin-top: 16px; color: var(--muted); min-height: 1.5em; }
+    .mg__msg.is-error { color: #b42318; }
+    .mg__done { display: none; margin-top: 32px; }
+    .mg__done.is-on { display: block; }
+    .mg__note { margin-top: 16px; color: var(--muted); font-size: 14px; }
+  </style>
+</head>
+<body class="mg-page">
+  <!-- Page loader (curtain) -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__name">DUTCH MIKE</span>
+      <span class="loader__role">Mean Girls 2026</span>
+    </div>
+  </div>
+
+  <!-- ========== NAV ========== -->
+  <header class="nav">
+    <div class="nav__pad">
+      <div class="nav__shell">
+        <a href="index.html" class="nav__brand" aria-label="Dutch Mike — home">
+          <img class="nav__logo" src="assets/dm-logo-white.png" alt="Dutch Mike logo" decoding="async">
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          <div class="nav__menu" data-nav-menu>
+            <a href="services.html" class="nav__menu-trigger" aria-haspopup="true" aria-expanded="false">
+              Services
+              <svg class="nav__menu-caret" viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav__menu-panel" role="menu" aria-label="Services menu">
+              <div class="nav__menu-list">
+                <a class="nav__menu-item" href="services.html#ai" role="menuitem">
+                  <span class="nav__menu-thumb nav__menu-thumb--ai" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="16" cy="16" r="4.5"/>
+                      <circle cx="6" cy="7" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="26" cy="7" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="6" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+                      <circle cx="26" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+                      <line x1="7.4" y1="8" x2="12.5" y2="13"/>
+                      <line x1="24.6" y1="8" x2="19.5" y2="13"/>
+                      <line x1="7.4" y1="24" x2="12.5" y2="19"/>
+                      <line x1="24.6" y1="24" x2="19.5" y2="19"/>
+                    </svg>
+                  </span>
+                  <span class="nav__menu-body">
+                    <span class="nav__menu-title">AI Engineering</span>
+                    <span class="nav__menu-desc">Agents, internal tools, and retrieval systems built for production.</span>
+                  </span>
+                </a>
+                <a class="nav__menu-item" href="services.html#video" role="menuitem">
+                  <span class="nav__menu-thumb nav__menu-thumb--video" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="5" y="8" width="22" height="16" rx="2"/>
+                      <polygon points="14,13 21,16 14,19" fill="currentColor" stroke="none"/>
+                    </svg>
+                  </span>
+                  <span class="nav__menu-body">
+                    <span class="nav__menu-title">Video &amp; Brand</span>
+                    <span class="nav__menu-desc">Brand films, campaigns, and content engines — concept through finish.</span>
+                  </span>
+                </a>
+              </div>
+              <a class="nav__menu-feature" href="work/tee-off-for-a-cause.html" role="menuitem">
+                <span class="nav__menu-feature-media">
+                  <picture>
+                    <source type="image/webp" srcset="assets/work/thumbs/01-tofac.webp" />
+                    <img src="assets/work/thumbs/01-tofac.jpg" alt="Tee Off For A Cause — Next.js event platform" loading="lazy" decoding="async" />
+                  </picture>
+                </span>
+                <span class="nav__menu-feature-meta">P—01 · Latest project</span>
+                <span class="nav__menu-feature-title">Tee Off For A Cause — Next.js event platform, built solo.</span>
+                <span class="nav__menu-feature-cta">Learn more <span aria-hidden="true">→</span></span>
+              </a>
+            </div>
+          </div>
+          <a href="work.html">Work</a>
+          <a href="about.html">About</a>
+        </nav>
+        <a class="nav__cta" href="contact.html">
+          Contact Us
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="nav-float" id="navFloat" aria-hidden="true">
+      <a class="nav-float__cta" href="contact.html">Contact</a>
+      <a href="index.html" class="nav-float__logo" aria-label="Dutch Mike — home">
+        <img src="assets/dm-logo-white.png" alt="Dutch Mike logo" decoding="async">
+      </a>
+      <button class="nav-float__menu" id="navMenuBtn" type="button" aria-label="Open menu" aria-controls="navOverlay" aria-expanded="false">
+        <span>Menu</span>
+        <span class="nav-float__icon" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+    <div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
+      <div class="nav-overlay__panel">
+        <div class="nav-overlay__head">
+          <a class="nav-overlay__head-cta" href="contact.html" data-nav-close>Contact</a>
+          <a href="index.html" class="nav-overlay__head-logo" data-nav-close aria-label="Dutch Mike — home">
+            <img src="assets/dm-logo-white.png" alt="Dutch Mike logo" decoding="async">
+          </a>
+          <button class="nav-overlay__close" id="navMenuClose" type="button" aria-label="Close menu">
+            <span>Close</span><span aria-hidden="true">✕</span>
+          </button>
+        </div>
+        <nav class="nav-overlay__links" aria-label="Site">
+          <a href="services.html" data-nav-close>Services</a>
+          <a href="work.html" data-nav-close>Work</a>
+          <a href="about.html" data-nav-close>About</a>
+          <a href="contact.html" data-nav-close>Contact</a>
+        </nav>
+        <div class="nav-overlay__foot">
+          <span class="nav-overlay__label">Find me</span>
+          <div class="nav-overlay__socials">
+            <a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section mg">
+      <div class="container">
+        <div class="mg__card reveal">
+          <span class="eyebrow">Villa Joseph Marie · Fall Show 2026</span>
+          <h1 class="h1">Mean Girls.</h1>
+          <p class="lede">The full show video, for families who ordered a copy. Enter the email or phone number you used for your Venmo payment.</p>
+          <form class="mg__form" id="mg-form" autocomplete="on">
+            <input class="mg__input" id="mg-id" name="id" type="text" inputmode="email" placeholder="Email or phone number" required aria-label="Email or phone number" />
+            <button class="btn" type="submit">Unlock</button>
+          </form>
+          <p class="mg__msg" id="mg-msg" role="status"></p>
+          <div class="mg__done" id="mg-done">
+            <a class="btn" id="mg-link" href="#" rel="noopener">
+              Download the show (4 GB)
+              <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13 L13 3 M6 3 H13 V10"/></svg>
+            </a>
+            <p class="mg__note">It is a big file, so use Wi-Fi. On a phone it may play in the browser first; use the share or download button to save it. Please keep this link to your family.</p>
+          </div>
+          <p class="mg__note">Trouble? Email <a href="mailto:info@dutchmike.com?subject=Mean%20Girls%20video">info@dutchmike.com</a>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="he-footer">
+    <div class="he-footer__watermark" aria-hidden="true">dutchmike</div>
+    <div class="container">
+
+      <div class="he-footer__top">
+        <h2 class="he-footer__headline">
+          <a href="mailto:info@dutchmike.com">Let&rsquo;s build something</a>
+        </h2>
+        <div class="he-footer__contact">
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Hiring</span>
+            <a href="mailto:info@dutchmike.com">info@dutchmike.com</a>
+          </div>
+          <div class="he-footer__contact-block">
+            <span class="he-footer__label">Project inquiry</span>
+            <a href="contact.html">Start a brief</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="he-footer__mid">
+        <div class="he-footer__address">
+          <span class="he-footer__address-name">Mike Melchiot</span>
+          AI engineer · video producer · operator.<br>
+          Available worldwide, async-friendly.
+        </div>
+        <div class="he-footer__sitemap">
+          <div class="he-footer__sitemap-col">
+            <h4>Site</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="work.html">Work</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="/resume">R&eacute;sum&eacute;</a></li>
+            </ul>
+          </div>
+          <div class="he-footer__sitemap-col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/mikemelchiot/" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://github.com/dutchmike-lab" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://www.youtube.com/@dutchmike" target="_blank" rel="noopener">YouTube</a></li>
+              <li><a href="https://www.instagram.com/dutchmike/" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="he-footer__sitemap-col">
+          <h4>For Clients</h4>
+          <ul>
+            <li><a href="work-with-me.html">Work with me</a></li>
+            <li><a href="contact.html">Project inquiry</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="he-footer__bottom">
+        <span>© <span data-year></span> Mike Melchiot · dutchmike.com</span>
+        <span>Built worldwide · running on coffee &amp; tropics</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById('mg-form'), msg = document.getElementById('mg-msg');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var id = document.getElementById('mg-id').value.trim();
+        if (!id) return;
+        msg.className = 'mg__msg'; msg.textContent = 'Checking...';
+        fetch('/api/mg-access', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: id }) })
+          .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+          .then(function (d) {
+            if (d.ok && d.url) {
+              document.getElementById('mg-link').href = d.url;
+              document.getElementById('mg-done').classList.add('is-on');
+              form.style.display = 'none';
+              msg.textContent = 'You are on the list. Enjoy the show!';
+            } else if (d.error === 'not_ready') {
+              msg.textContent = 'The video is almost ready. Please check back soon.';
+            } else {
+              msg.className = 'mg__msg is-error';
+              msg.textContent = "We couldn't find that email or phone. Try the one from your Venmo payment, or email info@dutchmike.com.";
+            }
+          })
+          .catch(function () { msg.className = 'mg__msg is-error'; msg.textContent = 'Something went wrong. Please try again.'; });
+      });
+    })();
+  </script>
+</body>
+</html>
